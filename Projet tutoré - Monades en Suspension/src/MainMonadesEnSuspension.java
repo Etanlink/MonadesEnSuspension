@@ -16,21 +16,6 @@ public class MainMonadesEnSuspension extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("MonadesEnSuspension");
-		
-		try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.getLocation(MainMonadesEnSuspension.class.getResource("view/UIView.fxml"));
-            UIView = (BorderPane) loader.load();
-
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(UIView);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		
 	}
 
 	public static void main(String[] args) {
