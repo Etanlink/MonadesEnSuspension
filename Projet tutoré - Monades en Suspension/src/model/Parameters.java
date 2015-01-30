@@ -7,6 +7,8 @@
  *
  **/
 
+package model;
+
 public class Parameters {
 	
 	public int nbMinMonades;

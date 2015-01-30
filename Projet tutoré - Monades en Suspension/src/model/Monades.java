@@ -1,3 +1,5 @@
+package model;
+
 /**
  * @aim Define a Monade object to create and display it
  * 

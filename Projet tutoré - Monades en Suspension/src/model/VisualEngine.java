@@ -7,6 +7,8 @@
  *
  **/
 
+package model;
+
 public class VisualEngine {
 	
 	/* TODO : Add a list of Monades objects */
