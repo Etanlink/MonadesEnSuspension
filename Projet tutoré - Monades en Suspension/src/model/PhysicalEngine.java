@@ -11,11 +11,13 @@ package model;
 import java.util.List;
 public class PhysicalEngine {
 	
+	/**Unique instance of the PhysicalInstance, following the pattern Singleton*/
 	private final static PhysicalEngine INSTANCE = new PhysicalEngine();
 	
-	/* TODO : Add a list of Monades objects */
+	/**List of the monades on the scene */
 	private static List<Monade> listMonades;
 	
+	/**Empty builder*/
 	private PhysicalEngine(){ };
 	
 	public static PhysicalEngine getPhysicalEngine()
@@ -28,13 +30,16 @@ public class PhysicalEngine {
 		return listMonades;
 	}
 	
+	/**creates a new monade and inserts it in ListMonades*/
 	public void createANewMonade()
 	{
 		Monade monade = new Monade();
 		getListMonades().add(monade);
 	}
 	
-	/* TODO : method to create an animation with parameters */
+	/**creates an animation considering parameters
+	 * @param param the different parameters defined by the user
+	 * */
 	public void createAnimation(Parameters param){
 		
 	}
