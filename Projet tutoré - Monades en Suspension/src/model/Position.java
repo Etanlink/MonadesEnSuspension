@@ -5,11 +5,21 @@ public class Position {
 	private Position x;
 	private Position y;
 	
-	public Position(Position x, Position y){
-		this.x = x;
-		this.y = y;
+	/**
+	 * Constructor of the Position class
+	 * @param xi -> x initial
+	 * @param yi -> y initial
+	 */
+	public Position(Position xi, Position yi){
+		this.x = xi;
+		this.y = yi;
 	}
 	
+	/**
+	 * Method to obtain a next position
+	 * 
+	 * @return a next position
+	 */
 	public Position nextPosition() {
 		/* TODO */
 		return null;

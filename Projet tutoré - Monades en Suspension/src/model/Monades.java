@@ -12,10 +12,7 @@ package model;
 public class Monades {
 	
 	public enum size {PETIT, MOYEN, GRAND};
-	public Position pos;
 	public float speedVector;
-	public Position nextPosition;
-	public Axe polynomialAxe;
 	
 	/* TODO : Method to define a moving */
 	public Position toMove(Position currentPosition){

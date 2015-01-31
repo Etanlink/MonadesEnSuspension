@@ -16,10 +16,23 @@ public class Parameters {
 	public float percentOfMonades;
 	public float speedCoefficient;
 	public float animationScale;
-	
-	/* TODO : method to construct parameters */
-	public Parameters(){
-		
+
+	/**
+	 * Constructor of the Parameters class
+	 * @param nbMinMonades
+	 * @param nbMaxMonades
+	 * @param percentOfMonades
+	 * @param speedCoefficient
+	 * @param animationScale
+	 */
+	public Parameters(int nbMinMonades, int nbMaxMonades,
+			float percentOfMonades, float speedCoefficient, float animationScale) {
+		super();
+		this.nbMinMonades = nbMinMonades;
+		this.nbMaxMonades = nbMaxMonades;
+		this.percentOfMonades = percentOfMonades;
+		this.speedCoefficient = speedCoefficient;
+		this.animationScale = animationScale;
 	}
 
 }
