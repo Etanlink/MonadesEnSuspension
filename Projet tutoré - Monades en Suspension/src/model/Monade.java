@@ -9,15 +9,10 @@ package model;
  *
  **/
 
-public class Monade {
-	
-	public enum size {PETIT, MOYEN, GRAND};
+public class Monade extends AbstractMonade {
+
 	public Vector speedVector;
-	
-	/*  */
-	private Position currentPosition;
-	private Position nextPosition;
-	
+
 	/**
 	 * Method to give a new Position in x and y at a Monade object 
 	 * @param newX corresponds at the new x position wished
@@ -30,6 +25,7 @@ public class Monade {
 
 	public void calculateNextPosition() {
 		// TODO Auto-generated method stub
+		
 		
 	}
 
