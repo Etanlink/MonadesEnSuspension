@@ -2,15 +2,15 @@ package model;
 
 public class Position {
 	
-	private Position x;
-	private Position y;
+	private int x;
+	private int y;
 	
 	/**
 	 * Constructor of the Position class
 	 * @param xi -> x initial
 	 * @param yi -> y initial
 	 */
-	public Position(Position xi, Position yi){
+	public Position(int xi, int yi){
 		this.x = xi;
 		this.y = yi;
 	}
@@ -20,7 +20,7 @@ public class Position {
 	 * @param Position nextX
 	 * @return a next x position
 	 */
-	public Position nextX(Position nextX) {
+	/*public int nextX(int nextX) {
 		setX(nextX);
 		return nextX;
 	}
@@ -29,24 +29,25 @@ public class Position {
 	 * @param Position nextY
 	 * @return a next y position
 	 */
-	public Position nextY(Position nextY) {
+	
+	public int nextY(int nextY) {
 		setY(nextY);
 		return nextY;
 	}
 
-	public Position getX() {
+	public int getX() {
 		return x;
 	}
 
-	public void setX(Position x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 
-	public Position getY() {
+	public int getY() {
 		return y;
 	}
 
-	public void setY(Position y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 

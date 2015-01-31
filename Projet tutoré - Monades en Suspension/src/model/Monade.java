@@ -15,17 +15,22 @@ public class Monade {
 	public float speedVector;
 	
 	/*  */
-	private Position currentX;
-	private Position currentY;
+	private Position currentPosition;
+	private Position nextPosition;
 	
 	/**
 	 * Method to give a new Position in x and y at a Monade object 
 	 * @param newX corresponds at the new x position wished
 	 * @param newY corresponds at the new y position wished
 	 */
-	public void toMove(Position newX, Position newY){
-		currentX.nextX(newX);
-		currentY.nextY(newY);
+	public void toMove(int newX,int newY){
+		nextPosition.nextX(newX);
+		nextPosition.nextY(newY);
+	}
+
+	public void calculateNextPosition() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

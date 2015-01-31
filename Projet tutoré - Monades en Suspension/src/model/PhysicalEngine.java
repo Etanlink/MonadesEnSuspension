@@ -8,14 +8,14 @@
  **/
 
 package model;
-import java.util.List;
+import java.util.ArrayList;
 public class PhysicalEngine {
 	
 	/**Unique instance of the PhysicalInstance, following the pattern Singleton*/
 	private final static PhysicalEngine INSTANCE = new PhysicalEngine();
 	
 	/**List of the monades on the scene */
-	private static List<Monade> listMonades;
+	private static ArrayList<Monade> listMonades;
 	
 	/**Empty builder*/
 	private PhysicalEngine(){ };
@@ -25,7 +25,7 @@ public class PhysicalEngine {
 		return INSTANCE;
 	}
 	
-	public static List<Monade> getListMonades()
+	public static ArrayList<Monade> getListMonades()
 	{
 		return listMonades;
 	}
@@ -41,6 +41,19 @@ public class PhysicalEngine {
 	 * @param param the different parameters defined by the user
 	 * */
 	public void createAnimation(Parameters param){
+		if(listMonades.size()<=3)
+		{
+			createANewMonade();
+		}
+		else if(listMonades.size()<10)
+		{
+			createANewMonade();
+		}
+		for(Monade m : listMonades)
+		{
+			m.calculateNextPosition();
+		}
+			
 		
 	}
 
