@@ -14,7 +14,7 @@ public class Monades {
 	public enum size {PETIT, MOYEN, GRAND};
 	public float speedVector;
 	
-	/*  */
+	
 	private Position currentX;
 	private Position currentY;
 	
