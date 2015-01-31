@@ -14,13 +14,24 @@ public class PhysicalEngine {
 	private final static PhysicalEngine INSTANCE = new PhysicalEngine();
 	
 	/* TODO : Add a list of Monades objects */
-	private static List<Monade> listesMonades;
+	private static List<Monade> listMonades;
 	
 	private PhysicalEngine(){ };
 	
 	public static PhysicalEngine getPhysicalEngine()
 	{
 		return INSTANCE;
+	}
+	
+	public static List<Monade> getListMonades()
+	{
+		return listMonades;
+	}
+	
+	public void createANewMonade()
+	{
+		Monade monade = new Monade();
+		getListMonades().add(monade);
 	}
 	
 	/* TODO : method to create an animation with parameters */
