@@ -10,5 +10,21 @@ package model;
  **/
 
 public class Axe {
+	
+	private Axe axe;
+
+	
+	public Axe(Axe axe) {
+		this.axe = axe;
+	}
+
+	public Axe getAxe() {
+		return axe;
+	}
+
+	public void setAxe(Axe axe) {
+		this.axe = axe;
+	}
+
 
 }

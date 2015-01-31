@@ -16,6 +16,8 @@ public class MainMonadesEnSuspension extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("MonadesEnSuspension");
+		
+		
 	}
 
 	public static void main(String[] args) {
