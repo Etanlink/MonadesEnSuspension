@@ -9,7 +9,7 @@ package model;
  *
  **/
 
-public class Monades {
+public class Monade {
 	
 	public enum size {PETIT, MOYEN, GRAND};
 	public float speedVector;
