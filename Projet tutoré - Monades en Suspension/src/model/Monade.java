@@ -13,6 +13,12 @@ public class Monade extends AbstractMonade {
 
 	public Vector speedVector;
 
+	public Monade(Position currentPosition, Position nextPosition,
+			Vector speedVector) {
+		super(currentPosition, nextPosition);
+		this.speedVector = speedVector;
+	}
+
 	/**
 	 * Method to give a new Position in x and y at a Monade object 
 	 * @param newX corresponds at the new x position wished

@@ -1,5 +1,5 @@
 /**
- * @aim Define differents parameters to create the animation with the Physical Engine
+ * @aim Define different parameters to create the animation with the Physical Engine
  * 
  * @date 23/01/2015
  * @author HugoPopo, Etanlink
