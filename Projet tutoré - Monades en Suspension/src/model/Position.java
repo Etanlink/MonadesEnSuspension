@@ -2,15 +2,15 @@ package model;
 
 public class Position {
 	
-	private int x;
-	private int y;
+	private float x;
+	private float y;
 	
 	/**
 	 * Constructor of the Position class
 	 * @param xi -> x initial
 	 * @param yi -> y initial
 	 */
-	public Position(int xi, int yi){
+	public Position(float xi, float yi){
 		this.x = xi;
 		this.y = yi;
 	}
@@ -20,7 +20,7 @@ public class Position {
 	 * @param Position nextX
 	 * @return a next x position
 	 */
-	/*public int nextX(int nextX) {
+	/*public float nextX(float nextX) {
 		setX(nextX);
 		return nextX;
 	}
@@ -30,24 +30,24 @@ public class Position {
 	 * @return a next y position
 	 */
 	
-	public int nextY(int nextY) {
+	public float nextY(float nextY) {
 		setY(nextY);
 		return nextY;
 	}
 
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(float x) {
 		this.x = x;
 	}
 
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 

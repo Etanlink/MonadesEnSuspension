@@ -12,7 +12,7 @@ package model;
 public class Monade {
 	
 	public enum size {PETIT, MOYEN, GRAND};
-	public float speedVector;
+	public Vector speedVector;
 	
 	/*  */
 	private Position currentPosition;
@@ -23,9 +23,9 @@ public class Monade {
 	 * @param newX corresponds at the new x position wished
 	 * @param newY corresponds at the new y position wished
 	 */
-	public void toMove(int newX,int newY){
-		nextPosition.nextX(newX);
-		nextPosition.nextY(newY);
+	public void toMove(float newX,float newY){
+		//nextPosition.nextX(newX);
+		//nextPosition.nextY(newY);
 	}
 
 	public void calculateNextPosition() {

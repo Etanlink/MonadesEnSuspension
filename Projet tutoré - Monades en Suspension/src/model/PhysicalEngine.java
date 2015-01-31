@@ -41,20 +41,26 @@ public class PhysicalEngine {
 	 * @param param the different parameters defined by the user
 	 * */
 	public void createAnimation(Parameters param){
-		if(listMonades.size()<=3)
+		while(listMonades.size()<=3)
 		{
 			createANewMonade();
 		}
-		else if(listMonades.size()<10)
+		if(listMonades.size()<10)
 		{
 			createANewMonade();
 		}
+		updateListMonades();
+		
+			
+		
+	}
+
+	private void updateListMonades() {
+		// TODO Auto-generated method stub
 		for(Monade m : listMonades)
 		{
 			m.calculateNextPosition();
 		}
-			
-		
 	}
 
 }
