@@ -16,13 +16,22 @@ public class Position {
 	}
 	
 	/**
-	 * Method to obtain a next position
-	 * 
-	 * @return a next position
+	 * Method to obtain a next x position
+	 * @param Position nextX
+	 * @return a next x position
 	 */
-	public Position nextPosition() {
-		/* TODO */
-		return null;
+	public Position nextX(Position nextX) {
+		setX(nextX);
+		return nextX;
+	}
+	/**
+	 * Method to obtain a next y position
+	 * @param Position nextY
+	 * @return a next y position
+	 */
+	public Position nextY(Position nextY) {
+		setY(nextY);
+		return nextY;
 	}
 
 	public Position getX() {
