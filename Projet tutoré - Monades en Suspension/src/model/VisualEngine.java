@@ -13,6 +13,12 @@ public class VisualEngine {
 	
 	/* TODO : Add a list of Monades objects */
 	
+	public void nouvelleMonade(int x, int y){
+	}
+	public void changerPosition(AbstractMonade monade, int x, int y){
+		
+	}
+	
 	
 	/* TODO : Method to create a displayable 
 	 * representation of the Physical Engine animation */
