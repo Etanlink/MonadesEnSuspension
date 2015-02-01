@@ -72,10 +72,10 @@
                                     <Button layoutX="29.0" layoutY="322.0" mnemonicParsing="false" text="Mettre en pause l'animation" />
                                     <Label layoutX="29.0" layoutY="24.0" text="Nombre minimum de monades" />
                                     <Slider blockIncrement="1.0" layoutX="14.0" layoutY="116.0" majorTickUnit="10.0" minorTickCount="10" prefHeight="19.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="10.0" />
-                                    <Label layoutX="22.0" layoutY="82.0" text="Pourcentage de petite monade" />
-                                    <Label layoutX="22.0" layoutY="148.0" text="Pourcentage de moyenne monade" />
+                                    <Label layoutX="22.0" layoutY="82.0" text="Pourcentage de petites monades" />
+                                    <Label layoutX="22.0" layoutY="148.0" text="Pourcentage de moyennes monades" />
                                     <Slider blockIncrement="1.0" layoutX="14.0" layoutY="178.0" majorTickUnit="10.0" minorTickCount="10" prefHeight="0.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="10.0" />
-                                    <Label layoutX="22.0" layoutY="212.0" text="Pourcentage de grande monade" />
+                                    <Label layoutX="22.0" layoutY="212.0" text="Pourcentage de grandes monades" />
                                     <Slider blockIncrement="1.0" layoutX="14.0" layoutY="237.0" majorTickUnit="10.0" minorTickCount="10" prefHeight="19.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="10.0" />
                                     <Button layoutX="12.0" layoutY="450.0" mnemonicParsing="false" text="Capture d'écran" />
                                     <TextField layoutX="12.0" layoutY="415.0" prefHeight="29.0" prefWidth="165.0" />
