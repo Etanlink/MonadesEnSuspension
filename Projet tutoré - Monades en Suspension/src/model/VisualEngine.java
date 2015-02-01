@@ -13,8 +13,11 @@ public class VisualEngine {
 	
 	/* TODO : Add a list of Monades objects */
 	
+	/*Create one Monade object*/
 	public void nouvelleMonade(int x, int y){
 	}
+	
+	/*Update the position of a Monade Object given in parameter*/
 	public void changerPosition(AbstractMonade monade, int x, int y){
 		
 	}
