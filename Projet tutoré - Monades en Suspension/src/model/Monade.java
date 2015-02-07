@@ -13,8 +13,7 @@ public class Monade extends AbstractMonade {
 
 	public Vector speedVector;
 
-	public Monade(Position currentPosition, Position nextPosition,
-			Vector speedVector) {
+	public Monade() {
 		super(currentPosition, nextPosition);
 		this.speedVector = speedVector;
 	}

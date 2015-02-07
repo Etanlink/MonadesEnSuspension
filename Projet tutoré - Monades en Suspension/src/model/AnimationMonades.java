@@ -9,18 +9,18 @@
 
 package model;
 import java.util.ArrayList;
-public class PhysicalEngine {
+public class AnimationMonades {
 	
 	/**Unique instance of the PhysicalInstance, following the pattern Singleton*/
-	private final static PhysicalEngine INSTANCE = new PhysicalEngine();
+	private final static AnimationMonades INSTANCE = new AnimationMonades();
 	
 	/**List of the monades on the scene */
 	private static ArrayList<Monade> listMonades;
 	
 	/**Empty builder*/
-	private PhysicalEngine(){ };
+	private AnimationMonades(){ };
 	
-	public static PhysicalEngine getPhysicalEngine()
+	public static AnimationMonades getPhysicalEngine()
 	{
 		return INSTANCE;
 	}

@@ -1,10 +1,15 @@
 
 import java.io.IOException;
+import java.security.acl.Group;
+
+import javax.print.DocFlavor.URL;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class MainMonadesEnSuspension extends Application {
@@ -13,10 +18,7 @@ public class MainMonadesEnSuspension extends Application {
 	private BorderPane UIView;
 	
 	@Override
-	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("MonadesEnSuspension");
-		
+	public void start(Stage stage) {
 		
 	}
 
