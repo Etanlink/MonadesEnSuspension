@@ -9,14 +9,14 @@ package model;
  *
  **/
 
-public class Monade extends AbstractMonade {
+public class Monade {
 
-	public Vector speedVector;
+	public enum size {PETIT, MOYEN, GRAND};
 
 	public Monade() {
-		super(currentPosition, nextPosition);
-		this.speedVector = speedVector;
+		super();
 	}
+	
 
 	/**
 	 * Method to give a new Position in x and y at a Monade object 
@@ -30,8 +30,7 @@ public class Monade extends AbstractMonade {
 
 	public void calculateNextPosition() {
 		// TODO Auto-generated method stub
-		
-		
+				
 	}
 
 }
