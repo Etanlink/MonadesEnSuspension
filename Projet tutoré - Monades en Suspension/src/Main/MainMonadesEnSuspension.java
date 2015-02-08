@@ -1,8 +1,10 @@
+package Main;
 
 import java.io.IOException;
 import java.security.acl.Group;
 
 import javax.print.DocFlavor.URL;
+
 
 import model.AnimationMonades;
 import javafx.animation.Interpolator;
@@ -11,6 +13,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -49,5 +52,26 @@ public class MainMonadesEnSuspension extends Application {
 
 	public static void main(String[] args) {
 		launch(args); 
+	}
+	/*//Il faut absolument implémenter ce truc
+	 * *
+	 *    public void showUIOverview() {
+        try {
+            // Load UI Overview
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/UIView.fxml"));
+            AnchorPane personOverview = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(personOverview);
+            // Give the controller access to the main app.
+            PersonOverwiewControl controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	 */
+	public MainMonadesEnSuspension(){
 	}
 }
