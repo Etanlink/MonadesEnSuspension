@@ -1,6 +1,6 @@
-package view;
+package adress.view;
 
-import Main.MainMonadesEnSuspension;
+import adress.MainMonadesEnSuspension;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
@@ -10,9 +10,8 @@ public class UIViewControler {
 
 	
 	@FXML
-	private Button BoutonBouger;
-	@FXML
-	public Circle cercle;
+	private Button BoutonAnimation;
+
 	
 	private MainMonadesEnSuspension mainApp;
 	
@@ -31,7 +30,6 @@ public class UIViewControler {
     }
     
     @FXML
-    private void handleBougerCercle(){
-    	this.cercle.setRadius(50);
+    private void handlerAnimerCercle(){
     }
 }

@@ -1,4 +1,4 @@
-package Main;
+package adress;
 
 import java.io.IOException;
 import java.security.acl.Group;
@@ -6,7 +6,12 @@ import java.security.acl.Group;
 import javax.print.DocFlavor.URL;
 
 
-import model.AnimationMonades;
+
+
+
+
+import adress.model.AnimationMonades;
+import adress.view.UIViewControler;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -23,14 +28,14 @@ import javafx.util.Duration;
 
 public class MainMonadesEnSuspension extends Application {
 
-	private Stage primaryStage;
-	private BorderPane UIView;
+    private Stage primaryStage;
+    private BorderPane rootLayout;
 	
 	@Override 
     public void start(Stage primaryStage) {
-		AnimationMonades animMonades = AnimationMonades.getPhysicalEngine();
+		/*AnimationMonades animMonades = AnimationMonades.getPhysicalEngine();
 		animMonades.setMainStage(primaryStage);
-		animMonades.createAnimation2();
+		animMonades.createAnimation2();*/
 		/*
         final Circle circ1 = new Circle(100, 100, 100);         
         circ1.setFill(Color.RED);
@@ -48,30 +53,67 @@ public class MainMonadesEnSuspension extends Application {
         translateAnimation.setInterpolator(Interpolator.LINEAR); 
         translateAnimation.play();
         */
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Monades En Suspension");
+
+        initRootLayout();
+
+        showPersonOverview();
 	    } 
 
-	public static void main(String[] args) {
-		launch(args); 
-	}
-	/*//Il faut absolument implémenter ce truc
-	 * *
-	 *    public void showUIOverview() {
+    /**
+     * Initializes the root layout.
+     */
+    public void initRootLayout() {
         try {
-            // Load UI Overview
+            // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/UIView.fxml"));
-            AnchorPane personOverview = (AnchorPane) loader.load();
+            loader.setLocation(MainMonadesEnSuspension.class.getResource("view/Border.fxml"));
+            rootLayout = (BorderPane) loader.load();
+
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Shows the person overview inside the root layout.
+     */
+    public void showPersonOverview() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainMonadesEnSuspension.class.getResource("view/UIView.fxml"));
+            AnchorPane UIOverview = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
-            rootLayout.setCenter(personOverview);
+            rootLayout.setCenter(UIOverview);
             // Give the controller access to the main app.
-            PersonOverwiewControl controller = loader.getController();
+            UIViewControler controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-	 */
+
+    /**
+     * Returns the main stage.
+     * @return
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+	public static void main(String[] args) {
+		launch(args); 
+	}
+
 	public MainMonadesEnSuspension(){
 	}
 }

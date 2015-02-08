@@ -7,7 +7,7 @@
  *
  **/
 
-package model;
+package adress.model;
 
 public class Parameters {
 	

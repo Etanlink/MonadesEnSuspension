@@ -7,7 +7,7 @@
  *
  **/
 
-package model;
+package adress.model;
 import java.util.ArrayList;
 import java.util.Random;
 
