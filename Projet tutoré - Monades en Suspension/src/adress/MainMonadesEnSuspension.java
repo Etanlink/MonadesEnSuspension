@@ -33,9 +33,8 @@ public class MainMonadesEnSuspension extends Application {
 	
 	@Override 
     public void start(Stage primaryStage) {
-		/*AnimationMonades animMonades = AnimationMonades.getPhysicalEngine();
-		animMonades.setMainStage(primaryStage);
-		animMonades.createAnimation2();*/
+		
+		
 		/*
         final Circle circ1 = new Circle(100, 100, 100);         
         circ1.setFill(Color.RED);
@@ -43,7 +42,7 @@ public class MainMonadesEnSuspension extends Application {
         root.getChildren().setAll(circ1);         
         final Scene scene = new Scene(root, 800, 400);         
         primaryStage.setTitle("Test d'animation de translation"); 
-        primaryStage.setScene(scene); 
+        primaryStage.setScene(scene);
         primaryStage.show();
         final TranslateTransition translateAnimation = new TranslateTransition(Duration.seconds(2), circ1); 
         translateAnimation.setCycleCount(TranslateTransition.INDEFINITE); 
@@ -55,10 +54,21 @@ public class MainMonadesEnSuspension extends Application {
         */
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Monades En Suspension");
+        
+        
 
         initRootLayout();
-
+        
+        
+        
         showUIOverview();
+        
+        AnimationMonades animMonades = AnimationMonades.getPhysicalEngine();
+		animMonades.setMainStage(this.primaryStage);
+        animMonades.createAnimation2();
+        
+        
+        
 	    } 
 
     /**
