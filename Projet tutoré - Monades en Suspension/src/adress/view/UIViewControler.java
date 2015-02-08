@@ -11,6 +11,17 @@ public class UIViewControler {
 	
 	@FXML
 	private Button BoutonAnimation;
+	
+	@FXML
+	private Button BoutonPause;
+	
+	@FXML
+	public Circle cercle;
+	
+	@FXML
+	private Button BoutonCapture;
+	
+	public boolean yolo = true;
 
 	
 	private MainMonadesEnSuspension mainApp;
@@ -31,5 +42,14 @@ public class UIViewControler {
     
     @FXML
     private void handlerAnimerCercle(){
+    	if (this.yolo==true){
+    	this.cercle.setRadius(20);
+    	this.yolo=false;
     }
+    	else{
+    		this.cercle.setRadius(50);
+    		this.yolo=true;
+    	}
+    	
+    	}
 }

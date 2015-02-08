@@ -58,7 +58,7 @@ public class MainMonadesEnSuspension extends Application {
 
         initRootLayout();
 
-        showPersonOverview();
+        showUIOverview();
 	    } 
 
     /**
@@ -69,12 +69,12 @@ public class MainMonadesEnSuspension extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainMonadesEnSuspension.class.getResource("view/Border.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            this.rootLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            this.primaryStage.setScene(scene);
+            this.primaryStage.show();
 
 
         } 
@@ -86,15 +86,15 @@ public class MainMonadesEnSuspension extends Application {
     /**
      * Shows the person overview inside the root layout.
      */
-    public void showPersonOverview() {
+    public void showUIOverview() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainMonadesEnSuspension.class.getResource("view/UIView.fxml"));
+            loader.setLocation(MainMonadesEnSuspension.class.getResource("view/FUCK.fxml"));
             AnchorPane UIOverview = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
-            rootLayout.setCenter(UIOverview);
+            this.rootLayout.setCenter(UIOverview);
             // Give the controller access to the main app.
             UIViewControler controller = loader.getController();
             controller.setMainApp(this);
