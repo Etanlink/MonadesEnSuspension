@@ -21,6 +21,9 @@ public class UIViewControler {
 	@FXML
 	private Button BoutonCapture;
 	
+	@FXML
+	private Button BoutonDossier;
+	
 	public boolean yolo = true;
 
 	
@@ -51,5 +54,18 @@ public class UIViewControler {
     		this.yolo=true;
     	}
     	
-    	}
+    }
+    
+    @FXML
+    private void handlerPauseAnimation(){
+    
+    }
+    
+    @FXML
+    private void handlerCaptureEcran(){
+    	
+    }
+    @FXML
+    private void handlerChoisirDossier(){
+    }
 }
