@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,6 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.transform.Transform;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 public class AnimationMonades {
@@ -106,41 +110,22 @@ public class AnimationMonades {
 		
 		final Circle circ1 = new Circle(100, 100, 100);         
         circ1.setFill(Color.RED);
-        final Circle circ2 = new Circle(200, 200, 50);         
-        circ2.setFill(Color.RED);
-        final Circle circ3 = new Circle(600, 300, 75);         
-        circ3.setFill(Color.RED);
         
-        root.getChildren().setAll(circ1, circ2, circ3);
+        TranslateTransition translateAnimation = new TranslateTransition(Duration.seconds(2), circ1); 
+        translateAnimation.setCycleCount(TranslateTransition.INDEFINITE); 
+        translateAnimation.setAutoReverse(true); 
+        translateAnimation.setByX(50); 
+        translateAnimation.setByY(75); 
+        translateAnimation.setInterpolator(Interpolator.LINEAR);
         
-        final TranslateTransition translateAnimation = new TranslateTransition(Duration.seconds(2)); 
-    	//translateAnimation.setCycleCount(TranslateTransition.INDEFINITE); 
-    	translateAnimation.setAutoReverse(true); 
-    	translateAnimation.setByX(50); 
-    	translateAnimation.setByY(75); 
-    	translateAnimation.setInterpolator(Interpolator.LINEAR);
-    	translateAnimation.setNode(circ1);
-    	translateAnimation.play();
-
-    	final TranslateTransition translateAnimation2 = new TranslateTransition(Duration.seconds(4)); 
-    	//translateAnimation2.setCycleCount(TranslateTransition.INDEFINITE); 
-    	translateAnimation2.setAutoReverse(true); 
-    	translateAnimation2.setByX(-50); 
-    	translateAnimation2.setByY(160); 
-    	translateAnimation2.setInterpolator(Interpolator.LINEAR);
-    	translateAnimation2.setNode(circ2);
-    	translateAnimation2.play();
-    	/*
-        while(true)
-        { 
-        	//translateAnimation.setCycleCount(TranslateTransition.INDEFINITE); 
-        	translateAnimation.setByX(650); 
-        	translateAnimation.setByY(275);
- 
-        	//translateAnimation2.setCycleCount(TranslateTransition.INDEFINITE); 
-        	translateAnimation2.setByX(350); 
-        	translateAnimation2.setByY(300);
-        }*/
+        //circ1.getTransforms().add(translateAnimation);
+        
+        Timeline animation = new Timeline( new KeyFrame(Duration.seconds(0.5),
+        	    		  new KeyValue(new TranslateTransition().byXProperty(),50)));
+        animation.setCycleCount(Timeline.INDEFINITE);
+        animation.play();
+        
+        
         
 		
 	}
