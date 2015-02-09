@@ -10,7 +10,7 @@ import javafx.util.Duration;
 
 import java.util.Random;
 
-public class AppliTest extends Application {
+public class AppliTestProjet extends Application {
   private static final Random r = new Random();
   public static final int SCENE_SIZE = 800;
 
