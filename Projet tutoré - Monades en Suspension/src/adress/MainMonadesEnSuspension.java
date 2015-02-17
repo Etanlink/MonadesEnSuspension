@@ -1,9 +1,10 @@
 package adress;
 
 import java.io.IOException;
-import java.security.acl.Group;
 
 import javax.print.DocFlavor.URL;
+
+
 
 
 
@@ -16,6 +17,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -28,8 +30,9 @@ import javafx.util.Duration;
 
 public class MainMonadesEnSuspension extends Application {
 
-    private Stage primaryStage;
+    public Stage primaryStage;
     private BorderPane rootLayout;
+    public Group Root = new Group();
 	
 	@Override 
     public void start(Stage primaryStage) {
@@ -63,9 +66,9 @@ public class MainMonadesEnSuspension extends Application {
         
         showUIOverview();
         
-        AnimationMonades animMonades = AnimationMonades.getPhysicalEngine();
-		animMonades.setMainStage(this.primaryStage);
-        animMonades.createAnimation2();
+        //AnimationMonades animMonades = AnimationMonades.getPhysicalEngine();
+		//animMonades.setMainStage(this.primaryStage);
+        //animMonades.createAnimation2();
         
         
         
@@ -82,8 +85,14 @@ public class MainMonadesEnSuspension extends Application {
             this.rootLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
+            Scene scene = new Scene(Root);
+
+            //FXMLLoader loader2 = new FXMLLoader();
+            //loader.setLocation(MainMonadesEnSuspension.class.getResource("view/animation.fxml"));
+            //AnchorPane UIOverview = (AnchorPane) loader2.load();
+            //Root.getChildren().add(UIOverview);
             this.primaryStage.setScene(scene);
+            Root.getChildren().add(rootLayout);
             this.primaryStage.show();
 
 
