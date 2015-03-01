@@ -26,10 +26,15 @@ public class AppliTestProjet extends Application {
 	    this.primaryStage=stage;
 	    initRootLayout();
 	    addCircles();
+	    initUI();
 
   }
   
-  public void initRootLayout(){
+  private void initUI() {
+	// TODO Auto-generated method stub
+	
+}
+public void initRootLayout(){
 	  try{
       FXMLLoader loader = new FXMLLoader();
       loader.setLocation(MainMonadesEnSuspension.class.getResource("view/Border.fxml"));
@@ -76,19 +81,21 @@ public class AppliTestProjet extends Application {
 	        	  }
 	          }
 	          for(Node circ1 : circles.getChildren()){
-	        	  TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/1000), circ1 );
-	              
-	              int x = r.nextInt(120);
-	              int y = 120-x;
-	              boolean p = r.nextBoolean();
-	              if(p==true) x = -x;
-	              p = r.nextBoolean();
-	              if(p==true) y = -y;
-	              
-	              trans.setByX(x);
-	              trans.setByY(y);
-	              trans.setInterpolator(Interpolator.LINEAR);
-	              trans.play();
+	        	  if(!(circ1 instanceof AnchorPane)){
+	        		  TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/1000), circ1 );
+
+	        		  int x = r.nextInt(120);
+	        		  int y = 120-x;
+	        		  boolean p = r.nextBoolean();
+	        		  if(p==true) x = -x;
+	        		  p = r.nextBoolean();
+	        		  if(p==true) y = -y;
+
+	        		  trans.setByX(x);
+	        		  trans.setByY(y);
+	        		  trans.setInterpolator(Interpolator.LINEAR);
+	        		  trans.play();
+	        	  }
 	          }
 	          
 	          
@@ -110,6 +117,7 @@ public class AppliTestProjet extends Application {
 	    //Group ihm = new Group();
 	    //ihm.getChildren().add(UIOverview2);
 	    //UIOverview2.setCenter(circles);
+	    
 	    rootLayout.setCenter(circles);
 	  }
 	  catch(IOException e){
