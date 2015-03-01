@@ -22,7 +22,7 @@ import com.sun.javafx.geom.transform.BaseTransform;
  **/
 
 public class Monade extends Circle {
-	
+
 	private TranslateTransition transition;
 
 	/**
@@ -32,9 +32,9 @@ public class Monade extends Circle {
 	 * @param x 
 	 */
 	public Monade(int x, int y, int radius) {
-		
+
 	}
-	
+
 	public Monade() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -75,8 +75,8 @@ public class Monade extends Circle {
 		this.setTransition(trans);
 		trans.setCycleCount(TranslateTransition.INDEFINITE);
 		trans.setByX(rand.nextInt(50)); 
-        trans.setByY(rand.nextInt(55));
-		
+		trans.setByY(rand.nextInt(55));
+
 	}
 
 	public void updateTranslation() {
@@ -84,8 +84,8 @@ public class Monade extends Circle {
 		Random rand = new Random();
 		this.getTransition().setByX(rand.nextInt(50));
 		this.getTransition().setByY(rand.nextInt(50));
-		
-		
+
+
 	}
-	
+
 }

@@ -1,7 +1,7 @@
 package adress.model;
 
 public enum EnumTailleMonade {
-	
+
 	/**
 	 * Enumeration of the different size of a Monade
 	 */

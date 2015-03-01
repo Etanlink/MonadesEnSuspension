@@ -10,7 +10,7 @@
 package adress.model;
 
 public class Parameters {
-	
+
 	public int nbMinMonades;
 	public int nbMaxMonades;
 	public float percentOfMonades;

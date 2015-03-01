@@ -8,64 +8,64 @@ import javafx.scene.shape.Circle;
 
 public class UIViewControler {
 
-	
+
 	@FXML
 	private Button BoutonAnimation;
-	
+
 	@FXML
 	private Button BoutonPause;
-	
+
 	@FXML
 	public Circle cercle;
-	
+
 	@FXML
 	private Button BoutonCapture;
-	
+
 	@FXML
 	private Button BoutonDossier;
-	
+
 	public boolean yolo = true;
 
-	
+
 	private MainMonadesEnSuspension mainApp;
-	
-	
-	
-    public void setMainApp(MainMonadesEnSuspension mainApp) {
-        this.mainApp = mainApp;
 
-    }
-    
-    public UIViewControler(){
-    }
 
-    @FXML
-    private void initialize() {
-    }
-    
-    @FXML
-    private void handlerAnimerCercle(){
-    	if (this.yolo==true){
-    	this.cercle.setRadius(20);
-    	this.yolo=false;
-    }
-    	else{
-    		this.cercle.setRadius(50);
-    		this.yolo=true;
-    	}
-    	
-    }
-    
-    @FXML
-    private void handlerPauseAnimation(){
-    
-    }
-    
-    @FXML
-    private void handlerCaptureEcran(){
-    	
-    }
-    @FXML
-    private void handlerChoisirDossier(){
-    }
+
+	public void setMainApp(MainMonadesEnSuspension mainApp) {
+		this.mainApp = mainApp;
+
+	}
+
+	public UIViewControler(){
+	}
+
+	@FXML
+	private void initialize() {
+	}
+
+	@FXML
+	private void handlerAnimerCercle(){
+		if (this.yolo==true){
+			this.cercle.setRadius(20);
+			this.yolo=false;
+		}
+		else{
+			this.cercle.setRadius(50);
+			this.yolo=true;
+		}
+
+	}
+
+	@FXML
+	private void handlerPauseAnimation(){
+
+	}
+
+	@FXML
+	private void handlerCaptureEcran(){
+
+	}
+	@FXML
+	private void handlerChoisirDossier(){
+	}
 }
