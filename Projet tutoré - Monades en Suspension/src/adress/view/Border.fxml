@@ -31,33 +31,4 @@
         </menus>
       </MenuBar>
    </top>
-   <right>
-      <AnchorPane prefHeight="675.0" prefWidth="234.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="679.0" prefWidth="238.0" style="-fx-background-color: grey;">
-               <children>
-                  <Slider blockIncrement="1.0" layoutX="14.0" layoutY="50.0" majorTickUnit="1.0" max="10.0" min="3.0" minorTickCount="1" prefHeight="19.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="3.0" />
-                  <Label layoutX="29.0" layoutY="24.0" text="Nombre minimum de monades" />
-                  <Slider blockIncrement="1.0" layoutX="14.0" layoutY="116.0" majorTickUnit="10.0" minorTickCount="10" prefHeight="19.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="10.0" />
-                  <Label layoutX="22.0" layoutY="82.0" text="Pourcentage de petites monades" />
-                  <Label layoutX="22.0" layoutY="148.0" text="Pourcentage de moyennes monades" />
-                  <Slider blockIncrement="1.0" layoutX="14.0" layoutY="178.0" majorTickUnit="10.0" minorTickCount="10" prefHeight="0.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="10.0" />
-                  <Label layoutX="22.0" layoutY="212.0" text="Pourcentage de grandes monades" />
-                  <Slider blockIncrement="1.0" layoutX="14.0" layoutY="237.0" majorTickUnit="10.0" minorTickCount="10" prefHeight="19.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="10.0" />
-                  <TextField layoutX="12.0" layoutY="415.0" prefHeight="29.0" prefWidth="165.0" />
-                  <Label layoutX="15.0" layoutY="391.0" text="Dossier cible :" />
-               </children>
-            </AnchorPane>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <effect>
-            <Blend />
-         </effect>
-      </AnchorPane>
-   </right>
 </BorderPane>

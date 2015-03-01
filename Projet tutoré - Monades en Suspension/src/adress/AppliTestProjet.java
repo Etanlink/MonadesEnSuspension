@@ -17,7 +17,6 @@ import java.util.Random;
 public class AppliTestProjet extends Application {
    private Stage primaryStage;
    private BorderPane rootLayout;
-   private AnchorPane rootLayout2;
    public Group Root = new Group();
   private static final Random r = new Random();
   public static final int SCENE_SIZE = 800;
@@ -104,6 +103,13 @@ public class AppliTestProjet extends Application {
 	    AnchorPane UIOverview = (AnchorPane) loader.load();
 	    // display the scene.
 	    circles.getChildren().add(UIOverview);
+	    //rootLayout.setCenter(circles);
+	    FXMLLoader loader2 = new FXMLLoader();
+	    loader2.setLocation(MainMonadesEnSuspension.class.getResource("view/control.fxml"));
+	    BorderPane UIOverview2 = (BorderPane) loader2.load();
+	    //Group ihm = new Group();
+	    //ihm.getChildren().add(UIOverview2);
+	    //UIOverview2.setCenter(circles);
 	    rootLayout.setCenter(circles);
 	  }
 	  catch(IOException e){

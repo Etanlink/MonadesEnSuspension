@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="220.0">
+               <children>
+                  <Label layoutX="25.0" layoutY="401.0" text="Dossier cible :" />
+                  <TextField layoutX="22.0" layoutY="425.0" prefHeight="29.0" prefWidth="165.0" />
+                  <Slider blockIncrement="1.0" layoutX="24.0" layoutY="247.0" majorTickUnit="10.0" minorTickCount="10" prefHeight="19.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="10.0" />
+                  <Label layoutX="32.0" layoutY="222.0" text="Pourcentage de grandes monades" />
+                  <Slider blockIncrement="1.0" layoutX="24.0" layoutY="188.0" majorTickUnit="10.0" minorTickCount="10" prefHeight="0.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="10.0" />
+                  <Label layoutX="32.0" layoutY="158.0" text="Pourcentage de moyennes monades" />
+                  <Label layoutX="32.0" layoutY="92.0" text="Pourcentage de petites monades" />
+                  <Slider blockIncrement="1.0" layoutX="24.0" layoutY="126.0" majorTickUnit="10.0" minorTickCount="10" prefHeight="19.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="10.0" />
+                  <Label layoutX="39.0" layoutY="34.0" text="Nombre minimum de monades" />
+                  <Slider blockIncrement="1.0" layoutX="24.0" layoutY="60.0" majorTickUnit="1.0" max="10.0" min="3.0" minorTickCount="1" prefHeight="19.0" prefWidth="161.0" showTickLabels="true" showTickMarks="true" value="3.0" />
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
