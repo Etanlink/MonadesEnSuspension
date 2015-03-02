@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adress.view.UIViewControler">
    <children>
       <SplitPane dividerPositions="0.6387959866220736" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="690.0" prefWidth="900.0">
         <items>
@@ -29,6 +29,7 @@
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
+                        <Button fx:id="LancerAnim" layoutX="74.0" layoutY="320.0" mnemonicParsing="false" onAction="#handlerButtonLaunchAnimation" prefHeight="29.0" prefWidth="88.0" text="Lancer l'animation" />
                      </children>
                   </AnchorPane>
                </children>

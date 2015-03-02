@@ -1,5 +1,6 @@
 package adress.view;
 
+import adress.AppliTestProjet;
 import adress.MainMonadesEnSuspension;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,15 +24,18 @@ public class UIViewControler {
 
 	@FXML
 	private Button BoutonDossier;
+	
+	@FXML
+	private Button LancerAnim;
 
 	public boolean yolo = true;
 
 
-	private MainMonadesEnSuspension mainApp;
+	private AppliTestProjet mainApp;
 
 
 
-	public void setMainApp(MainMonadesEnSuspension mainApp) {
+	public void setMainApp(AppliTestProjet mainApp) {
 		this.mainApp = mainApp;
 
 	}
@@ -67,5 +71,14 @@ public class UIViewControler {
 	}
 	@FXML
 	private void handlerChoisirDossier(){
+	}
+	
+	@FXML
+	/**
+	 * On click, launching the animation in a new window
+	 */
+	private void handlerButtonLaunchAnimation(){
+		this.mainApp.launchAnimation();
+		
 	}
 }

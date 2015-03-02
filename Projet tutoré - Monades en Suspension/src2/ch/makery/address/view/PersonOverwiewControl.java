@@ -26,6 +26,9 @@ public class PersonOverwiewControl {
 	private Button BoutonGenerer ;
 	
 	@FXML
+	private Button LancerAnim;
+	
+	@FXML
 	public ArrayList<Circle> ListeDeCercle = new ArrayList();
 	
 	public MainApp mainApp;
