@@ -18,7 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -95,6 +95,7 @@ public class WindowImpl {
 	 * @return parametersPane
 	 */
 	private VBox manualParametersVBox() {
+		
 		final VBox parametersVBox = new VBox();
 		parametersVBox.setPrefSize(200, PARAMETERS_PANE_SIZE);
 		
@@ -105,18 +106,20 @@ public class WindowImpl {
 		
 		/* Add of the different controllers */
 		Label LabelNBMinObjects = new Label("Nombre minimum de Monades");
-		ProgressBar NbMinObjects = new ProgressBar();
+		Slider NbMinObjects = new Slider(3, 10, 1);
 		
 		Label LabelTinyObjectsPercentage = new Label("Pourcentage de petites Monades");
-		ProgressBar TinyObjectsPercentage = new ProgressBar();
+		Slider TinyObjectsPercentage = new Slider();
 		
 		Label LabelNormalObjectsPercentage = new Label("Pourcentage de moyennes de Monades");
-		ProgressBar NormalObjectsPercentage = new ProgressBar();
+		Slider NormalObjectsPercentage = new Slider();
 		
 		Label LabelBigObjectsPercentage = new Label("Pourcentage de grandes Monades");
-		ProgressBar BigObjectsPercentage = new ProgressBar();
+		Slider BigObjectsPercentage = new Slider();
 		
 		Button launchAnimationButton = new Button();
+		
+		Button pauseAnimationButton = new Button();
 		
 		/* Add of the controllers to the VBox */
 		parametersVBox.getChildren().add(LabelNBMinObjects);
@@ -132,6 +135,8 @@ public class WindowImpl {
 		parametersVBox.getChildren().add(BigObjectsPercentage);
 		
 		parametersVBox.getChildren().add(launchAnimationButton);
+		
+		parametersVBox.getChildren().add(pauseAnimationButton);
 		
 		return parametersVBox;
 	}
