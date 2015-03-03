@@ -1,7 +1,9 @@
 package adress.model;
 
 import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -89,6 +91,8 @@ public class WindowImpl {
 		Text VBoxTitle = new Text("Paramètres");
 		VBoxTitle.setFont(Font.font("System", FontWeight.SEMI_BOLD, 16));
 		parametersVBox.getChildren().add(VBoxTitle);
+		
+		parametersVBox.setAlignment(Pos.TOP_RIGHT); 
 		
 		/* Add of the different controllers */
 		Label LabelNBMinObjects = new Label("Nombre minimum de Monades");
