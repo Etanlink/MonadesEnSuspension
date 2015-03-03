@@ -44,7 +44,7 @@ public class AnimationImpl {
 		this.root.getChildren().add(circles);
 
 		final Timeline animation = new Timeline(
-				new KeyFrame(Duration.seconds(3),
+				new KeyFrame(Duration.millis(3000),
 
 						new EventHandler<ActionEvent>() {
 					@Override public void handle(ActionEvent actionEvent) {
@@ -79,35 +79,39 @@ public class AnimationImpl {
 						for(Node circ1 : circles.getChildren()){
 							
 							int sceneSize = WindowImpl.SCENE_SIZE;
-							if(
-									( ((ExtentedCircle) circ1).getX() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-									( ((ExtentedCircle) circ1).getX( )<= sceneSize - ((ExtentedCircle) circ1).getRadius()) ||
-									( ((ExtentedCircle) circ1).getY() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-									( ((ExtentedCircle) circ1).getY() <= sceneSize - ((ExtentedCircle) circ1).getRadius()) 
-									)
-							{
-								circles.getChildren().remove(circ1);
-							}
-							if(circ1 instanceof ExtentedCircle){
-								TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
+							
+								if(circ1 instanceof ExtentedCircle){
+									TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
 
-								/* Generation of the coordinates of the move */
-								int x = r.nextInt(120);
-								int y = 120-x;
-								boolean p = r.nextBoolean();
-								if(p==true) x = -x;
-								p = r.nextBoolean();
-								if(p==true) y = -y;
+									/* Generation of the coordinates of the move */
+									int x = r.nextInt(120);
+									int y = 120-x;
+									boolean p = r.nextBoolean();
+									if(p==true) x = -x;
+									p = r.nextBoolean();
+									if(p==true) y = -y;
 
-								trans.setByX(x);
-								trans.setByY(y);
-								((ExtentedCircle)circ1).setX(((ExtentedCircle) circ1).getX()+x);
-								((ExtentedCircle)circ1).setY(((ExtentedCircle) circ1).getY()+y);
-								trans.setInterpolator(Interpolator.LINEAR);
-								trans.play();
+									trans.setByX(x);
+									trans.setByY(y);
+									/* Coordinates updated */
+									((ExtentedCircle)circ1).setX(((ExtentedCircle) circ1).getX()+x);
+									((ExtentedCircle)circ1).setY(((ExtentedCircle) circ1).getY()+y);
+									
+									trans.setInterpolator(Interpolator.LINEAR);
+									trans.play();
+								}
+								/*if(
+										( ((ExtentedCircle) circ1).getX() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
+										( ((ExtentedCircle) circ1).getX( )<= sceneSize - ((ExtentedCircle) circ1).getRadius()) ||
+										( ((ExtentedCircle) circ1).getY() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
+										( ((ExtentedCircle) circ1).getY() <= sceneSize - ((ExtentedCircle) circ1).getRadius()) 
+										)
+								{
+									circles.getChildren().remove(circ1);
+								}*/
+								System.out.println("x:"+Integer.toString((int)((ExtentedCircle) circ1).getX()) +" y:"+ Integer.toString((int)((ExtentedCircle) circ1).getY()));
 							}
-							System.out.println("x:"+Integer.toString((int)((ExtentedCircle) circ1).getX()) +" y:"+ Integer.toString((int)((ExtentedCircle) circ1).getY()));
-						}
+						
 
 					}
 				})
