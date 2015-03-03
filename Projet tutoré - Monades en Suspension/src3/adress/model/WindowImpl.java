@@ -42,8 +42,6 @@ public class WindowImpl {
 
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
-
-		AnchorPane pane = new AnchorPane();
 		
 		VBox parametersVBox = manualParametersVBox();
 
@@ -57,9 +55,8 @@ public class WindowImpl {
 		animation.addCircles();
 		/* the different parts of UI are bound AFTER the animation */
 		/*									   ^^^^^			   */
-		this.root.getChildren().add(menuBar);
-		this.root.getChildren().add(pane);
 		this.root.getChildren().add(parametersVBox);
+		this.root.getChildren().add(menuBar);
 		this.primaryStage.show();
 	}
 
@@ -86,13 +83,14 @@ public class WindowImpl {
 		
 		final VBox parametersVBox = new VBox();
 		parametersVBox.setPrefSize(200, PARAMETERS_PANE_SIZE);
+		parametersVBox.setStyle("-fx-background-color: #f5f5f5;");
 		
 		/* Add of a VBox title */
 		Text VBoxTitle = new Text("Paramètres");
 		VBoxTitle.setFont(Font.font("System", FontWeight.SEMI_BOLD, 16));
 		parametersVBox.getChildren().add(VBoxTitle);
 		
-		parametersVBox.setAlignment(Pos.TOP_RIGHT); 
+		parametersVBox.setAlignment(Pos.CENTER_RIGHT);
 		
 		/* Add of the different controllers */
 		Label LabelNBMinObjects = new Label("Nombre minimum de Monades");
