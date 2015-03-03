@@ -68,7 +68,7 @@ public class AnimationImpl {
 							{
 								int radius = 10 * r.nextInt(10);
 								final Circle circ1 = new Circle(400,400, radius);
-								circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
+								circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 0.8 ) );
 								/* DragListeners are added on the circle */
 								setDragListeners(circ1);
 								circles.getChildren().add(circ1);
@@ -93,6 +93,7 @@ public class AnimationImpl {
 								trans.setInterpolator(Interpolator.LINEAR);
 								trans.play();
 							}
+							System.out.println("x:"+Integer.toString((int)circ1.getLayoutX()) +" y:"+ Integer.toString((int)circ1.getLayoutY()));
 						}
 
 					}

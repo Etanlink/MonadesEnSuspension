@@ -42,6 +42,7 @@ public class WindowImpl {
 	public WindowImpl(Stage primaryStage) throws IOException {
 
 		super();
+		primaryStage.setResizable(false);
 
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
