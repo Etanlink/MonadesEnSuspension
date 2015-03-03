@@ -19,6 +19,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -75,8 +76,18 @@ public class WindowImpl {
 
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().addAll(menu1, menu2, menu3);
-		menuBar.setPrefWidth(SCENE_SIZE);
+		menuBar.setMinWidth(SCENE_SIZE+10);
 		return menuBar;
+	}
+	
+	/**
+	 * Creates a basic parametersPane
+	 * @return parametersPane
+	 */
+	private Pane manualParametersPane() {
+		final Pane parametersPane = new Pane();
+		
+		return parametersPane;
 	}
 
 	/**
