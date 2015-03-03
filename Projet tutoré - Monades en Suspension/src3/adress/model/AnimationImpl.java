@@ -14,6 +14,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
@@ -51,6 +52,7 @@ public class AnimationImpl {
 						while (circles.getChildren().size() <= 3){
 							int radius = 10 * r.nextInt(10);
 							final Circle circ1 = new Circle(400,400, radius);
+							circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 
 							/* DragListeners are added on the circle */
 							setDragListeners(circ1);
@@ -66,6 +68,7 @@ public class AnimationImpl {
 							{
 								int radius = 10 * r.nextInt(10);
 								final Circle circ1 = new Circle(400,400, radius);
+								circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 								/* DragListeners are added on the circle */
 								setDragListeners(circ1);
 								circles.getChildren().add(circ1);
