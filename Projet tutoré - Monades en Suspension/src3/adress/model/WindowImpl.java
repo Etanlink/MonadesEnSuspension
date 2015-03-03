@@ -47,7 +47,7 @@ public class WindowImpl {
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
 
-		AnchorPane pane = new AnchorPane();
+		//AnchorPane pane = new AnchorPane();
 
 		/* Instantiation of the animation*/
 		AnimationImpl animation = new AnimationImpl(root);
@@ -60,7 +60,7 @@ public class WindowImpl {
 		/* the different parts of UI are bound AFTER the animation */
 		/*									   ^^^^^			   */
 		this.root.getChildren().add(menuBar);
-		this.root.getChildren().add(pane);
+		//this.root.getChildren().add(pane);
 		this.primaryStage.show();
 	}
 

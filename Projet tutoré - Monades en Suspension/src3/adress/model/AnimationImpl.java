@@ -93,7 +93,7 @@ public class AnimationImpl {
 								trans.setInterpolator(Interpolator.LINEAR);
 								trans.play();
 							}
-							System.out.println("x:"+Integer.toString((int)circ1.getLayoutX()) +" y:"+ Integer.toString((int)circ1.getLayoutY()));
+							System.out.println("x:"+Integer.toString((int)((Circle) circ1).getCenterX()) +" y:"+ Integer.toString((int)circ1.getScaleY()));
 						}
 
 					}
