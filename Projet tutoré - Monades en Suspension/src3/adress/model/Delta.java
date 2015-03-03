@@ -1,5 +1,10 @@
 package adress.model;
 
+/**
+ * Class used with the dragListener
+ * @author Hugo
+ *
+ */
 public class Delta {
 
 	private double x;

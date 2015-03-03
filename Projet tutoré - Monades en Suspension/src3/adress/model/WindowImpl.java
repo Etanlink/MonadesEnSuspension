@@ -23,7 +23,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+/**
+ * Class binding stage, scene, animation and UI's different parts
+ * @author Hugo
+ *
+ */
 public class WindowImpl {
 
 	private Stage primaryStage;
@@ -44,6 +48,7 @@ public class WindowImpl {
 
 		AnchorPane pane = new AnchorPane();
 
+		/* Instantiation of the animation*/
 		AnimationImpl animation = new AnimationImpl(root);
 
 		this.primaryStage = primaryStage;
@@ -51,11 +56,17 @@ public class WindowImpl {
 		Scene scene = new Scene(this.root, SCENE_SIZE, SCENE_SIZE);
 		primaryStage.setScene(scene);
 		animation.addCircles();
+		/* the different parts of UI are bound AFTER the animation */
+		/*									   ^^^^^			   */
 		this.root.getChildren().add(menuBar);
 		this.root.getChildren().add(pane);
 		this.primaryStage.show();
 	}
 
+	/**
+	 * Creates a basic menuBar
+	 * @return MenuBar : the menuBar of the window
+	 */
 	private MenuBar manualMenuBar() {
 		final Menu menu1 = new Menu("File");
 		final Menu menu2 = new Menu("Options");

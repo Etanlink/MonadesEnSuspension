@@ -18,6 +18,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
+/**
+ * Class generating and managing the animation
+ * @author Hugo
+ *
+ */
 public class AnimationImpl {
 
 	private Group root;
@@ -29,6 +34,10 @@ public class AnimationImpl {
 		this.root = root;
 	}
 
+	/**
+	 * method responsible of the overall animation
+	 * @throws IOException
+	 */
 	public void addCircles() throws IOException {
 		final Group circles = new Group();
 		this.root.getChildren().add(circles);
@@ -38,13 +47,18 @@ public class AnimationImpl {
 
 						new EventHandler<ActionEvent>() {
 					@Override public void handle(ActionEvent actionEvent) {
+						/* Circles are created to suit the minimal parameter */
 						while (circles.getChildren().size() <= 3){
 							int radius = 10 * r.nextInt(10);
 							final Circle circ1 = new Circle(400,400, radius);
+
+							/* DragListeners are added on the circle */
 							setDragListeners(circ1);
+
 							circles.getChildren().add(circ1);
 						}
-						
+
+						/* Control of the maximal parameter */
 						if(circles.getChildren().size() <= 10){	
 							int p = r.nextInt(100);
 							int q = r.nextInt(100);
@@ -55,11 +69,13 @@ public class AnimationImpl {
 								circles.getChildren().add(circ1);
 							}
 						}
-						
+
+						/* Translation applied on each circle */
 						for(Node circ1 : circles.getChildren()){
 							if(circ1 instanceof Circle){
 								TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/1000), circ1 );
 
+								/* Generation of the coordinates of the move */
 								int x = r.nextInt(120);
 								int y = 120-x;
 								boolean p = r.nextBoolean();
@@ -73,7 +89,7 @@ public class AnimationImpl {
 								trans.play();
 							}
 						}
-					
+
 					}
 				})
 				);
@@ -81,6 +97,10 @@ public class AnimationImpl {
 		animation.play();
 	}
 
+	/**
+	 * Adds dragListeners on ONE circle
+	 * @param circ1 : the circle listened
+	 */
 	protected void setDragListeners(Circle circ1) {
 		final Delta dragDelta = new Delta();
 
@@ -92,11 +112,13 @@ public class AnimationImpl {
 				circ1.setCursor(Cursor.NONE);
 			}
 		});
+
 		circ1.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override public void handle(MouseEvent mouseEvent) {
 				circ1.setCursor(Cursor.HAND);
 			}
 		});
+
 		circ1.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override public void handle(MouseEvent mouseEvent) {
 				circ1.setLayoutX(mouseEvent.getSceneX() + dragDelta.getX());
