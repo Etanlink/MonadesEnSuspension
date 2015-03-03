@@ -77,8 +77,6 @@ public class WindowImpl {
 		return menuBar;
 	}
 
-
-
 	/**
 	 * Loads the MenuBar of the UI
 	 * @return MenuBar menubar

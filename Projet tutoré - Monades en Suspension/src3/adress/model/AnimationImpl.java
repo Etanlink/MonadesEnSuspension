@@ -43,7 +43,7 @@ public class AnimationImpl {
 		this.root.getChildren().add(circles);
 
 		final Timeline animation = new Timeline(
-				new KeyFrame(Duration.seconds(0.5),
+				new KeyFrame(Duration.seconds(3),
 
 						new EventHandler<ActionEvent>() {
 					@Override public void handle(ActionEvent actionEvent) {
@@ -66,6 +66,8 @@ public class AnimationImpl {
 							{
 								int radius = 10 * r.nextInt(10);
 								final Circle circ1 = new Circle(400,400, radius);
+								/* DragListeners are added on the circle */
+								setDragListeners(circ1);
 								circles.getChildren().add(circ1);
 							}
 						}
@@ -73,7 +75,7 @@ public class AnimationImpl {
 						/* Translation applied on each circle */
 						for(Node circ1 : circles.getChildren()){
 							if(circ1 instanceof Circle){
-								TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/1000), circ1 );
+								TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
 
 								/* Generation of the coordinates of the move */
 								int x = r.nextInt(120);
