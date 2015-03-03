@@ -116,7 +116,7 @@ public class MainMonadesEnSuspension extends Application {
 			this.rootLayout.setCenter(UIOverview);
 			// Give the controller access to the main app.
 			UIViewControler controller = loader.getController();
-			controller.setMainApp(this);
+			//controller.setMainApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
