@@ -23,7 +23,7 @@ public class WindowImpl {
 
 	private Group root = new Group();
 
-	private static final int SCENE_SIZE = 600;
+	static final int SCENE_SIZE = 600;
 
 
 	public WindowImpl(Stage primaryStage) throws IOException {
