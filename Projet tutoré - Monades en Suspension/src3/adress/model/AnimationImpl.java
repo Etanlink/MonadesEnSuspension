@@ -77,6 +77,17 @@ public class AnimationImpl {
 
 						/* Translation applied on each circle */
 						for(Node circ1 : circles.getChildren()){
+							
+							int sceneSize = WindowImpl.SCENE_SIZE;
+							if(
+									( ((ExtentedCircle) circ1).getX() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
+									( ((ExtentedCircle) circ1).getX( )<= sceneSize - ((ExtentedCircle) circ1).getRadius()) ||
+									( ((ExtentedCircle) circ1).getY() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
+									( ((ExtentedCircle) circ1).getY() <= sceneSize - ((ExtentedCircle) circ1).getRadius()) 
+									)
+							{
+								circles.getChildren().remove(circ1);
+							}
 							if(circ1 instanceof ExtentedCircle){
 								TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
 
@@ -135,4 +146,5 @@ public class AnimationImpl {
 		});
 
 	}
+	
 }
