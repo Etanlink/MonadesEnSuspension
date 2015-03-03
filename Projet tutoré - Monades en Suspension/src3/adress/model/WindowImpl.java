@@ -92,20 +92,26 @@ public class WindowImpl {
 		
 		/* Add of the different controllers */
 		Label LabelNBMinObjects = new Label("Nombre minimum de Monades");
-		Slider NbMinObjects = new Slider(3, 10, 1);
+		Slider NbMinObjects = new Slider(3, 10, 3);
+		NbMinObjects.setShowTickLabels(true);
 		
 		Label LabelTinyObjectsPercentage = new Label("Pourcentage de petites Monades");
-		Slider TinyObjectsPercentage = new Slider();
+		Slider TinyObjectsPercentage = new Slider(0, 100, 0);//respectively : min, max, beginValue
+		TinyObjectsPercentage.setShowTickLabels(true);
 		
 		Label LabelNormalObjectsPercentage = new Label("Pourcentage de moyennes de Monades");
-		Slider NormalObjectsPercentage = new Slider();
+		Slider NormalObjectsPercentage = new Slider(0, 100, 0);//respectively : min, max, beginValue;
+		NormalObjectsPercentage.setShowTickLabels(true);
 		
 		Label LabelBigObjectsPercentage = new Label("Pourcentage de grandes Monades");
-		Slider BigObjectsPercentage = new Slider();
+		Slider BigObjectsPercentage = new Slider(0, 100, 0);//respectively : min, max, beginValue;
+		BigObjectsPercentage.setShowTickLabels(true);
 		
 		Button launchAnimationButton = new Button();
+		launchAnimationButton.setText("Lancer l'animation");
 		
 		Button pauseAnimationButton = new Button();
+		pauseAnimationButton.setText("Mettre en pause l'animation");
 		
 		/* Add of the controllers to the VBox */
 		parametersVBox.getChildren().add(LabelNBMinObjects);
