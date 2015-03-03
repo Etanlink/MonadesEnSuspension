@@ -75,6 +75,7 @@ public class WindowImpl {
 
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().addAll(menu1, menu2, menu3);
+		menuBar.setPrefWidth(SCENE_SIZE);
 		return menuBar;
 	}
 
