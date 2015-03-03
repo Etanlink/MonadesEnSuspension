@@ -32,6 +32,9 @@ public class WindowImpl {
 
 	static final int SCENE_SIZE = 600;
 	
+	static final int W_SCENE_SIZE = 800;
+	static final int H_SCENE_SIZE = 600;
+	
 	private static final int PARAMETERS_PANE_SIZE = 600;
 
 
@@ -50,7 +53,7 @@ public class WindowImpl {
 
 		this.primaryStage = primaryStage;
 
-		Scene scene = new Scene(this.root, SCENE_SIZE, SCENE_SIZE);
+		Scene scene = new Scene(this.root, W_SCENE_SIZE, H_SCENE_SIZE);
 		primaryStage.setScene(scene);
 		animation.addCircles();
 		/* the different parts of UI are bound AFTER the animation */
@@ -71,7 +74,7 @@ public class WindowImpl {
 
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().addAll(menu1, menu2, menu3);
-		menuBar.setMinWidth(SCENE_SIZE+10);
+		menuBar.setMinWidth(W_SCENE_SIZE+10);
 		return menuBar;
 	}
 	
@@ -82,7 +85,7 @@ public class WindowImpl {
 	private VBox manualParametersVBox() {
 		
 		final VBox parametersVBox = new VBox();
-		parametersVBox.setPrefSize(200, PARAMETERS_PANE_SIZE);
+		parametersVBox.setPrefSize(220, PARAMETERS_PANE_SIZE);
 		parametersVBox.setStyle("-fx-background-color: #f5f5f5;");
 		
 		/* Add of a VBox title */
@@ -90,7 +93,10 @@ public class WindowImpl {
 		VBoxTitle.setFont(Font.font("System", FontWeight.SEMI_BOLD, 16));
 		parametersVBox.getChildren().add(VBoxTitle);
 		
-		parametersVBox.setAlignment(Pos.CENTER_RIGHT);
+		/* Align all of the VBox components to CENTER_LEFT */
+		parametersVBox.setAlignment(Pos.BASELINE_CENTER);
+		/* Addition of spacing between the VBox Components */
+		parametersVBox.setSpacing(20);
 		
 		/* Add of the different controllers */
 		Label LabelNBMinObjects = new Label("Nombre minimum de Monades");
