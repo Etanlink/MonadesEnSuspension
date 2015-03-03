@@ -51,7 +51,7 @@ public class AnimationImpl {
 						/* Circles are created to suit the minimal parameter */
 						while (circles.getChildren().size() <= 3){
 							int radius = 10 * r.nextInt(10);
-							final Circle circ1 = new Circle(400,400, radius);
+							final ExtentedCircle circ1 = new ExtentedCircle(400,400, radius);
 							circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 
 							/* DragListeners are added on the circle */
@@ -67,7 +67,7 @@ public class AnimationImpl {
 							if(q>=p)
 							{
 								int radius = 10 * r.nextInt(10);
-								final Circle circ1 = new Circle(400,400, radius);
+								final ExtentedCircle circ1 = new ExtentedCircle(400,400, radius);
 								circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 0.8 ) );
 								/* DragListeners are added on the circle */
 								setDragListeners(circ1);
@@ -77,7 +77,7 @@ public class AnimationImpl {
 
 						/* Translation applied on each circle */
 						for(Node circ1 : circles.getChildren()){
-							if(circ1 instanceof Circle){
+							if(circ1 instanceof ExtentedCircle){
 								TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
 
 								/* Generation of the coordinates of the move */
@@ -90,10 +90,12 @@ public class AnimationImpl {
 
 								trans.setByX(x);
 								trans.setByY(y);
+								((ExtentedCircle)circ1).setX(((ExtentedCircle) circ1).getX()+x);
+								((ExtentedCircle)circ1).setY(((ExtentedCircle) circ1).getY()+y);
 								trans.setInterpolator(Interpolator.LINEAR);
 								trans.play();
 							}
-							System.out.println("x:"+Integer.toString((int)((Circle) circ1).getCenterX()) +" y:"+ Integer.toString((int)circ1.getScaleY()));
+							System.out.println("x:"+Integer.toString((int)((ExtentedCircle) circ1).getX()) +" y:"+ Integer.toString((int)((ExtentedCircle) circ1).getY()));
 						}
 
 					}
