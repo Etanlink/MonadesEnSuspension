@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 /**
  * Class binding stage, scene, animation and UI's different parts
- * @author Hugo
+ * @author Hugo & Etanlink
  *
  */
 public class WindowImpl {
@@ -41,6 +41,7 @@ public class WindowImpl {
 	public WindowImpl(Stage primaryStage) throws IOException {
 
 		super();
+		primaryStage.setTitle("Monades en suspension");
 		primaryStage.setResizable(false);
 
 		//MenuBar menuBar = loadMenuBar();
@@ -146,12 +147,12 @@ public class WindowImpl {
 	 * @return MenuBar menubar
 	 * @throws IOException
 	 */
-	private MenuBar loadMenuBar() throws IOException {
+	/*private MenuBar loadMenuBar() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(WindowImpl.class.getResource("view/MenuBar.fxml"));
 		MenuBar menubar = (MenuBar)loader.load();
 		return menubar;
-	}
+	}*/
 
 
 
