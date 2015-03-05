@@ -48,10 +48,13 @@ public class AnimationImpl {
 
 						new EventHandler<ActionEvent>() {
 					@Override public void handle(ActionEvent actionEvent) {
+						
+						int nbCircles = 0;
 						/* Circles are created to suit the minimal parameter */
 						while (circles.getChildren().size() <= 3){
 							int radius = 10 * r.nextInt(10);
 							final ExtentedCircle circ1 = new ExtentedCircle(400,400, radius);
+							nbCircles++;
 							circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 
 							/* DragListeners are added on the circle */
@@ -100,16 +103,17 @@ public class AnimationImpl {
 									trans.setInterpolator(Interpolator.LINEAR);
 									trans.play();
 								}
-								/*if(
+								if(
 										( ((ExtentedCircle) circ1).getX() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getX( )<= sceneSize - ((ExtentedCircle) circ1).getRadius()) ||
+										( ((ExtentedCircle) circ1).getX( )<= 0 - ((ExtentedCircle) circ1).getRadius()) ||
 										( ((ExtentedCircle) circ1).getY() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getY() <= sceneSize - ((ExtentedCircle) circ1).getRadius()) 
+										( ((ExtentedCircle) circ1).getY() <= 0 - ((ExtentedCircle) circ1).getRadius()) 
 										)
 								{
+									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
 									circles.getChildren().remove(circ1);
-								}*/
-								System.out.println("x:"+Integer.toString((int)((ExtentedCircle) circ1).getX()) +" y:"+ Integer.toString((int)((ExtentedCircle) circ1).getY()));
+								}
+								System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
 							}
 						
 
@@ -124,7 +128,7 @@ public class AnimationImpl {
 	 * Adds dragListeners on ONE circle
 	 * @param circ1 : the circle listened
 	 */
-	protected void setDragListeners(Circle circ1) {
+	protected void setDragListeners(ExtentedCircle circ1) {
 		final Delta dragDelta = new Delta();
 
 		circ1.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -139,6 +143,8 @@ public class AnimationImpl {
 		circ1.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override public void handle(MouseEvent mouseEvent) {
 				circ1.setCursor(Cursor.HAND);
+				circ1.setX(mouseEvent.getSceneX());
+				circ1.setY(mouseEvent.getSceneY());
 			}
 		});
 
@@ -146,6 +152,9 @@ public class AnimationImpl {
 			@Override public void handle(MouseEvent mouseEvent) {
 				circ1.setLayoutX(mouseEvent.getSceneX() + dragDelta.getX());
 				circ1.setLayoutY(mouseEvent.getSceneY() + dragDelta.getY());
+
+				//circ1.setX(mouseEvent.getSceneX());
+				//circ1.setY(mouseEvent.getSceneY());
 			}
 		});
 

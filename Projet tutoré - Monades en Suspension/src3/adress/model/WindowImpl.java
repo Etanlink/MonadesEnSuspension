@@ -3,8 +3,10 @@ package adress.model;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,7 +37,7 @@ public class WindowImpl {
 	static final int W_SCENE_SIZE = 800;
 	static final int H_SCENE_SIZE = 600;
 	
-	private static final int PARAMETERS_PANE_SIZE = 600;
+	private static final int PARAMETERS_PANE_SIZE = 620;
 
 
 	public WindowImpl(Stage primaryStage) throws IOException {
@@ -98,6 +100,7 @@ public class WindowImpl {
 		parametersVBox.setAlignment(Pos.BASELINE_CENTER);
 		/* Addition of spacing between the VBox Components */
 		parametersVBox.setSpacing(20);
+		//parametersVBox.setMargin((Node) parametersVBox.getChildren(),new Insets(20));
 		
 		/* Add of the different controllers */
 		Label LabelNBMinObjects = new Label("Nombre minimum de Monades");
