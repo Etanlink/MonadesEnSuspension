@@ -153,8 +153,8 @@ public class AnimationImpl {
 				circ1.setLayoutX(mouseEvent.getSceneX() + dragDelta.getX());
 				circ1.setLayoutY(mouseEvent.getSceneY() + dragDelta.getY());
 
-				//circ1.setX(mouseEvent.getSceneX());
-				//circ1.setY(mouseEvent.getSceneY());
+				circ1.setX(mouseEvent.getSceneX());
+				circ1.setY(mouseEvent.getSceneY());
 			}
 		});
 
