@@ -2,6 +2,7 @@ package adress.model;
 
 import java.io.IOException;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -84,8 +86,9 @@ public class WindowImpl {
 	/**
 	 * Creates a basic parametersPane
 	 * @return parametersPane
+	 * @throws IOException 
 	 */
-	private VBox manualParametersVBox() {
+	private VBox manualParametersVBox() throws IOException {
 		
 		final VBox parametersVBox = new VBox();
 		parametersVBox.setPrefSize(220, PARAMETERS_PANE_SIZE);
@@ -144,6 +147,7 @@ public class WindowImpl {
 		
 		return parametersVBox;
 	}
+
 
 	/**
 	 * Loads the MenuBar of the UI
