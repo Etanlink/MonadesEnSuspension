@@ -31,6 +31,9 @@ public class AnimationImpl {
 	final Group circles = new Group();
 	
 	private ArrayList<Shape> shapes;
+	
+	/* A boolean to detect a collision */
+	boolean checkCollision = false;
 
 	private static final Random r = new Random();
 
@@ -168,8 +171,6 @@ public class AnimationImpl {
 	 * @param a shape : allow to work for a circle and later for a monade
 	 */
 	public void checkShapeCollision(Shape shape){
-		/* a boolean to detect a collision */
-		boolean checkCollision = false;
 		Color shapeColor = (Color) shape.getFill();
 		/* Testing the intersection for each shapes in the ArrayList */
 		for(Shape shapeToTest : shapes){
