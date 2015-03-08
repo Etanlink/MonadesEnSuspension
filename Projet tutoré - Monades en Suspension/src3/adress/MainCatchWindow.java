@@ -9,6 +9,8 @@ import adress.model.CatchWindowImpl;
  * @author Etanlink
  *
  */
+
+//comment for commit test (florianmasson)
 public class MainCatchWindow extends Application {
 
 	public static void main(String[] args) {
