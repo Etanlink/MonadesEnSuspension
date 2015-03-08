@@ -65,8 +65,7 @@ public class AnimationImpl {
 
 							/* DragListeners are added on the circle */
 							setDragListeners(circ1);
-
-							circles.getChildren().add(circ1);
+							addShapeToChildren(circ1);
 						}
 
 						/* Control of the maximal parameter */
@@ -80,7 +79,7 @@ public class AnimationImpl {
 								circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 0.8 ) );
 								/* DragListeners are added on the circle */
 								setDragListeners(circ1);
-								circles.getChildren().add(circ1);
+								addShapeToChildren(circ1);
 							}
 						}
 						
@@ -130,6 +129,10 @@ public class AnimationImpl {
 				);
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
+	}
+	
+	private synchronized void addShapeToChildren(Shape shape) {
+		this.circles.getChildren().add(shape);
 	}
 	
 	/**

@@ -44,61 +44,44 @@ public class CopyOfAnimationImpl {
 		final Group circles = new Group();
 		this.root.getChildren().add(circles);
 
-		while(true){
-						while (circles.getChildren().size() <= 3){
-							AnimatedShapeThread circThread = new AnimatedShapeThread();
-							circles.getChildren().add(circThread.getShape());
-							circThread.run();
-						}
+		final Timeline animation = new Timeline(
+				new KeyFrame(Duration.millis(3000),
+		new EventHandler<ActionEvent>() {
 
-						/* Control of the maximal parameter */
-						if(circles.getChildren().size() <= 10){	
-							int p = r.nextInt(100);
-							int q = r.nextInt(100);
-							if(q>=p)
-							{
-								AnimatedShapeThread circThread = new AnimatedShapeThread();
-								circles.getChildren().add(circThread.getShape());
-								circThread.run();
-							}
-						}
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+		while (circles.getChildren().size() <= 3){
+			AnimatedShapeThread circThread = new AnimatedShapeThread();
+			circles.getChildren().add(circThread.getShape());
+			circThread.run();
+		}
 
-						/* Translation applied on each circle */
-						for(Node circ1 : circles.getChildren()){
-							
-							
-							
-								if(circ1 instanceof ExtentedCircle){
-									TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
+		/* Control of the maximal parameter */
+		if(circles.getChildren().size() <= 10){	
+			int p = r.nextInt(100);
+			int q = r.nextInt(100);
+			if(q>=p)
+			{
+				AnimatedShapeThread circThread = new AnimatedShapeThread();
+				circles.getChildren().add(circThread.getShape());
+				circThread.run();
+			}
+		}
 
-									/* Generation of the coordinates of the move */
-									int x = r.nextInt(120);
-									int y = 120-x;
-									boolean p = r.nextBoolean();
-									if(p==true) x = -x;
-									p = r.nextBoolean();
-									if(p==true) y = -y;
+		/* Translation applied on each circle */
+		for(Node circ1 : circles.getChildren()){
 
-									trans.setByX(x);
-									trans.setByY(y);
-									/* Coordinates updated */
-									((ExtentedCircle)circ1).setX(((ExtentedCircle) circ1).getX()+x);
-									((ExtentedCircle)circ1).setY(((ExtentedCircle) circ1).getY()+y);
-									
-									trans.setInterpolator(Interpolator.LINEAR);
-									trans.play();
-								}
-								if(
-										circ1.
+			/*if(
+										circ1;
 								{
 									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
 									circles.getChildren().remove(circ1);
-								}
-								System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
-							}
-						
-
-					}
+								}*/
+			System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+		}}}));
+		animation.setCycleCount(Animation.INDEFINITE);
+		animation.play();
 	}
 	
 	/**
