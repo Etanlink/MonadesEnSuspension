@@ -1,19 +1,27 @@
 package adress.model;
 
+import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Slider;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +50,19 @@ public class WindowImpl {
 	
 	private static final int PARAMETERS_PANE_SIZE = 620;
 
+	@FXML
+	public void saveAsPng() {
+	    WritableImage image = root.snapshot(new SnapshotParameters(), null);
+
+	    // TODO: probably use a file chooser here
+	    File file = new File("chart.png");
+
+	    try {
+	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+	    } catch (IOException e) {
+	        // TODO: handle exception here
+	    }
+	}
 
 	public WindowImpl(Stage primaryStage) throws IOException {
 
@@ -128,6 +149,16 @@ public class WindowImpl {
 		Button pauseAnimationButton = new Button();
 		pauseAnimationButton.setText("Mettre en pause l'animation");
 		
+		Button snapshotAnimationButton = new Button();
+		snapshotAnimationButton.setText("Capturer l'animation en cours");
+		
+		snapshotAnimationButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                saveAsPng();
+            }
+        });
+		
 		/* Add of the controllers to the VBox */
 		parametersVBox.getChildren().add(LabelNBMinObjects);
 		parametersVBox.getChildren().add(NbMinObjects);
@@ -144,6 +175,8 @@ public class WindowImpl {
 		parametersVBox.getChildren().add(launchAnimationButton);
 		
 		parametersVBox.getChildren().add(pauseAnimationButton);
+		
+		parametersVBox.getChildren().add(snapshotAnimationButton);
 		
 		return parametersVBox;
 	}
