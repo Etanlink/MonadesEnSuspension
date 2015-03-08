@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -73,12 +74,11 @@ public class WindowImpl {
 	 * @return MenuBar : the menuBar of the window
 	 */
 	private MenuBar manualMenuBar() {
-		final Menu menu1 = new Menu("File");
-		final Menu menu2 = new Menu("Options");
-		final Menu menu3 = new Menu("Help");
+		final Menu helpMenuItem = new Menu("Aide");		
+		final Menu aboutMenuItem = new Menu("À propos");
 
 		MenuBar menuBar = new MenuBar();
-		menuBar.getMenus().addAll(menu1, menu2, menu3);
+		menuBar.getMenus().addAll(helpMenuItem, aboutMenuItem);
 		menuBar.setMinWidth(W_SCENE_SIZE+10);
 		return menuBar;
 	}
