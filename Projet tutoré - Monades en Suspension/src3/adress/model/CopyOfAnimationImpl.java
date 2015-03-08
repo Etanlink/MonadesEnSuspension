@@ -1,6 +1,7 @@
 package adress.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javafx.animation.Animation;
@@ -29,6 +30,13 @@ public class CopyOfAnimationImpl {
 
 	private Group root;
 
+	final Group circles = new Group();
+	
+	private ArrayList<Shape> shapes;
+	
+	/* A boolean to detect a collision */
+	boolean checkCollision = false;
+	
 	private static final Random r = new Random();
 
 	public CopyOfAnimationImpl(Group root) {
@@ -118,6 +126,32 @@ public class CopyOfAnimationImpl {
 			}
 		});
 
+	}
+	
+	/**
+	 * Check a collision between shapes
+	 * @param a shape : allow to work for a circle and later for a monade
+	 */
+	public void checkShapeCollision(Shape shape){
+		Color shapeColor = (Color) shape.getFill();
+		/* Testing the intersection for each shapes in the ArrayList */
+		for(Shape shapeToTest : shapes){
+			if(shapeToTest != shape){
+				Shape intersect = Shape.intersect(shapeToTest, shape);
+				/* Test if the two shapes are inside each other */
+				if(intersect.getBoundsInLocal().getWidth() != -1){
+					checkCollision = true;
+				}
+			}
+		}
+		/* When a collision is detected, the current shape become red */
+		if(checkCollision = true){
+			shape.setFill(Color.RED);			
+		}
+		else{
+			/* Else, the shape keeps is previous color */
+			shape.setFill(shapeColor);
+		}
 	}
 	
 }
