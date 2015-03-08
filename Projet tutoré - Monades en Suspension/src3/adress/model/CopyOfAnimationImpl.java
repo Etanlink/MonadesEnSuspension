@@ -44,24 +44,11 @@ public class CopyOfAnimationImpl {
 		final Group circles = new Group();
 		this.root.getChildren().add(circles);
 
-		final Timeline animation = new Timeline(
-				new KeyFrame(Duration.millis(3000),
-
-						new EventHandler<ActionEvent>() {
-					@Override public void handle(ActionEvent actionEvent) {
-						
-						int nbCircles = 0;
-						/* Circles are created to suit the minimal parameter */
+		while(true){
 						while (circles.getChildren().size() <= 3){
-							int radius = 10 * r.nextInt(10);
-							final ExtentedCircle circ1 = new ExtentedCircle(400,400, radius);
-							nbCircles++;
-							circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
-
-							/* DragListeners are added on the circle */
-							setDragListeners(circ1);
-
-							circles.getChildren().add(circ1);
+							AnimatedShapeThread circThread = new AnimatedShapeThread();
+							circles.getChildren().add(circThread.getShape());
+							circThread.run();
 						}
 
 						/* Control of the maximal parameter */
@@ -70,19 +57,16 @@ public class CopyOfAnimationImpl {
 							int q = r.nextInt(100);
 							if(q>=p)
 							{
-								int radius = 10 * r.nextInt(10);
-								final ExtentedCircle circ1 = new ExtentedCircle(400,400, radius);
-								circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 0.8 ) );
-								/* DragListeners are added on the circle */
-								setDragListeners(circ1);
-								circles.getChildren().add(circ1);
+								AnimatedShapeThread circThread = new AnimatedShapeThread();
+								circles.getChildren().add(circThread.getShape());
+								circThread.run();
 							}
 						}
 
 						/* Translation applied on each circle */
 						for(Node circ1 : circles.getChildren()){
 							
-							int sceneSize = WindowImpl.SCENE_SIZE;
+							
 							
 								if(circ1 instanceof ExtentedCircle){
 									TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
@@ -105,11 +89,7 @@ public class CopyOfAnimationImpl {
 									trans.play();
 								}
 								if(
-										( ((ExtentedCircle) circ1).getX() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getX( )<= 0 - ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getY() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getY() <= 0 - ((ExtentedCircle) circ1).getRadius()) 
-										)
+										circ1.
 								{
 									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
 									circles.getChildren().remove(circ1);
@@ -119,10 +99,6 @@ public class CopyOfAnimationImpl {
 						
 
 					}
-				})
-				);
-		animation.setCycleCount(Animation.INDEFINITE);
-		animation.play();
 	}
 	
 	/**

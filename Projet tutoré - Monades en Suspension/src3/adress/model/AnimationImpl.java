@@ -77,11 +77,13 @@ public class AnimationImpl {
 								circles.getChildren().add(circ1);
 							}
 						}
+						
+						int sceneSize = WindowImpl.SCENE_SIZE;
 
 						/* Translation applied on each circle */
 						for(Node circ1 : circles.getChildren()){
 							
-							int sceneSize = WindowImpl.SCENE_SIZE;
+							
 							
 								if(circ1 instanceof ExtentedCircle){
 									TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
