@@ -20,17 +20,18 @@ import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 /**
+ * USED FOR THREAD TESTING
  * Class generating and managing the animation
  * @author Hugo
  *
  */
-public class AnimationImpl {
+public class CopyOfAnimationImpl {
 
 	private Group root;
 
 	private static final Random r = new Random();
 
-	public AnimationImpl(Group root) {
+	public CopyOfAnimationImpl(Group root) {
 		super();
 		this.root = root;
 	}
