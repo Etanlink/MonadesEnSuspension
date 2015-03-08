@@ -46,81 +46,40 @@ public class CopyOfAnimationImpl {
 
 		final Timeline animation = new Timeline(
 				new KeyFrame(Duration.millis(3000),
+		new EventHandler<ActionEvent>() {
 
-						new EventHandler<ActionEvent>() {
-					@Override public void handle(ActionEvent actionEvent) {
-						
-						int nbCircles = 0;
-						/* Circles are created to suit the minimal parameter */
-						while (circles.getChildren().size() <= 3){
-							int radius = 10 * r.nextInt(10);
-							final ExtentedCircle circ1 = new ExtentedCircle(400,400, radius);
-							nbCircles++;
-							circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+		while (circles.getChildren().size() <= 3){
+			AnimatedShapeThread circThread = new AnimatedShapeThread();
+			circles.getChildren().add(circThread.getShape());
+			circThread.run();
+		}
 
-							/* DragListeners are added on the circle */
-							setDragListeners(circ1);
+		/* Control of the maximal parameter */
+		if(circles.getChildren().size() <= 10){	
+			int p = r.nextInt(100);
+			int q = r.nextInt(100);
+			if(q>=p)
+			{
+				AnimatedShapeThread circThread = new AnimatedShapeThread();
+				circles.getChildren().add(circThread.getShape());
+				circThread.run();
+			}
+		}
 
-							circles.getChildren().add(circ1);
-						}
+		/* Translation applied on each circle */
+		for(Node circ1 : circles.getChildren()){
 
-						/* Control of the maximal parameter */
-						if(circles.getChildren().size() <= 10){	
-							int p = r.nextInt(100);
-							int q = r.nextInt(100);
-							if(q>=p)
-							{
-								int radius = 10 * r.nextInt(10);
-								final ExtentedCircle circ1 = new ExtentedCircle(400,400, radius);
-								circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 0.8 ) );
-								/* DragListeners are added on the circle */
-								setDragListeners(circ1);
-								circles.getChildren().add(circ1);
-							}
-						}
-
-						/* Translation applied on each circle */
-						for(Node circ1 : circles.getChildren()){
-							
-							int sceneSize = WindowImpl.SCENE_SIZE;
-							
-								if(circ1 instanceof ExtentedCircle){
-									TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
-
-									/* Generation of the coordinates of the move */
-									int x = r.nextInt(120);
-									int y = 120-x;
-									boolean p = r.nextBoolean();
-									if(p==true) x = -x;
-									p = r.nextBoolean();
-									if(p==true) y = -y;
-
-									trans.setByX(x);
-									trans.setByY(y);
-									/* Coordinates updated */
-									((ExtentedCircle)circ1).setX(((ExtentedCircle) circ1).getX()+x);
-									((ExtentedCircle)circ1).setY(((ExtentedCircle) circ1).getY()+y);
-									
-									trans.setInterpolator(Interpolator.LINEAR);
-									trans.play();
-								}
-								if(
-										( ((ExtentedCircle) circ1).getX() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getX( )<= 0 - ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getY() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getY() <= 0 - ((ExtentedCircle) circ1).getRadius()) 
-										)
+			/*if(
+										circ1;
 								{
 									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
 									circles.getChildren().remove(circ1);
-								}
-								System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
-							}
-						
-
-					}
-				})
-				);
+								}*/
+			System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+		}}}));
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
 	}

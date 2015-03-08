@@ -76,7 +76,7 @@ public class WindowImpl {
 		VBox parametersVBox = manualParametersVBox();
 
 		/* Instantiation of the animation*/
-		AnimationImpl animation = new AnimationImpl(root);
+		CopyOfAnimationImpl animation = new CopyOfAnimationImpl(root);
 
 		this.primaryStage = primaryStage;
 

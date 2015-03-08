@@ -40,12 +40,21 @@ public class AnimatedShapeThread implements Runnable {
 
 		/* DragListeners are added on the circle */
 		setDragListeners((ExtentedCircle) circ1);
+		this.isOutOfFrame = false;
 		
 	};
+	
+	public Shape getShape() {
+		return this.circ1;
+	}
+	
+	public boolean isOutOfFrame() {
+		return isOutOfFrame;
+	}
 
 	@Override
 	public void run() {
-	
+
 		this.animation = new Timeline(
 				new KeyFrame(Duration.millis(3000),
 
@@ -54,7 +63,7 @@ public class AnimatedShapeThread implements Runnable {
 					@Override
 					public void handle(ActionEvent arg0) {
 						int sceneSize = WindowImpl.SCENE_SIZE;
-						
+
 						if(circ1 instanceof ExtentedCircle){
 							TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
 
@@ -71,7 +80,7 @@ public class AnimatedShapeThread implements Runnable {
 							/* Coordinates updated */
 							((ExtentedCircle)circ1).setX(((ExtentedCircle) circ1).getX()+x);
 							((ExtentedCircle)circ1).setY(((ExtentedCircle) circ1).getY()+y);
-							
+
 							trans.setInterpolator(Interpolator.LINEAR);
 							trans.play();
 						}
@@ -85,7 +94,7 @@ public class AnimatedShapeThread implements Runnable {
 							isOutOfFrame = true;
 						}
 					}
-					
+
 				}) );
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
@@ -126,4 +135,5 @@ public class AnimatedShapeThread implements Runnable {
 		});
 
 	}
+
 }
