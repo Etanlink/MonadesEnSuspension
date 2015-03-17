@@ -134,7 +134,7 @@ public class WindowImpl {
 		launchAnimationButton.setOnAction(new EventHandler<ActionEvent>() { 
 			  
 		    @Override 
-		    public void handle(ActionEvent actionEvent) { 
+		    public void handle(ActionEvent actionEvent) {
 		        /* Get the different parameters specified by the controllers */
 		    	double getNbMinObjectsParameter = NbMinObjects.getValue();
 		    	double getTinyObjectsPercentage = TinyObjectsPercentage.getValue();
@@ -144,7 +144,8 @@ public class WindowImpl {
 		    	/* Launch the animation */
 		    	CopyOfAnimationImpl animation = new CopyOfAnimationImpl(root);
 		    	try {
-					animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
+					//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
+		    		animation.addCircles();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
