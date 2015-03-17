@@ -140,6 +140,10 @@ public class WindowImpl {
 		    @Override 
 		    public void handle(ActionEvent actionEvent) { 
 		        /* Get the different parameters specified by the controllers */
+		    	double getNbMinObjectsParameter = NbMinObjects.getValue();
+		    	double getTinyObjectsPercentage = TinyObjectsPercentage.getValue();
+		    	double getNormalObjectsPercentage = NormalObjectsPercentage.getValue();
+		    	double getBigObjectsPercentage = BigObjectsPercentage.getValue();
 		    	
 		    	/* Launch the animation */
 		    	CopyOfAnimationImpl animation = new CopyOfAnimationImpl(root);
