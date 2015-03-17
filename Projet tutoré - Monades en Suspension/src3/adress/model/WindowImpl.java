@@ -65,14 +65,10 @@ public class WindowImpl {
 		
 		VBox parametersVBox = manualParametersVBox();
 
-		/* Instantiation of the animation*/
-		//CopyOfAnimationImpl animation = new CopyOfAnimationImpl(root);
-
 		this.primaryStage = primaryStage;
 
 		Scene scene = new Scene(this.root, W_SCENE_SIZE, H_SCENE_SIZE);
 		primaryStage.setScene(scene);
-		//animation.addCircles();
 		/* the different parts of UI are bound AFTER the animation */
 		/*									   ^^^^^			   */
 		this.root.getChildren().add(parametersVBox);

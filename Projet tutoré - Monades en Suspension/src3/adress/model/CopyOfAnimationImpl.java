@@ -53,6 +53,22 @@ public class CopyOfAnimationImpl {
 	public void animationWithParameters(double nbMinObjects, double percentageTinyObjects, 
 			double percentageNormalObjects, double percentageBigObjects ) throws IOException {
 		
+		/* Creation of a group rootObjects which link the size subdivision on the root group */
+		final Group rootObjects = new Group();
+		/* Creation of the three different group objects which means the three different size of circles/monades */
+		final Group tinyObjects = new Group();
+		final Group normalObjects = new Group();
+		final Group bigObjects = new Group();
+		
+		/* Add the three groups into the rootObjects group */
+		rootObjects.getChildren().add(tinyObjects);
+		rootObjects.getChildren().add(normalObjects);
+		rootObjects.getChildren().add(bigObjects);
+		
+		/* Add the rootObjects group into the root group */
+		this.root.getChildren().add(rootObjects);
+		
+		
 		final Group circles = new Group();
 		this.root.getChildren().add(circles);
 
