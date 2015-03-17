@@ -44,6 +44,58 @@ public class CopyOfAnimationImpl {
 		this.root = root;
 	}
 
+	
+	/**
+	 * @param
+	 * method responsible of the overall animation
+	 * @throws IOException
+	 */
+	public void animationWithParameters(double nbMinObjects, double percentageTinyObjects, 
+			double percentageNormalObjects, double percentageBigObjects ) throws IOException {
+		
+		final Group circles = new Group();
+		this.root.getChildren().add(circles);
+
+		final Timeline animation = new Timeline(
+				new KeyFrame(Duration.millis(3000),
+		new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+		while (circles.getChildren().size() <= 3){
+			AnimatedShapeThread circThread = new AnimatedShapeThread();
+			circles.getChildren().add(circThread.getShape());
+			circThread.run();
+		}
+
+		/* Control of the maximal parameter */
+		if(circles.getChildren().size() <= 10){	
+			int p = r.nextInt(100);
+			int q = r.nextInt(100);
+			if(q>=p)
+			{
+				AnimatedShapeThread circThread = new AnimatedShapeThread();
+				circles.getChildren().add(circThread.getShape());
+				circThread.run();
+			}
+		}
+
+		/* Translation applied on each circle */
+		for(Node circ1 : circles.getChildren()){
+
+			/*if(
+										circ1;
+								{
+									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
+									circles.getChildren().remove(circ1);
+								}*/
+			System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+		}}}));
+		animation.setCycleCount(Animation.INDEFINITE);
+		animation.play();
+	}
+	
 	/**
 	 * method responsible of the overall animation
 	 * @throws IOException

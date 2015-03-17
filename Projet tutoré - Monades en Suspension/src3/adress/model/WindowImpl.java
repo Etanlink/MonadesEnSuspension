@@ -148,7 +148,7 @@ public class WindowImpl {
 		    	/* Launch the animation */
 		    	CopyOfAnimationImpl animation = new CopyOfAnimationImpl(root);
 		    	try {
-					animation.addCircles();
+					animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
