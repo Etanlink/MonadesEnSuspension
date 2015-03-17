@@ -30,6 +30,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 /**
  * Class binding stage, scene, animation and UI's different parts
  * @author Hugo & Etanlink
@@ -50,19 +52,7 @@ public class WindowImpl {
 	
 	private static final int PARAMETERS_PANE_SIZE = 620;
 
-	@FXML
-	public void saveAsPng() {
-	    WritableImage image = root.snapshot(new SnapshotParameters(), null);
-
-	    // TODO: probably use a file chooser here
-	    File file = new File("chart.png");
-
-	    try {
-	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-	    } catch (IOException e) {
-	        // TODO: handle exception here
-	    }
-	}
+	
 
 	public WindowImpl(Stage primaryStage) throws IOException {
 
@@ -76,13 +66,13 @@ public class WindowImpl {
 		VBox parametersVBox = manualParametersVBox();
 
 		/* Instantiation of the animation*/
-		CopyOfAnimationImpl animation = new CopyOfAnimationImpl(root);
+		//CopyOfAnimationImpl animation = new CopyOfAnimationImpl(root);
 
 		this.primaryStage = primaryStage;
 
 		Scene scene = new Scene(this.root, W_SCENE_SIZE, H_SCENE_SIZE);
 		primaryStage.setScene(scene);
-		animation.addCircles();
+		//animation.addCircles();
 		/* the different parts of UI are bound AFTER the animation */
 		/*									   ^^^^^			   */
 		this.root.getChildren().add(parametersVBox);
@@ -145,6 +135,22 @@ public class WindowImpl {
 		
 		Button launchAnimationButton = new Button();
 		launchAnimationButton.setText("Lancer l'animation");
+		launchAnimationButton.setOnAction(new EventHandler<ActionEvent>() { 
+			  
+		    @Override 
+		    public void handle(ActionEvent actionEvent) { 
+		        /* Get the different parameters specified by the controllers */
+		    	
+		    	/* Launch the animation */
+		    	CopyOfAnimationImpl animation = new CopyOfAnimationImpl(root);
+		    	try {
+					animation.addCircles();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    } 
+		});
 		
 		Button pauseAnimationButton = new Button();
 		pauseAnimationButton.setText("Mettre en pause l'animation");
@@ -179,6 +185,23 @@ public class WindowImpl {
 		parametersVBox.getChildren().add(snapshotAnimationButton);
 		
 		return parametersVBox;
+	}
+	
+	/**
+	 * TODO : Javadoc
+	 * @author Florian
+	 */
+	public void saveAsPng() {
+	    WritableImage image = root.snapshot(new SnapshotParameters(), null);
+
+	    // TODO: probably use a file chooser here
+	    File file = new File("chart.png");
+
+	    try {
+	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+	    } catch (IOException e) {
+	        // TODO: handle exception here
+	    }
 	}
 
 
