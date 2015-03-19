@@ -30,7 +30,7 @@ public class CopyOfAnimationImpl {
 
 	private Group root;
 
-	final Group circles = new Group();
+	final Group circles;
 	
 	private ArrayList<Shape> shapes;
 	
@@ -42,6 +42,8 @@ public class CopyOfAnimationImpl {
 	public CopyOfAnimationImpl(Group root) {
 		super();
 		this.root = root;
+		this.circles = new Group();
+		this.root.getChildren().add(circles);
 	}
 
 	
@@ -117,8 +119,7 @@ public class CopyOfAnimationImpl {
 	 * @throws IOException
 	 */
 	public void addCircles() throws IOException {
-		final Group circles = new Group();
-		this.root.getChildren().add(circles);
+		
 
 		final Timeline animation = new Timeline(
 				new KeyFrame(Duration.millis(3000),

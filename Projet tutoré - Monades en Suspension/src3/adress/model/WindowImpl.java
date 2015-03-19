@@ -44,6 +44,8 @@ public class WindowImpl {
 	//private BorderPane rootLayout;
 
 	private Group root = new Group();
+	
+	private CopyOfAnimationImpl animation;
 
 	static final int SCENE_SIZE = 600;
 	
@@ -59,6 +61,8 @@ public class WindowImpl {
 		super();
 		primaryStage.setTitle("Monades en suspension");
 		primaryStage.setResizable(false);
+		
+		this.animation = new CopyOfAnimationImpl(root);
 
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
@@ -142,7 +146,7 @@ public class WindowImpl {
 		    	double getBigObjectsPercentage = BigObjectsPercentage.getValue();
 		    	
 		    	/* Launch the animation */
-		    	CopyOfAnimationImpl animation = new CopyOfAnimationImpl(root);
+		    	
 		    	try {
 					//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
 		    		animation.addCircles();

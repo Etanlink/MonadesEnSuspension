@@ -20,7 +20,6 @@ public class MainTestIHM extends Application {
 		/* Instantiation of a new window */
 		WindowImpl window = new WindowImpl(primaryStage);
 		
-		
 	}
 
 }
