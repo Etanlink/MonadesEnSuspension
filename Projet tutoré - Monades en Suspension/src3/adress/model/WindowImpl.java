@@ -147,13 +147,8 @@ public class WindowImpl {
 		    	
 		    	/* Launch the animation */
 		    	
-		    	try {
-					//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
-		    		animation.addCircles();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		    	//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
+				animation.run();
 		    } 
 		});
 		

@@ -36,7 +36,7 @@ public class AnimatedShapeThread implements Runnable {
 		/* Instantiation of the ExtentedCircle */
 		int radius = 10 * r.nextInt(10);
 		this.circ1 = new ExtentedCircle(400,400, radius);
-		circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
+		circ1.setFill(/*new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 )*/Color.GREEN );
 
 		/* DragListeners are added on the circle */
 		setDragListeners((ExtentedCircle) circ1);
@@ -92,7 +92,13 @@ public class AnimatedShapeThread implements Runnable {
 								)
 						{
 							isOutOfFrame = true;
+							circ1.setFill(Color.BLACK);
 						}
+						else{
+							isOutOfFrame = false;
+							circ1.setFill(Color.GREEN);
+						}
+						
 					}
 
 				}) );

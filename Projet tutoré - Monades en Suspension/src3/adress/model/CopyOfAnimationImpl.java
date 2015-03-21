@@ -26,7 +26,7 @@ import javafx.util.Duration;
  * @author Hugo
  *
  */
-public class CopyOfAnimationImpl {
+public class CopyOfAnimationImpl implements Runnable {
 
 	private Group root;
 
@@ -46,7 +46,6 @@ public class CopyOfAnimationImpl {
 		this.root.getChildren().add(circles);
 	}
 
-	
 	/**
 	 * @param
 	 * method responsible of the overall animation
@@ -156,6 +155,7 @@ public class CopyOfAnimationImpl {
 									circles.getChildren().remove(circ1);
 								}*/
 			System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+			//checkShapeCollision((Shape) circ1);
 		}}}));
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
@@ -220,6 +220,18 @@ public class CopyOfAnimationImpl {
 		else{
 			/* Else, the shape keeps is previous color */
 			shape.setFill(shapeColor);
+		}
+	}
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			this.addCircles();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
