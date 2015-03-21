@@ -106,6 +106,10 @@ public class AnimatedShapeThread implements Runnable {
 		animation.play();
 	}
 
+	public Animation getAnimation() {
+		return animation;
+	}
+
 	/**
 	 * Adds dragListeners on ONE circle
 	 * @param circ12 : the circle listened

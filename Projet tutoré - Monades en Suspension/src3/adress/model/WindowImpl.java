@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import javafx.animation.Animation;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -154,6 +155,16 @@ public class WindowImpl {
 		
 		Button pauseAnimationButton = new Button();
 		pauseAnimationButton.setText("Mettre en pause l'animation");
+		pauseAnimationButton.setOnAction(new EventHandler<ActionEvent>() { 
+			  
+		    @Override 
+		    public void handle(ActionEvent actionEvent) {
+				for(AnimatedShapeThread thr1 : animation.getThreadShapes())
+				{
+					thr1.getAnimation().stop();
+				}
+		    } 
+		});
 		
 		Button snapshotAnimationButton = new Button();
 		snapshotAnimationButton.setText("Capturer l'animation en cours");
