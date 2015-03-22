@@ -30,7 +30,9 @@ public class CopyOfAnimationImpl implements Runnable {
 
 	private Group root;
 
-	final Group circles;
+	private final Group circles;
+	
+	private final Timeline animation;
 
 	private ArrayList<AnimatedShapeThread> threadShapes = new ArrayList();
 
@@ -46,8 +48,50 @@ public class CopyOfAnimationImpl implements Runnable {
 		this.root = root;
 		this.circles = new Group();
 		this.root.getChildren().add(circles);
+		this.animation = buildTimeline();
 	}
 
+	public ArrayList<AnimatedShapeThread> getThreadShapes() {
+		return threadShapes;
+	}
+
+	public Group getCircles() {
+		return circles;
+	}
+
+	public Timeline getAnimation() {
+		return this.animation;
+	}
+	/**
+	 * builds a Timeline considering the different primary parameters
+	 * @return animation : the overall timeline
+	 */
+	private Timeline buildTimeline() {
+		final Timeline animation = new Timeline( new KeyFrame(Duration.millis(3000), new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+
+				/* Generation of shapes */
+				checkNumberOfShapes();
+
+				/* Translation applied on each circle */
+				for(Node circ1 : circles.getChildren()){
+
+					/*if(
+										circ1;
+								{
+									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
+									circles.getChildren().remove(circ1);
+								}*/
+					System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+					//checkShapeCollision((Shape) circ1);
+				}}
+
+			}));
+		return animation;
+	}
+	
 	/**
 	 * @param
 	 * method responsible of the overall animation
@@ -116,51 +160,32 @@ public class CopyOfAnimationImpl implements Runnable {
 	}
 
 	/**
-	 * method responsible of the overall animation
-	 * @throws IOException
+	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
 	 */
-	public void addCircles() throws IOException {
+	private void createANewThread() {
+		AnimatedShapeThread circThread = new AnimatedShapeThread();
+		this.threadShapes.add(circThread);
+		this.circles.getChildren().add(circThread.getShape());
+		circThread.run();
+	}
+	
+	/**
+	 * generates shapes or not considering their number
+	 */
+	private void checkNumberOfShapes() {
+		while (circles.getChildren().size() <= 3){
+			createANewThread();
+		}
 
-
-		final Timeline animation = new Timeline( new KeyFrame(Duration.millis(3000), new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent arg0) {
-
-				while (circles.getChildren().size() <= 3){
-					AnimatedShapeThread circThread = new AnimatedShapeThread();
-					threadShapes.add(circThread);
-					circles.getChildren().add(circThread.getShape());
-					circThread.run();
-				}
-
-				/* Control of the maximal parameter */
-				if(circles.getChildren().size() <= 10){
-					int p = r.nextInt(100);
-					int q = r.nextInt(100);
-					if(q>=p)
-					{
-						AnimatedShapeThread circThread = new AnimatedShapeThread();
-						threadShapes.add(circThread);
-						circles.getChildren().add(circThread.getShape());
-						circThread.run();
-					}
-				}
-
-				/* Translation applied on each circle */
-				for(Node circ1 : circles.getChildren()){
-
-					/*if(
-										circ1;
-								{
-									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
-									circles.getChildren().remove(circ1);
-								}*/
-					System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
-					//checkShapeCollision((Shape) circ1);
-				}}}));
-		animation.setCycleCount(Animation.INDEFINITE);
-		animation.play();
+		/* Control of the maximal parameter */
+		if(circles.getChildren().size() <= 10){
+			int p = r.nextInt(100);
+			int q = r.nextInt(100);
+			if(q>=p)
+			{
+				createANewThread();
+			}
+		}
 	}
 
 	/**
@@ -225,23 +250,12 @@ public class CopyOfAnimationImpl implements Runnable {
 		}
 	}
 
-	public ArrayList<AnimatedShapeThread> getThreadShapes() {
-		return threadShapes;
-	}
-
-	public Group getCircles() {
-		return circles;
-	}
-
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		try {
-			this.addCircles();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		animation.setCycleCount(Animation.INDEFINITE);
+		animation.play();
 	}
+
+	
 
 }

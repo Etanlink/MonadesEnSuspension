@@ -163,6 +163,7 @@ public class WindowImpl {
 				{
 					thr1.getAnimation().stop();
 				}
+				animation.getAnimation().stop();
 		    } 
 		});
 		
