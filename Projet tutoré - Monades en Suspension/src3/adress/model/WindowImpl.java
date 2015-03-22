@@ -47,6 +47,8 @@ public class WindowImpl {
 	private Group root = new Group();
 	
 	private CopyOfAnimationImpl animation;
+	
+	private boolean animationRunning = false;
 
 	static final int SCENE_SIZE = 600;
 	
@@ -136,10 +138,12 @@ public class WindowImpl {
 		
 		Button launchAnimationButton = new Button();
 		launchAnimationButton.setText("Lancer l'animation");
-		launchAnimationButton.setOnAction(new EventHandler<ActionEvent>() { 
-			  
+		launchAnimationButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			
 		    @Override 
 		    public void handle(ActionEvent actionEvent) {
+		    	animationRunning = true;
 		        /* Get the different parameters specified by the controllers */
 		    	double getNbMinObjectsParameter = NbMinObjects.getValue();
 		    	double getTinyObjectsPercentage = TinyObjectsPercentage.getValue();
@@ -156,15 +160,28 @@ public class WindowImpl {
 		Button pauseAnimationButton = new Button();
 		pauseAnimationButton.setText("Mettre en pause l'animation");
 		pauseAnimationButton.setOnAction(new EventHandler<ActionEvent>() { 
-			  
-		    @Override 
-		    public void handle(ActionEvent actionEvent) {
-				for(AnimatedShapeThread thr1 : animation.getThreadShapes())
-				{
-					thr1.getAnimation().stop();
+			
+			@Override 
+			public void handle(ActionEvent actionEvent) {
+				if(animationRunning){
+					animation.getAnimation().stop();
+					for(AnimatedShapeThread thr1 : animation.getThreadShapes())
+					{
+						thr1.getAnimation().stop();
+					}
+					animationRunning = false;
+					pauseAnimationButton.setText("Reprendre l'animation");
 				}
-				animation.getAnimation().stop();
-		    } 
+				else {
+					animation.getAnimation().play();
+					for(AnimatedShapeThread thr1 : animation.getThreadShapes())
+					{
+						thr1.getAnimation().play();
+					}
+					animationRunning = true;
+					pauseAnimationButton.setText("Mettre en pause l'animation");
+				}
+			}
 		});
 		
 		Button snapshotAnimationButton = new Button();
