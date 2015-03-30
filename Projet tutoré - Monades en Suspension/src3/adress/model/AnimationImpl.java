@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
@@ -73,22 +74,24 @@ public class AnimationImpl implements Runnable {
 				//System.out.println("caca");
 
 				/* Translation applied on each circle */
-				/*
-				 * for(Node circ1 : circles.getChildren()){
+				
+				for(AnimatedShapeThread circ1 : threadShapes){
 
 
-					/*if(
-										circ1;
-								{
-									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
-									circles.getChildren().remove(circ1);
-								}
-					System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+					if(circ1.isOutOfFrame() == true)
+					{
+						//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
+						threadShapes.remove(circ1);
+						circles.getChildren().remove(circ1.getShape());
+					}
+					//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
 					//checkShapeCollision((Shape) circ1);
-				}*/
+				}
 				}
 
-		}));
+		}
+			)
+		);
 		return animation;
 	}
 	

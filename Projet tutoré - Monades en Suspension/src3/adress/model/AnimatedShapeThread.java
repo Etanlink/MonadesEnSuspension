@@ -80,7 +80,7 @@ public class AnimatedShapeThread implements Runnable {
 						int sceneSize = WindowImpl.SCENE_SIZE;
 						
 						if(compteur==0) {
-							CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
+							/*CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
 							
 							Path path = new Path();
 							path.getElements().add(new MoveTo(x,y));
@@ -88,12 +88,13 @@ public class AnimatedShapeThread implements Runnable {
 							shuffleXY(10);
 							path.getElements().add(new CubicCurveTo(x+180, y-180, x+10, y+240, x, y));
 							PathTransition pathTransition = new PathTransition();
-							pathTransition.setDuration(Duration.millis(3000));
+							pathTransition.setDuration(Duration.millis(100));
 							pathTransition.setPath(path);
 							pathTransition.setNode(circ1);
 							pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
 							pathTransition.setInterpolator(Interpolator.LINEAR);
-							pathTransition.play();
+							pathTransition.play();*/
+							shuffleXY(10);
 							compteur = r.nextInt(10)+5;
 						}
 
@@ -101,16 +102,16 @@ public class AnimatedShapeThread implements Runnable {
 							applyTranslation(100);
 						}
 						if(
-								( ((ExtentedCircle) circ1).getX() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-								( ((ExtentedCircle) circ1).getX( )<= 0 - ((ExtentedCircle) circ1).getRadius()) ||
-								( ((ExtentedCircle) circ1).getY() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-								( ((ExtentedCircle) circ1).getY() <= 0 - ((ExtentedCircle) circ1).getRadius()) 
+								( ((ExtentedCircle) circ1).getX() > sceneSize + ((ExtentedCircle) circ1).getRadius()*2) ||
+								( ((ExtentedCircle) circ1).getX() < 0 - ((ExtentedCircle) circ1).getRadius()*2) ||
+								( ((ExtentedCircle) circ1).getY() > sceneSize + ((ExtentedCircle) circ1).getRadius()*2) ||
+								( ((ExtentedCircle) circ1).getY() < 0 - ((ExtentedCircle) circ1).getRadius()*2)
 								)
 						{
 							isOutOfFrame = true;
 							circ1.setFill(Color.BLACK);
 						}
-						else{
+						else {
 							isOutOfFrame = false;
 							circ1.setFill(Color.GREEN);
 						}
@@ -141,10 +142,6 @@ public class AnimatedShapeThread implements Runnable {
 
 		trans.setInterpolator(Interpolator.LINEAR);
 		trans.play();
-
-		/*
-		
-		*/
 	
 	}
 	
