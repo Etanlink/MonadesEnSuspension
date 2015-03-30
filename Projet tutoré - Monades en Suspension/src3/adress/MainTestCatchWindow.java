@@ -11,7 +11,7 @@ import adress.model.CatchWindowImpl;
  */
 
 //comment for commit test (florianmasson)
-public class MainCatchWindow extends Application {
+public class MainTestCatchWindow extends Application {
 
 	public static void main(String[] args) {
 		launch(args);

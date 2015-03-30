@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import adress.MainTestCatchWindow;
 import javafx.animation.Animation;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -150,6 +151,7 @@ public class WindowImpl {
 		    	double getNormalObjectsPercentage = NormalObjectsPercentage.getValue();
 		    	double getBigObjectsPercentage = BigObjectsPercentage.getValue();
 		    	
+		    	/* Add of the animation controllers */
 		    	/* Launch the animation */
 		    	
 		    	//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
@@ -161,7 +163,7 @@ public class WindowImpl {
 		pauseAnimationButton.setText("Mettre en pause l'animation");
 		pauseAnimationButton.setOnAction(new EventHandler<ActionEvent>() { 
 			
-			@Override 
+			@Override
 			public void handle(ActionEvent actionEvent) {
 				if(animationRunning){
 					animation.getAnimation().stop();
@@ -190,7 +192,16 @@ public class WindowImpl {
 		snapshotAnimationButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                saveAsPng();
+            	/* Save the capture in a png file */
+            	saveAsPngInResFolder();
+            	try {
+            		/* Open a new window with the capture in background */
+            		Stage secondaryStage = new Stage();
+					CatchWindowImpl catchAnimationWindow = new CatchWindowImpl(secondaryStage);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 		
@@ -217,20 +228,24 @@ public class WindowImpl {
 	}
 	
 	/**
-	 * TODO : Javadoc
-	 * @author Florian
+	 * Put the capture of the animation in a res folder
+	 * @author Florian, Etanlink
+	 * TODO For now it's just possible to save one capture, (each new capture overwrite the previous capture)
+	 * it will be necessary to think to fix this.
 	 */
-	public void saveAsPng() {
+	public void saveAsPngInResFolder() {
 	    WritableImage image = root.snapshot(new SnapshotParameters(), null);
 
-	    // TODO: probably use a file chooser here
-	    File file = new File("chart.png");
+	    /* Save the capture in a png file in a res folder */
+	    File file = new File("src3/res/CaptureAnimation.png");
 
 	    try {
 	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-	    } catch (IOException e) {
-	        // TODO: handle exception here
 	    }
+	    catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
