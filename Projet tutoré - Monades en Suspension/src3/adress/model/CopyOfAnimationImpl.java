@@ -31,7 +31,7 @@ public class CopyOfAnimationImpl implements Runnable {
 	private Group root;
 
 	private final Group circles;
-	
+
 	private final Timeline animation;
 
 	private ArrayList<AnimatedShapeThread> threadShapes = new ArrayList();
@@ -67,31 +67,35 @@ public class CopyOfAnimationImpl implements Runnable {
 	 * @return animation : the overall timeline
 	 */
 	private Timeline buildTimeline() {
-		final Timeline animation = new Timeline( new KeyFrame(Duration.millis(3000), new EventHandler<ActionEvent>() {
+		final Timeline animation = new Timeline( new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent arg0) {
 
 				/* Generation of shapes */
 				checkNumberOfShapes();
+				//System.out.println("caca");
 
 				/* Translation applied on each circle */
-				for(Node circ1 : circles.getChildren()){
+				/*
+				 * for(Node circ1 : circles.getChildren()){
+
 
 					/*if(
 										circ1;
 								{
 									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
 									circles.getChildren().remove(circ1);
-								}*/
+								}
 					System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
 					//checkShapeCollision((Shape) circ1);
-				}}
+				}*/
+				}
 
-			}));
+		}));
 		return animation;
 	}
-	
+
 	/**
 	 * @param
 	 * method responsible of the overall animation
@@ -145,16 +149,19 @@ public class CopyOfAnimationImpl implements Runnable {
 						}
 
 						/* Translation applied on each circle */
-						for(Node circ1 : circles.getChildren()){
+						/*
+						 * for(Node circ1 : circles.getChildren()){
 
-							/*if(
+							if(
 										circ1;
 								{
 									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
 									circles.getChildren().remove(circ1);
-								}*/
-							System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
-						}}}));
+								}
+							//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+						}
+						 */
+					}}));
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
 	}
@@ -168,7 +175,7 @@ public class CopyOfAnimationImpl implements Runnable {
 		this.circles.getChildren().add(circThread.getShape());
 		circThread.run();
 	}
-	
+
 	/**
 	 * generates shapes or not considering their number
 	 */
@@ -256,6 +263,6 @@ public class CopyOfAnimationImpl implements Runnable {
 		animation.play();
 	}
 
-	
+
 
 }

@@ -5,6 +5,7 @@ import java.util.Random;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
+import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -12,6 +13,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
@@ -24,13 +28,21 @@ import javafx.util.Duration;
 public class AnimatedShapeThread implements Runnable {
 	
 	private final Shape circ1;
-	
 	private Animation animation;
-	
 	private boolean isOutOfFrame;
+	
+	private TranslateTransition trans;
+	private int x;
+	private int y;
+	
+	public int getX() { return x; }
+	public int getY() { return y; }
 	
 	private Random r = new Random();
 	
+	/**
+	 * Builder
+	 */
 	public AnimatedShapeThread() {
 		super();
 		/* Instantiation of the ExtentedCircle */
@@ -55,8 +67,9 @@ public class AnimatedShapeThread implements Runnable {
 	@Override
 	public void run() {
 
+		shuffleXY(10);
 		this.animation = new Timeline(
-				new KeyFrame(Duration.millis(3000),
+				new KeyFrame(Duration.millis(100),
 
 						new EventHandler<ActionEvent>() {
 
@@ -65,24 +78,7 @@ public class AnimatedShapeThread implements Runnable {
 						int sceneSize = WindowImpl.SCENE_SIZE;
 
 						if(circ1 instanceof ExtentedCircle){
-							TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
-
-							/* Generation of the coordinates of the move */
-							int x = r.nextInt(120);
-							int y = 120-x;
-							boolean p = r.nextBoolean();
-							if(p==true) x = -x;
-							p = r.nextBoolean();
-							if(p==true) y = -y;
-
-							trans.setByX(x);
-							trans.setByY(y);
-							/* Coordinates updated */
-							((ExtentedCircle)circ1).setX(((ExtentedCircle) circ1).getX()+x);
-							((ExtentedCircle)circ1).setY(((ExtentedCircle) circ1).getY()+y);
-
-							trans.setInterpolator(Interpolator.LINEAR);
-							trans.play();
+							applyTranslation(100);
 						}
 						if(
 								( ((ExtentedCircle) circ1).getX() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
@@ -99,7 +95,7 @@ public class AnimatedShapeThread implements Runnable {
 							circ1.setFill(Color.GREEN);
 						}
 						
-					}
+					}				
 
 				}) );
 		animation.setCycleCount(Animation.INDEFINITE);
@@ -108,6 +104,59 @@ public class AnimatedShapeThread implements Runnable {
 
 	public Animation getAnimation() {
 		return animation;
+	}
+	/**
+	 * apply a Transition to the shape
+	 */
+	private void applyTranslation(double ms) {
+		
+		
+		
+		for(int i = 100;i>=0;i--)
+		{
+			TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.circ1 );
+			
+			trans.setByX(this.x);
+			trans.setByY(this.y);
+
+			/* Coordinates updated */
+			((ExtentedCircle) this.circ1).setX(((ExtentedCircle) this.circ1).getX()+x);
+			((ExtentedCircle) this.circ1).setY(((ExtentedCircle) this.circ1).getY()+y);
+
+			trans.setInterpolator(Interpolator.LINEAR);
+			trans.play();
+		}
+		/*
+		CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
+		
+		Path path = new Path();
+		path.getElements().add(new MoveTo(20,20));
+		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
+		path.getElements().add(new CubicCurveTo(380, 120, 10, 240, 380, 240));
+		PathTransition pathTransition = new PathTransition();
+		pathTransition.setDuration(Duration.millis(4000));
+		pathTransition.setPath(path);
+		pathTransition.setNode(this.circ1);
+		pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pathTransition.setCycleCount(Timeline.INDEFINITE);
+		pathTransition.setInterpolator(Interpolator.LINEAR);
+		pathTransition.play();
+		*/
+	
+	}
+	
+	/**
+	 * generates randomly an X for the Translation
+	 */
+	public void shuffleXY(int range) {
+
+		this.x = r.nextInt(range);
+		boolean p = r.nextBoolean();
+		if(p==true) x = -x;
+
+		this.y = range - this.x;
+		p = r.nextBoolean();
+		if(p==true) y = -y;
 	}
 
 	/**
