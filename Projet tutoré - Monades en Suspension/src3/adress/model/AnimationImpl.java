@@ -75,26 +75,27 @@ public class AnimationImpl implements Runnable {
 
 				/* Translation applied on each circle */
 				
-				for(AnimatedShapeThread circ1 : threadShapes){
+				for(AnimatedShapeThread thrcirc1 : threadShapes){
 
 
-					if(circ1.isOutOfFrame() == true)
+					/* The shape is removed if it is out of the scene */
+					if(thrcirc1.isOutOfFrame() == true)
 					{
 						//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
-						threadShapes.remove(circ1);
-						circles.getChildren().remove(circ1.getShape());
+						removeShapeFromScene(thrcirc1);
 					}
 					//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
 					//checkShapeCollision((Shape) circ1);
 				}
 				}
 
+			
+
 		}
 			)
 		);
 		return animation;
-	}
-	
+	}	
 
 	/**
 	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
@@ -110,19 +111,28 @@ public class AnimationImpl implements Runnable {
 	 * generates shapes or not considering their number
 	 */
 	private void checkNumberOfShapes() {
-		while (circles.getChildren().size() <= 3){
+		while (this.circles.getChildren().size() <= 3){
 			createANewThread();
 		}
 
 		/* Control of the maximal parameter */
-		if(circles.getChildren().size() <= 10){
-			int p = r.nextInt(100);
-			int q = r.nextInt(100);
+		if(this.circles.getChildren().size() <= 10){
+			int p = this.r.nextInt(100);
+			int q = this.r.nextInt(100);
 			if(q>=p)
 			{
 				createANewThread();
 			}
 		}
+	}
+	
+	/**
+	 * Removes an AnimatedShapeThread from the list
+	 * @param circ1 : the thread to remove
+	 */
+	private void removeShapeFromScene(AnimatedShapeThread thrcirc1) {
+		this.threadShapes.remove(thrcirc1);
+		this.circles.getChildren().remove(thrcirc1.getShape());
 	}
 
 	/**

@@ -50,7 +50,7 @@ public class AnimatedShapeThread implements Runnable {
 		/* Instantiation of the ExtentedCircle */
 		int radius = 10 * r.nextInt(10);
 		this.circ1 = new ExtentedCircle(400,400, radius);
-		circ1.setFill(/*new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 )*/Color.GREEN );
+		circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 
 		/* DragListeners are added on the circle */
 		setDragListeners((ExtentedCircle) circ1);
@@ -61,8 +61,17 @@ public class AnimatedShapeThread implements Runnable {
 		return this.circ1;
 	}
 	
+	public Animation getAnimation() {
+		return animation;
+	}
+	
 	public boolean isOutOfFrame() {
-		return isOutOfFrame;
+		return (
+				( ((ExtentedCircle) this.circ1).getX() > WindowImpl.W_SCENE_SIZE + ((ExtentedCircle) this.circ1).getRadius()*3) ||
+				( ((ExtentedCircle) this.circ1).getX() < 0 - ((ExtentedCircle) this.circ1).getRadius()*3) ||
+				( ((ExtentedCircle) this.circ1).getY() > WindowImpl.H_SCENE_SIZE + ((ExtentedCircle) this.circ1).getRadius()*3) ||
+				( ((ExtentedCircle) this.circ1).getY() < 0 - ((ExtentedCircle) this.circ1).getRadius()*3)
+				);
 	}
 
 	@Override
@@ -77,7 +86,6 @@ public class AnimatedShapeThread implements Runnable {
 
 					@Override
 					public void handle(ActionEvent arg0) {
-						int sceneSize = WindowImpl.SCENE_SIZE;
 						
 						if(compteur==0) {
 							/*CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
@@ -101,20 +109,6 @@ public class AnimatedShapeThread implements Runnable {
 						if(circ1 instanceof ExtentedCircle){
 							applyTranslation(100);
 						}
-						if(
-								( ((ExtentedCircle) circ1).getX() > sceneSize + ((ExtentedCircle) circ1).getRadius()*2) ||
-								( ((ExtentedCircle) circ1).getX() < 0 - ((ExtentedCircle) circ1).getRadius()*2) ||
-								( ((ExtentedCircle) circ1).getY() > sceneSize + ((ExtentedCircle) circ1).getRadius()*2) ||
-								( ((ExtentedCircle) circ1).getY() < 0 - ((ExtentedCircle) circ1).getRadius()*2)
-								)
-						{
-							isOutOfFrame = true;
-							circ1.setFill(Color.BLACK);
-						}
-						else {
-							isOutOfFrame = false;
-							circ1.setFill(Color.GREEN);
-						}
 						compteur--;
 					}			
 
@@ -123,9 +117,6 @@ public class AnimatedShapeThread implements Runnable {
 		animation.play();
 	}
 
-	public Animation getAnimation() {
-		return animation;
-	}
 	/**
 	 * apply a Transition to the shape
 	 */
@@ -136,12 +127,12 @@ public class AnimatedShapeThread implements Runnable {
 		trans.setByX(this.x);
 		trans.setByY(this.y);
 
+		trans.setInterpolator(Interpolator.LINEAR);
+		trans.play();
+
 		/* Coordinates updated */
 		((ExtentedCircle) this.circ1).setX(((ExtentedCircle) this.circ1).getX()+x);
 		((ExtentedCircle) this.circ1).setY(((ExtentedCircle) this.circ1).getY()+y);
-
-		trans.setInterpolator(Interpolator.LINEAR);
-		trans.play();
 	
 	}
 	

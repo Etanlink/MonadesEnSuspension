@@ -51,10 +51,10 @@ public class WindowImpl {
 	
 	private boolean animationRunning = false;
 
-	static final int SCENE_SIZE = 600;
+	public static final int SCENE_SIZE = 600;
 	
-	static final int W_SCENE_SIZE = 800;
-	static final int H_SCENE_SIZE = 600;
+	public static final int W_SCENE_SIZE = 800;
+	public static final int H_SCENE_SIZE = 600;
 	
 	private static final int PARAMETERS_PANE_SIZE = 620;
 
