@@ -95,6 +95,36 @@ public class CopyOfAnimationImpl implements Runnable {
 		}));
 		return animation;
 	}
+	
+
+	/**
+	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
+	 */
+	private void createANewThread() {
+		AnimatedShapeThread circThread = new AnimatedShapeThread();
+		this.threadShapes.add(circThread);
+		this.circles.getChildren().add(circThread.getShape());
+		circThread.run();
+	}
+	
+	/**
+	 * generates shapes or not considering their number
+	 */
+	private void checkNumberOfShapes() {
+		while (circles.getChildren().size() <= 3){
+			createANewThread();
+		}
+
+		/* Control of the maximal parameter */
+		if(circles.getChildren().size() <= 10){
+			int p = r.nextInt(100);
+			int q = r.nextInt(100);
+			if(q>=p)
+			{
+				createANewThread();
+			}
+		}
+	}
 
 	/**
 	 * @param
@@ -118,11 +148,11 @@ public class CopyOfAnimationImpl implements Runnable {
 
 		/* Add the rootObjects group into the root group */
 		this.root.getChildren().add(rootObjects);
-
-
-		final Group circles = new Group();
-		this.root.getChildren().add(circles);
-
+		
+		
+		/* Instanciation of each objects group taking in parameters the different percentage and the nbMin */
+		
+		////////////////////////////////////////
 		final Timeline animation = new Timeline(
 				new KeyFrame(Duration.millis(3000),
 						new EventHandler<ActionEvent>() {
@@ -165,36 +195,6 @@ public class CopyOfAnimationImpl implements Runnable {
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
 	}
-
-	/**
-	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
-	 */
-	private void createANewThread() {
-		AnimatedShapeThread circThread = new AnimatedShapeThread();
-		this.threadShapes.add(circThread);
-		this.circles.getChildren().add(circThread.getShape());
-		circThread.run();
-	}
-
-	/**
-	 * generates shapes or not considering their number
-	 */
-	private void checkNumberOfShapes() {
-		while (circles.getChildren().size() <= 3){
-			createANewThread();
-		}
-
-		/* Control of the maximal parameter */
-		if(circles.getChildren().size() <= 10){
-			int p = r.nextInt(100);
-			int q = r.nextInt(100);
-			if(q>=p)
-			{
-				createANewThread();
-			}
-		}
-	}
-
 	/**
 	 * Adds dragListeners on ONE circle
 	 * @param circ1 : the circle listened
