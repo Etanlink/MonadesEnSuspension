@@ -39,6 +39,7 @@ public class AnimatedShapeThread implements Runnable {
 	public int getY() { return y; }
 	
 	private Random r = new Random();
+	private int compteur;
 	
 	/**
 	 * Builder
@@ -68,6 +69,7 @@ public class AnimatedShapeThread implements Runnable {
 	public void run() {
 
 		shuffleXY(10);
+		this.compteur = this.r.nextInt(10)+5;
 		this.animation = new Timeline(
 				new KeyFrame(Duration.millis(100),
 
@@ -76,6 +78,11 @@ public class AnimatedShapeThread implements Runnable {
 					@Override
 					public void handle(ActionEvent arg0) {
 						int sceneSize = WindowImpl.SCENE_SIZE;
+						
+						if(compteur==0) {
+							shuffleXY(10);
+							compteur = r.nextInt(10)+5;
+						}
 
 						if(circ1 instanceof ExtentedCircle){
 							applyTranslation(100);
@@ -94,8 +101,8 @@ public class AnimatedShapeThread implements Runnable {
 							isOutOfFrame = false;
 							circ1.setFill(Color.GREEN);
 						}
-						
-					}				
+						compteur--;
+					}			
 
 				}) );
 		animation.setCycleCount(Animation.INDEFINITE);
@@ -110,22 +117,18 @@ public class AnimatedShapeThread implements Runnable {
 	 */
 	private void applyTranslation(double ms) {
 		
-		
-		
-		for(int i = 100;i>=0;i--)
-		{
-			TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.circ1 );
-			
-			trans.setByX(this.x);
-			trans.setByY(this.y);
+		TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.circ1 );
 
-			/* Coordinates updated */
-			((ExtentedCircle) this.circ1).setX(((ExtentedCircle) this.circ1).getX()+x);
-			((ExtentedCircle) this.circ1).setY(((ExtentedCircle) this.circ1).getY()+y);
+		trans.setByX(this.x);
+		trans.setByY(this.y);
 
-			trans.setInterpolator(Interpolator.LINEAR);
-			trans.play();
-		}
+		/* Coordinates updated */
+		((ExtentedCircle) this.circ1).setX(((ExtentedCircle) this.circ1).getX()+x);
+		((ExtentedCircle) this.circ1).setY(((ExtentedCircle) this.circ1).getY()+y);
+
+		trans.setInterpolator(Interpolator.LINEAR);
+		trans.play();
+
 		/*
 		CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
 		
