@@ -47,7 +47,7 @@ public class WindowImpl {
 
 	private Group root = new Group();
 	
-	private CopyOfAnimationImpl animation;
+	private AnimationImpl animation;
 	
 	private boolean animationRunning = false;
 
@@ -66,7 +66,7 @@ public class WindowImpl {
 		primaryStage.setTitle("Monades en suspension");
 		primaryStage.setResizable(false);
 		
-		this.animation = new CopyOfAnimationImpl(root);
+		this.animation = new AnimationImpl(root);
 
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();

@@ -17,7 +17,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
+/**
+ * Standalone class, testing the synchronization of the coordinates with the dragListeners
+ * @author Hugo
+ *
+ */
 public class TestCoordonnees extends Application {
 	
 	private static final Random r = new Random();

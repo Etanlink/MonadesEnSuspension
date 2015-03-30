@@ -5,33 +5,35 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javafx.animation.Animation;
-import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 
 /**
+ * USED FOR THREAD TESTING
  * Class generating and managing the animation
  * @author Hugo
  *
  */
-public class AnimationImpl {
+public class AnimationImpl implements Runnable {
 
 	private Group root;
-	final Group circles = new Group();
-	
+
+	private final Group circles;
+
+	private final Timeline animation;
+
+	private ArrayList<AnimatedShapeThread> threadShapes = new ArrayList();
+
 	private ArrayList<Shape> shapes;
-	
+
 	/* A boolean to detect a collision */
 	boolean checkCollision = false;
 
@@ -40,32 +42,124 @@ public class AnimationImpl {
 	public AnimationImpl(Group root) {
 		super();
 		this.root = root;
+		this.circles = new Group();
+		this.root.getChildren().add(circles);
+		this.animation = buildTimeline();
+	}
+
+	public ArrayList<AnimatedShapeThread> getThreadShapes() {
+		return threadShapes;
+	}
+
+	public Group getCircles() {
+		return circles;
+	}
+
+	public Timeline getAnimation() {
+		return this.animation;
+	}
+	/**
+	 * builds a Timeline considering the different primary parameters
+	 * @return animation : the overall timeline
+	 */
+	private Timeline buildTimeline() {
+		final Timeline animation = new Timeline( new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+
+				/* Generation of shapes */
+				checkNumberOfShapes();
+				//System.out.println("caca");
+
+				/* Translation applied on each circle */
+				/*
+				 * for(Node circ1 : circles.getChildren()){
+
+
+					/*if(
+										circ1;
+								{
+									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
+									circles.getChildren().remove(circ1);
+								}
+					System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+					//checkShapeCollision((Shape) circ1);
+				}*/
+				}
+
+		}));
+		return animation;
+	}
+	
+
+	/**
+	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
+	 */
+	private void createANewThread() {
+		AnimatedShapeThread circThread = new AnimatedShapeThread();
+		this.threadShapes.add(circThread);
+		this.circles.getChildren().add(circThread.getShape());
+		circThread.run();
+	}
+	
+	/**
+	 * generates shapes or not considering their number
+	 */
+	private void checkNumberOfShapes() {
+		while (circles.getChildren().size() <= 3){
+			createANewThread();
+		}
+
+		/* Control of the maximal parameter */
+		if(circles.getChildren().size() <= 10){
+			int p = r.nextInt(100);
+			int q = r.nextInt(100);
+			if(q>=p)
+			{
+				createANewThread();
+			}
+		}
 	}
 
 	/**
+	 * @param
 	 * method responsible of the overall animation
 	 * @throws IOException
 	 */
-	public void addCircles() throws IOException {
-		this.root.getChildren().add(circles);
+	public void animationWithParameters(double nbMinObjects, double percentageTinyObjects, 
+			double percentageNormalObjects, double percentageBigObjects ) throws IOException {
 
+		/* Creation of a group rootObjects which link the size subdivision on the root group */
+		final Group rootObjects = new Group();
+		/* Creation of the three different group objects which means the three different size of circles/monades */
+		final Group tinyObjects = new Group();
+		final Group normalObjects = new Group();
+		final Group bigObjects = new Group();
+
+		/* Add the three groups into the rootObjects group */
+		rootObjects.getChildren().add(tinyObjects);
+		rootObjects.getChildren().add(normalObjects);
+		rootObjects.getChildren().add(bigObjects);
+
+		/* Add the rootObjects group into the root group */
+		this.root.getChildren().add(rootObjects);
+		
+		
+		/* Instanciation of each objects group taking in parameters the different percentage and the nbMin */
+		
+		////////////////////////////////////////
 		final Timeline animation = new Timeline(
 				new KeyFrame(Duration.millis(3000),
-
 						new EventHandler<ActionEvent>() {
-					@Override public void handle(ActionEvent actionEvent) {
-						
-						int nbCircles = 0;
-						/* Circles are created to suit the minimal parameter */
-						while (circles.getChildren().size() <= 3){
-							int radius = 10 * r.nextInt(10);
-							final ExtentedCircle circ1 = new ExtentedCircle(400,400, radius);
-							nbCircles++;
-							circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 
-							/* DragListeners are added on the circle */
-							setDragListeners(circ1);
-							addShapeToChildren(circ1);
+					@Override
+					public void handle(ActionEvent arg0) {
+
+						while (circles.getChildren().size() <= 3){
+							AnimatedShapeThread circThread = new AnimatedShapeThread();
+							circles.getChildren().add(circThread.getShape());
+							circThread.run();
 						}
 
 						/* Control of the maximal parameter */
@@ -74,67 +168,29 @@ public class AnimationImpl {
 							int q = r.nextInt(100);
 							if(q>=p)
 							{
-								int radius = 10 * r.nextInt(10);
-								final ExtentedCircle circ1 = new ExtentedCircle(400,400, radius);
-								circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 0.8 ) );
-								/* DragListeners are added on the circle */
-								setDragListeners(circ1);
-								addShapeToChildren(circ1);
+								AnimatedShapeThread circThread = new AnimatedShapeThread();
+								circles.getChildren().add(circThread.getShape());
+								circThread.run();
 							}
 						}
-						
-						int sceneSize = WindowImpl.SCENE_SIZE;
 
 						/* Translation applied on each circle */
-						for(Node circ1 : circles.getChildren()){
-							
-							
-							
-								if(circ1 instanceof ExtentedCircle){
-									TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/3000), circ1 );
+						/*
+						 * for(Node circ1 : circles.getChildren()){
 
-									/* Generation of the coordinates of the move */
-									int x = r.nextInt(120);
-									int y = 120-x;
-									boolean p = r.nextBoolean();
-									if(p==true) x = -x;
-									p = r.nextBoolean();
-									if(p==true) y = -y;
-
-									trans.setByX(x);
-									trans.setByY(y);
-									/* Coordinates updated */
-									((ExtentedCircle)circ1).setX(((ExtentedCircle) circ1).getX()+x);
-									((ExtentedCircle)circ1).setY(((ExtentedCircle) circ1).getY()+y);
-									
-									trans.setInterpolator(Interpolator.LINEAR);
-									trans.play();
-								}
-								if(
-										( ((ExtentedCircle) circ1).getX() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getX( )<= 0 - ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getY() >= sceneSize + ((ExtentedCircle) circ1).getRadius()) ||
-										( ((ExtentedCircle) circ1).getY() <= 0 - ((ExtentedCircle) circ1).getRadius()) 
-										)
+							if(
+										circ1;
 								{
 									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
 									circles.getChildren().remove(circ1);
 								}
-								System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
-							}
-						
-
-					}
-				})
-				);
+							//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+						}
+						 */
+					}}));
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
 	}
-	
-	private synchronized void addShapeToChildren(Shape shape) {
-		this.circles.getChildren().add(shape);
-	}
-	
 	/**
 	 * Adds dragListeners on ONE circle
 	 * @param circ1 : the circle listened
@@ -170,7 +226,7 @@ public class AnimationImpl {
 		});
 
 	}
-	
+
 	/**
 	 * Check a collision between shapes
 	 * @param a shape : allow to work for a circle and later for a monade
@@ -196,5 +252,13 @@ public class AnimationImpl {
 			shape.setFill(shapeColor);
 		}
 	}
-	
+
+	@Override
+	public void run() {
+		animation.setCycleCount(Animation.INDEFINITE);
+		animation.play();
+	}
+
+
+
 }

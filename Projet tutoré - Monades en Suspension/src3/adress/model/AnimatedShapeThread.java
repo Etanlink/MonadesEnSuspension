@@ -11,6 +11,7 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurveTo;
@@ -54,7 +55,6 @@ public class AnimatedShapeThread implements Runnable {
 		/* DragListeners are added on the circle */
 		setDragListeners((ExtentedCircle) circ1);
 		this.isOutOfFrame = false;
-		
 	};
 	
 	public Shape getShape() {
@@ -80,7 +80,20 @@ public class AnimatedShapeThread implements Runnable {
 						int sceneSize = WindowImpl.SCENE_SIZE;
 						
 						if(compteur==0) {
+							CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
+							
+							Path path = new Path();
+							path.getElements().add(new MoveTo(x,y));
+							//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
 							shuffleXY(10);
+							path.getElements().add(new CubicCurveTo(x+180, y-180, x+10, y+240, x, y));
+							PathTransition pathTransition = new PathTransition();
+							pathTransition.setDuration(Duration.millis(3000));
+							pathTransition.setPath(path);
+							pathTransition.setNode(circ1);
+							pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+							pathTransition.setInterpolator(Interpolator.LINEAR);
+							pathTransition.play();
 							compteur = r.nextInt(10)+5;
 						}
 
@@ -118,7 +131,7 @@ public class AnimatedShapeThread implements Runnable {
 	private void applyTranslation(double ms) {
 		
 		TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.circ1 );
-
+		
 		trans.setByX(this.x);
 		trans.setByY(this.y);
 
@@ -130,20 +143,7 @@ public class AnimatedShapeThread implements Runnable {
 		trans.play();
 
 		/*
-		CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
 		
-		Path path = new Path();
-		path.getElements().add(new MoveTo(20,20));
-		//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
-		path.getElements().add(new CubicCurveTo(380, 120, 10, 240, 380, 240));
-		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.millis(4000));
-		pathTransition.setPath(path);
-		pathTransition.setNode(this.circ1);
-		pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-		pathTransition.setCycleCount(Timeline.INDEFINITE);
-		pathTransition.setInterpolator(Interpolator.LINEAR);
-		pathTransition.play();
 		*/
 	
 	}
@@ -176,7 +176,8 @@ public class AnimatedShapeThread implements Runnable {
 				dragDelta.setY((double)(circ12.getLayoutY() - mouseEvent.getSceneY()));
 				circ12.setCursor(Cursor.NONE);
 			}
-		});
+		}
+				);
 
 		circ12.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override public void handle(MouseEvent mouseEvent) {
@@ -184,7 +185,8 @@ public class AnimatedShapeThread implements Runnable {
 				circ12.setX(mouseEvent.getSceneX());
 				circ12.setY(mouseEvent.getSceneY());
 			}
-		});
+		}
+				);
 
 		circ12.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override public void handle(MouseEvent mouseEvent) {
@@ -194,7 +196,8 @@ public class AnimatedShapeThread implements Runnable {
 				circ12.setX(mouseEvent.getSceneX());
 				circ12.setY(mouseEvent.getSceneY());
 			}
-		});
+		}
+				);
 
 	}
 
