@@ -79,7 +79,16 @@ public class AnimatedShapeThread implements Runnable {
 
 		shuffleXY(10);
 		this.compteur = this.r.nextInt(10)+5;
-		this.animation = new Timeline(
+		this.animation = buildTimeLine();
+		this.animation.setCycleCount(Animation.INDEFINITE);
+		this.animation.play();
+	}
+	
+	/**
+	 * @return the TimeLine of the thread
+	 */
+	private Timeline buildTimeLine() {
+		return new Timeline(
 				new KeyFrame(Duration.millis(100),
 
 						new EventHandler<ActionEvent>() {
@@ -87,34 +96,10 @@ public class AnimatedShapeThread implements Runnable {
 					@Override
 					public void handle(ActionEvent arg0) {
 						
-						if(compteur==0) {
-							/*CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
-							
-							Path path = new Path();
-							path.getElements().add(new MoveTo(x,y));
-							//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
-							shuffleXY(10);
-							path.getElements().add(new CubicCurveTo(x+180, y-180, x+10, y+240, x, y));
-							PathTransition pathTransition = new PathTransition();
-							pathTransition.setDuration(Duration.millis(100));
-							pathTransition.setPath(path);
-							pathTransition.setNode(circ1);
-							pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-							pathTransition.setInterpolator(Interpolator.LINEAR);
-							pathTransition.play();*/
-							shuffleXY(10);
-							compteur = r.nextInt(10)+5;
-						}
-
-						if(circ1 instanceof ExtentedCircle){
-							applyTranslation(100);
-						}
-						compteur--;
+						handleTimeLine();
 					}			
 
 				}) );
-		animation.setCycleCount(Animation.INDEFINITE);
-		animation.play();
 	}
 
 	/**
@@ -122,13 +107,13 @@ public class AnimatedShapeThread implements Runnable {
 	 */
 	private void applyTranslation(double ms) {
 		
-		TranslateTransition trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.circ1 );
+		this.trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.circ1 );
 		
-		trans.setByX(this.x);
-		trans.setByY(this.y);
+		this.trans.setByX(this.x);
+		this.trans.setByY(this.y);
 
-		trans.setInterpolator(Interpolator.LINEAR);
-		trans.play();
+		this.trans.setInterpolator(Interpolator.LINEAR);
+		this.trans.play();
 
 		/* Coordinates updated */
 		((ExtentedCircle) this.circ1).setX(((ExtentedCircle) this.circ1).getX()+x);
@@ -187,6 +172,34 @@ public class AnimatedShapeThread implements Runnable {
 		}
 				);
 
+	/**
+	 * content of the TimeLine
+	 */
+	}
+	private void handleTimeLine() {
+		if(this.compteur==0) {
+			/*CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
+			
+			Path path = new Path();
+			path.getElements().add(new MoveTo(x,y));
+			//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
+			shuffleXY(10);
+			path.getElements().add(new CubicCurveTo(x+180, y-180, x+10, y+240, x, y));
+			PathTransition pathTransition = new PathTransition();
+			pathTransition.setDuration(Duration.millis(100));
+			pathTransition.setPath(path);
+			pathTransition.setNode(circ1);
+			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			pathTransition.setInterpolator(Interpolator.LINEAR);
+			pathTransition.play();*/
+			shuffleXY(10);
+			this.compteur = this.r.nextInt(10)+5;
+		}
+
+		if(this.circ1 instanceof ExtentedCircle){
+			applyTranslation(100);
+		}
+		this.compteur--;
 	}
 
 }

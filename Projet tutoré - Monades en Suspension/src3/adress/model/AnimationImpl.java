@@ -79,7 +79,7 @@ public class AnimationImpl implements Runnable {
 
 
 					/* The shape is removed if it is out of the scene */
-					if(thrcirc1.isOutOfFrame() == true)
+					if(thrcirc1.isOutOfFrame())
 					{
 						//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
 						removeShapeFromScene(thrcirc1);
@@ -100,7 +100,7 @@ public class AnimationImpl implements Runnable {
 	/**
 	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
 	 */
-	private void createANewThread() {
+	private synchronized void createANewThread() {
 		AnimatedShapeThread circThread = new AnimatedShapeThread();
 		this.threadShapes.add(circThread);
 		this.circles.getChildren().add(circThread.getShape());
@@ -130,7 +130,7 @@ public class AnimationImpl implements Runnable {
 	 * Removes an AnimatedShapeThread from the list
 	 * @param circ1 : the thread to remove
 	 */
-	private void removeShapeFromScene(AnimatedShapeThread thrcirc1) {
+	private synchronized void removeShapeFromScene(AnimatedShapeThread thrcirc1) {
 		this.threadShapes.remove(thrcirc1);
 		this.circles.getChildren().remove(thrcirc1.getShape());
 	}
