@@ -2,6 +2,9 @@ package adress.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Random;
 
 import javafx.animation.Animation;
@@ -31,7 +34,7 @@ public class AnimationImpl implements Runnable {
 
 	private final Timeline animation;
 
-	private ArrayList<AnimatedShapeThread> threadShapes = new ArrayList();
+	private LinkedList<AnimatedShapeThread> threadShapes = new LinkedList();
 
 	private ArrayList<Shape> shapes;
 
@@ -48,7 +51,7 @@ public class AnimationImpl implements Runnable {
 		this.animation = buildTimeline();
 	}
 
-	public ArrayList<AnimatedShapeThread> getThreadShapes() {
+	public LinkedList<AnimatedShapeThread> getThreadShapes() {
 		return threadShapes;
 	}
 
@@ -69,33 +72,45 @@ public class AnimationImpl implements Runnable {
 			@Override
 			public void handle(ActionEvent arg0) {
 
-				/* Generation of shapes */
-				checkNumberOfShapes();
-				//System.out.println("caca");
-
-				/* Translation applied on each circle */
-				
-				for(AnimatedShapeThread thrcirc1 : threadShapes){
+				handleMainThread();
+			}
 
 
-					/* The shape is removed if it is out of the scene */
-					if(thrcirc1.isOutOfFrame())
-					{
-						//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
-						removeShapeFromScene(thrcirc1);
-					}
-					//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
-					//checkShapeCollision((Shape) circ1);
-				}
-				}
-
-			
 
 		}
-			)
-		);
+				)
+				);
 		return animation;
-	}	
+	}
+	
+	/**
+	 * content of the main TimeLine
+	 */
+	private void handleMainThread() {
+		/* Generation of shapes */
+		checkNumberOfShapes();
+
+		/* Control on the exit */
+		controlExit();
+	}
+
+	/**
+	 * checks shape by shape if there is an exit or not
+	 */
+	private void controlExit() throws ConcurrentModificationException {
+		for(Iterator<AnimatedShapeThread> it = this.threadShapes.iterator(); it.hasNext();) {
+
+			AnimatedShapeThread thrcirc1 = it.next();
+			/* The shape is removed if it is out of the scene */
+			if(thrcirc1.isOutOfFrame())
+			{
+				//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
+				removeShapeFromScene(thrcirc1);
+			}
+			//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+			//checkShapeCollision((Shape) circ1);
+		}
+	}
 
 	/**
 	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
@@ -106,7 +121,7 @@ public class AnimationImpl implements Runnable {
 		this.circles.getChildren().add(circThread.getShape());
 		circThread.run();
 	}
-	
+
 	/**
 	 * generates shapes or not considering their number
 	 */
@@ -125,7 +140,7 @@ public class AnimationImpl implements Runnable {
 			}
 		}
 	}
-	
+
 	/**
 	 * Removes an AnimatedShapeThread from the list
 	 * @param circ1 : the thread to remove
@@ -135,75 +150,6 @@ public class AnimationImpl implements Runnable {
 		this.circles.getChildren().remove(thrcirc1.getShape());
 	}
 
-	/**
-	 * @param
-	 * method responsible of the overall animation
-	 * @throws IOException
-	 */
-	public void animationWithParameters(double nbMinObjects, double percentageTinyObjects, 
-			double percentageNormalObjects, double percentageBigObjects ) throws IOException {
-
-		/* Creation of a group rootObjects which link the size subdivision on the root group */
-		final Group rootObjects = new Group();
-		/* Creation of the three different group objects which means the three different size of circles/monades */
-		final Group tinyObjects = new Group();
-		final Group normalObjects = new Group();
-		final Group bigObjects = new Group();
-
-		/* Add the three groups into the rootObjects group */
-		rootObjects.getChildren().add(tinyObjects);
-		rootObjects.getChildren().add(normalObjects);
-		rootObjects.getChildren().add(bigObjects);
-
-		/* Add the rootObjects group into the root group */
-		this.root.getChildren().add(rootObjects);
-		
-		
-		/* Instanciation of each objects group taking in parameters the different percentage and the nbMin */
-		
-		////////////////////////////////////////
-		final Timeline animation = new Timeline(
-				new KeyFrame(Duration.millis(3000),
-						new EventHandler<ActionEvent>() {
-
-					@Override
-					public void handle(ActionEvent arg0) {
-
-						while (circles.getChildren().size() <= 3){
-							AnimatedShapeThread circThread = new AnimatedShapeThread();
-							circles.getChildren().add(circThread.getShape());
-							circThread.run();
-						}
-
-						/* Control of the maximal parameter */
-						if(circles.getChildren().size() <= 10){	
-							int p = r.nextInt(100);
-							int q = r.nextInt(100);
-							if(q>=p)
-							{
-								AnimatedShapeThread circThread = new AnimatedShapeThread();
-								circles.getChildren().add(circThread.getShape());
-								circThread.run();
-							}
-						}
-
-						/* Translation applied on each circle */
-						/*
-						 * for(Node circ1 : circles.getChildren()){
-
-							if(
-										circ1;
-								{
-									System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
-									circles.getChildren().remove(circ1);
-								}
-							//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
-						}
-						 */
-					}}));
-		animation.setCycleCount(Animation.INDEFINITE);
-		animation.play();
-	}
 	/**
 	 * Adds dragListeners on ONE circle
 	 * @param circ1 : the circle listened
@@ -271,7 +217,5 @@ public class AnimationImpl implements Runnable {
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
 	}
-
-
-
+	
 }
