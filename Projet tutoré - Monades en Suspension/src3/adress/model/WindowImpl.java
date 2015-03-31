@@ -56,15 +56,22 @@ public class WindowImpl {
 	
 	public static final int W_SCENE_SIZE = 800;
 	public static final int H_SCENE_SIZE = 600;
-	public MainTestIHM MainClass;
+	private MainTestIHM MainApp;
+	public VBox MaVBox ;
 	
 	private static final int PARAMETERS_PANE_SIZE = 620;
 
 	
 
-	public WindowImpl(Stage primaryStage) throws IOException {
+	public WindowImpl(){
 
-		super();
+
+	}
+	/**
+	 * Initialize the primarystage
+	 */
+	
+	public void PrimaryStageInitialisation(Stage primaryStage) throws IOException {
 		primaryStage.setTitle("Monades en suspension");
 		primaryStage.setResizable(false);
 		
@@ -73,7 +80,7 @@ public class WindowImpl {
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
 		
-		VBox parametersVBox = manualParametersVBox();
+		FXMLParametersVBox();
 
 		this.primaryStage = primaryStage;
 		
@@ -81,7 +88,7 @@ public class WindowImpl {
 		primaryStage.setScene(scene);
 		/* the different parts of UI are bound AFTER the animation */
 		/*									   ^^^^^			   */
-		this.root.getChildren().add(parametersVBox);
+		this.root.getChildren().add(this.MaVBox);
 		this.root.getChildren().add(menuBar);
 		this.primaryStage.show();
 	}
@@ -90,7 +97,7 @@ public class WindowImpl {
 	 * Creates a basic menuBar
 	 * @return MenuBar : the menuBar of the window
 	 */
-	private MenuBar manualMenuBar() {
+	public MenuBar manualMenuBar() {
 		final Menu helpMenuItem = new Menu("Aide");
 		helpMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -112,20 +119,34 @@ public class WindowImpl {
 		return menuBar;
 	}
 	
+	@FXML
+	public void initialize(){
+		
+	}
+	
+	
+	public void FXMLParametersVBox() {
+		try {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(WindowImpl.class.getResource("VBox.fxml"));
+		VBox vBox = (VBox) loader.load();
+		this.MaVBox = vBox ;
+		WindowImpl controller = loader.getController();
+		controller.setMainApp(this.MainApp);
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void setMainApp(MainTestIHM mainapp){
+		this.MainApp = mainapp;
+	}
 	/**
 	 * Creates a basic parametersPane
 	 * @return parametersPane
 	 * @throws IOException 
 	 */
-	
-	private VBox FXMLParametersVBOX() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(WindowImpl.class.getResource("view/FUCK.fxml"));
-		VBox vbox = (VBox)loader.load();
-		WindowImpl controller = loader.getController();
-		//controller.setMainApp(this.MainClass);
-		return null;
-	}
 	private VBox manualParametersVBox() throws IOException {
 		
 		final VBox parametersVBox = new VBox();

@@ -1,7 +1,16 @@
 package adress;
 
+import java.io.IOException;
+
+import ch.makery.address.MainApp;
 import adress.model.WindowImpl;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 /**
  * Application for Frédéric Galliano
@@ -10,6 +19,9 @@ import javafx.stage.Stage;
  */
 public class MainTestIHM extends Application {
 
+    public Stage primaryStage;
+
+    
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -18,9 +30,11 @@ public class MainTestIHM extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		/* Instantiation of a new window */
-		WindowImpl window = new WindowImpl(primaryStage);
-		window.MainClass = this ;
-		
+		this.primaryStage = primaryStage ;
+		WindowImpl window = new WindowImpl();
+		window.setMainApp(this);
+		window.PrimaryStageInitialisation(this.primaryStage);
+
 	}
 
 }
