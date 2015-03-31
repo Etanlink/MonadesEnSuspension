@@ -29,6 +29,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -58,6 +60,7 @@ public class WindowImpl {
 	public static final int H_SCENE_SIZE = 600;
 	private MainTestIHM MainApp;
 	public VBox MaVBox ;
+	private Rectangle snapshotRectangle = new Rectangle(225, 25, 585, 600);
 	
 	private static final int PARAMETERS_PANE_SIZE = 620;
 
@@ -89,12 +92,15 @@ public class WindowImpl {
 
 		this.primaryStage = primaryStage;
 		
+		this.snapshotRectangle.setFill(Color.TRANSPARENT);
+		
 		Scene scene = new Scene(this.root, W_SCENE_SIZE, H_SCENE_SIZE);
 		primaryStage.setScene(scene);
 		/* the different parts of UI are bound AFTER the animation */
 		/*									   ^^^^^			   */
 		this.root.getChildren().add(this.MaVBox);
 		this.root.getChildren().add(menuBar);
+		this.root.getChildren().add(this.snapshotRectangle);
 		this.primaryStage.show();
 	}
 
@@ -283,7 +289,7 @@ public class WindowImpl {
 	 * it will be necessary to think to fix this.
 	 */
 	public void saveAsPngInResFolder() {
-	    WritableImage image = root.snapshot(new SnapshotParameters(), null);
+	    WritableImage image = this.snapshotRectangle.snapshot(new SnapshotParameters(), null);
 
 	    /* Save the capture in a png file in a res folder */
 	    File file = new File("src3/res/CaptureAnimation.png");
