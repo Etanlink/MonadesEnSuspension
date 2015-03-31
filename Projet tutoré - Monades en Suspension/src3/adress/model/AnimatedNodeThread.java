@@ -31,7 +31,6 @@ public class AnimatedNodeThread implements Runnable {
 	
 	private final Node circ1;
 	private Animation animation;
-	private boolean isOutOfFrame;
 	
 	private TranslateTransition trans;
 	private int x;
@@ -54,10 +53,9 @@ public class AnimatedNodeThread implements Runnable {
 		((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 
 		/* DragListeners are added on the circle */
-		setDragListeners((ExtentedCircle) circ1);
-		this.isOutOfFrame = false;
+		setDragListeners((ExtentedCircle) this.circ1);
 	};
-	
+
 	public Node getNode() {
 		return this.circ1;
 	}
@@ -172,11 +170,47 @@ public class AnimatedNodeThread implements Runnable {
 			}
 		}
 				);
+	}
+	
+	/**
+	 * Adds dragListeners on ONE ImageView
+	 * @param circ1 : the circle listened
+	 */
+	protected void setDragListeners(ImageView circ1) {
+		final Delta dragDelta = new Delta();
 
+		circ1.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override public void handle(MouseEvent mouseEvent) {
+				// record a delta distance for the drag and drop operation.
+				dragDelta.setX((double)(circ1.getLayoutX() - mouseEvent.getSceneX()));
+				dragDelta.setY((double)(circ1.getLayoutY() - mouseEvent.getSceneY()));
+				circ1.setCursor(Cursor.NONE);
+			}
+		});
+
+		circ1.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override public void handle(MouseEvent mouseEvent) {
+				circ1.setCursor(Cursor.HAND);
+				circ1.setX(mouseEvent.getSceneX());
+				circ1.setY(mouseEvent.getSceneY());
+			}
+		});
+
+		circ1.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			@Override public void handle(MouseEvent mouseEvent) {
+				circ1.setLayoutX(mouseEvent.getSceneX() + dragDelta.getX());
+				circ1.setLayoutY(mouseEvent.getSceneY() + dragDelta.getY());
+
+				circ1.setX(mouseEvent.getSceneX());
+				circ1.setY(mouseEvent.getSceneY());
+			}
+		});
+
+	}
+	
 	/**
 	 * content of the TimeLine
 	 */
-	}
 	private void handleTimeLine() {
 		if(this.compteur==0) {
 			/*CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
