@@ -32,7 +32,7 @@ import javafx.util.Duration;
  * caca */
 public class AnimatedImageThread implements Runnable {
 	
-	private final ImageView circ1;
+	private final ImageView monade;
 	private Animation animation;
 	
 	private TranslateTransition trans;
@@ -51,19 +51,19 @@ public class AnimatedImageThread implements Runnable {
 	public AnimatedImageThread() {
 		super();
 		/* Instantiation of the ExtentedCircle */
-		this.circ1 = new ImageView( new Image("res/monade.png") );
-		this.circ1.setPreserveRatio(true);
-		this.circ1.setFitWidth(this.r.nextInt(50)+50);
+		this.monade = new ImageView( new Image("res/monade.png") );
+		this.monade.setPreserveRatio(true);
+		this.monade.setFitWidth(this.r.nextInt(50)+50);
 		// ((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
-		this.circ1.setX(400);
-		this.circ1.setY(300);
+		this.monade.setX(400);
+		this.monade.setY(300);
 
 		/* DragListeners are added on the circle */
-		setDragListeners((ImageView) this.circ1);
+		setDragListeners((ImageView) this.monade);
 	};
 
 	public Node getNode() {
-		return this.circ1;
+		return this.monade;
 	}
 	
 	public Animation getAnimation() {
@@ -72,10 +72,10 @@ public class AnimatedImageThread implements Runnable {
 	
 	public boolean isOutOfFrame() {
 		return (
-				( ((ImageView) this.circ1).getX() > WindowImpl.W_SCENE_SIZE + ((ImageView) this.circ1).getFitWidth()/2*3) ||
-				( ((ImageView) this.circ1).getX() < 0 - ((ImageView) this.circ1).getFitWidth()/2*3) ||
-				( ((ImageView) this.circ1).getY() > WindowImpl.H_SCENE_SIZE + ((ImageView) this.circ1).getFitHeight()/2*3) ||
-				( ((ImageView) this.circ1).getY() < 0 - ((ImageView) this.circ1).getFitHeight()/2*3)
+				( ((ImageView) this.monade).getX() > WindowImpl.W_SCENE_SIZE + ((ImageView) this.monade).getFitWidth()/2*3) ||
+				( ((ImageView) this.monade).getX() < 0 - ((ImageView) this.monade).getFitWidth()/2*3) ||
+				( ((ImageView) this.monade).getY() > WindowImpl.H_SCENE_SIZE + ((ImageView) this.monade).getFitHeight()/2*3) ||
+				( ((ImageView) this.monade).getY() < 0 - ((ImageView) this.monade).getFitHeight()/2*3)
 				);
 	}
 
@@ -115,7 +115,7 @@ public class AnimatedImageThread implements Runnable {
 	 */
 	private void applyTranslation(double ms) {
 		
-		this.trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.circ1 );
+		this.trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.monade );
 		
 		this.trans.setByX(this.x);
 		this.trans.setByY(this.y);
@@ -124,8 +124,8 @@ public class AnimatedImageThread implements Runnable {
 		this.trans.play();
 
 		/* Coordinates updated */
-		((ImageView) this.circ1).setX(((ImageView) this.circ1).getX()+x);
-		((ImageView) this.circ1).setY(((ImageView) this.circ1).getY()+y);
+		((ImageView) this.monade).setX(((ImageView) this.monade).getX()+x);
+		((ImageView) this.monade).setY(((ImageView) this.monade).getY()+y);
 	
 	}
 	
@@ -202,7 +202,7 @@ public class AnimatedImageThread implements Runnable {
 			this.compteur = this.r.nextInt(10)+5;
 		}
 
-		if(this.circ1 instanceof ImageView){
+		if(this.monade instanceof ImageView){
 			applyTranslation(100);
 		}
 		this.compteur--;
