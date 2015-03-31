@@ -20,11 +20,4 @@
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src3/res/monade.png</name>
-			<type>1</type>
-			<location>G:/Affiche/monade.png</location>
-		</link>
-	</linkedResources>
 </projectDescription>
