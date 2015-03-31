@@ -39,6 +39,9 @@ public class CatchWindowImpl {
 	static final int W_SCENE_SIZE = 800;
 	static final int H_SCENE_SIZE = 600;
 	
+	/* Capture of the animation png file */
+	
+	
 	public CatchWindowImpl(Stage secondaryStage) throws IOException {
 		
 		secondaryStage.setTitle("Capture de l'animation");
@@ -54,11 +57,13 @@ public class CatchWindowImpl {
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
             	FileChooser chooseSaveDestinationDialog = new FileChooser();
-            	chooseSaveDestinationDialog.setTitle("Choisir un dossier de sauvegarde");
+            	chooseSaveDestinationDialog.setTitle("Choisissez un emplacement de sauvegarde");
             	chooseSaveDestinationDialog.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier PNG", ".png"));
             	chooseSaveDestinationDialog.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier JPG", ".jpg"));            	
-            	chooseSaveDestinationDialog.showSaveDialog(secondaryStage);
-            	//if(){}
+            	File emplacementToSave = chooseSaveDestinationDialog.showSaveDialog(secondaryStage);
+            	if(emplacementToSave != null){
+            		        		
+            	}
             }
         });
 		hb.setSpacing(20);
