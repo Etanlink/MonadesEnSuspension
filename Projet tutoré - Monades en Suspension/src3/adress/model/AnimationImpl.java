@@ -33,7 +33,7 @@ public class AnimationImpl implements Runnable {
 
 	private final Timeline animation;
 
-	private LinkedList<AnimatedImageThread> threadShapes = new LinkedList();
+	private ArrayList<AnimatedImageThread> threadShapes = new ArrayList();
 
 	private ArrayList<ImageView> shapes;
 
@@ -50,7 +50,7 @@ public class AnimationImpl implements Runnable {
 		this.animation = buildTimeline();
 	}
 
-	public LinkedList<AnimatedImageThread> getThreadShapes() {
+	public ArrayList<AnimatedImageThread> getThreadShapes() {
 		return threadShapes;
 	}
 
