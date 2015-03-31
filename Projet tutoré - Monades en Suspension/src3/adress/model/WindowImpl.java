@@ -305,5 +305,20 @@ public class WindowImpl {
 	}*/
 
 
+	public void LancerAnimationHandler(){
+		this.animationRunning = true;
+        /* Get the different parameters specified by the controllers */
+		/*
+    	double getNbMinObjectsParameter = NbMinObjects.getValue();
+    	double getTinyObjectsPercentage = TinyObjectsPercentage.getValue();
+    	double getNormalObjectsPercentage = NormalObjectsPercentage.getValue();
+    	double getBigObjectsPercentage = BigObjectsPercentage.getValue();
+    	*/
+    	/* Add of the animation controllers */
+    	/* Launch the animation */
+    	
+    	//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
+		this.animation.run();
+	}
 
 }
