@@ -89,8 +89,20 @@ public class WindowImpl {
 	 * @return MenuBar : the menuBar of the window
 	 */
 	private MenuBar manualMenuBar() {
-		final Menu helpMenuItem = new Menu("Aide");		
+		final Menu helpMenuItem = new Menu("Aide");
+		helpMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	
+            }
+        });
 		final Menu aboutMenuItem = new Menu("À propos");
+		aboutMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	
+            }
+        });
 
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().addAll(helpMenuItem, aboutMenuItem);
@@ -238,7 +250,6 @@ public class WindowImpl {
 
 	    /* Save the capture in a png file in a res folder */
 	    File file = new File("src3/res/CaptureAnimation.png");
-
 	    try {
 	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
 	    }
