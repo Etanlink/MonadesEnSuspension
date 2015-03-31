@@ -34,7 +34,7 @@ public class AnimationImpl implements Runnable {
 
 	private final Timeline animation;
 
-	private LinkedList<AnimatedShapeThread> threadShapes = new LinkedList();
+	private LinkedList<AnimatedNodeThread> threadShapes = new LinkedList();
 
 	private ArrayList<Shape> shapes;
 
@@ -51,7 +51,7 @@ public class AnimationImpl implements Runnable {
 		this.animation = buildTimeline();
 	}
 
-	public LinkedList<AnimatedShapeThread> getThreadShapes() {
+	public LinkedList<AnimatedNodeThread> getThreadShapes() {
 		return threadShapes;
 	}
 
@@ -98,9 +98,9 @@ public class AnimationImpl implements Runnable {
 	 * checks shape by shape if there is an exit or not
 	 */
 	private void controlExit() throws ConcurrentModificationException {
-		for(Iterator<AnimatedShapeThread> it = this.threadShapes.iterator(); it.hasNext();) {
+		for(Iterator<AnimatedNodeThread> it = this.threadShapes.iterator(); it.hasNext();) {
 
-			AnimatedShapeThread thrcirc1 = it.next();
+			AnimatedNodeThread thrcirc1 = it.next();
 			/* The shape is removed if it is out of the scene */
 			if(thrcirc1.isOutOfFrame())
 			{
@@ -116,9 +116,9 @@ public class AnimationImpl implements Runnable {
 	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
 	 */
 	private synchronized void createANewThread() {
-		AnimatedShapeThread circThread = new AnimatedShapeThread();
+		AnimatedNodeThread circThread = new AnimatedNodeThread();
 		this.threadShapes.add(circThread);
-		this.circles.getChildren().add(circThread.getShape());
+		this.circles.getChildren().add(circThread.getNode());
 		circThread.run();
 	}
 
@@ -145,9 +145,9 @@ public class AnimationImpl implements Runnable {
 	 * Removes an AnimatedShapeThread from the list
 	 * @param circ1 : the thread to remove
 	 */
-	private synchronized void removeShapeFromScene(AnimatedShapeThread thrcirc1) {
+	private synchronized void removeShapeFromScene(AnimatedNodeThread thrcirc1) {
 		this.threadShapes.remove(thrcirc1);
-		this.circles.getChildren().remove(thrcirc1.getShape());
+		this.circles.getChildren().remove(thrcirc1.getNode());
 	}
 
 	/**

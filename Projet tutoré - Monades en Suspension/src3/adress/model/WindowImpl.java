@@ -179,7 +179,7 @@ public class WindowImpl {
 			public void handle(ActionEvent actionEvent) {
 				if(animationRunning){
 					animation.getAnimation().stop();
-					for(AnimatedShapeThread thr1 : animation.getThreadShapes())
+					for(AnimatedNodeThread thr1 : animation.getThreadShapes())
 					{
 						thr1.getAnimation().stop();
 					}
@@ -188,7 +188,7 @@ public class WindowImpl {
 				}
 				else {
 					animation.getAnimation().play();
-					for(AnimatedShapeThread thr1 : animation.getThreadShapes())
+					for(AnimatedNodeThread thr1 : animation.getThreadShapes())
 					{
 						thr1.getAnimation().play();
 					}

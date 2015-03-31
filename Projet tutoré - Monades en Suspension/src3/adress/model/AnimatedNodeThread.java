@@ -11,6 +11,7 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -26,9 +27,9 @@ import javafx.util.Duration;
  *
  */
 
-public class AnimatedShapeThread implements Runnable {
+public class AnimatedNodeThread implements Runnable {
 	
-	private final Shape circ1;
+	private final Node circ1;
 	private Animation animation;
 	private boolean isOutOfFrame;
 	
@@ -45,19 +46,19 @@ public class AnimatedShapeThread implements Runnable {
 	/**
 	 * Builder
 	 */
-	public AnimatedShapeThread() {
+	public AnimatedNodeThread() {
 		super();
 		/* Instantiation of the ExtentedCircle */
 		int radius = 10 * r.nextInt(10);
 		this.circ1 = new ExtentedCircle(400,400, radius);
-		circ1.setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
+		((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 
 		/* DragListeners are added on the circle */
 		setDragListeners((ExtentedCircle) circ1);
 		this.isOutOfFrame = false;
 	};
 	
-	public Shape getShape() {
+	public Node getNode() {
 		return this.circ1;
 	}
 	
