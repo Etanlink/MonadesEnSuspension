@@ -1,6 +1,5 @@
 package adress.model;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -14,7 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
-import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
@@ -34,7 +33,7 @@ public class AnimationImpl implements Runnable {
 
 	private final Timeline animation;
 
-	private LinkedList<AnimatedNodeThread> threadShapes = new LinkedList();
+	private LinkedList<AnimatedImageThread> threadShapes = new LinkedList();
 
 	private ArrayList<Shape> shapes;
 
@@ -51,7 +50,7 @@ public class AnimationImpl implements Runnable {
 		this.animation = buildTimeline();
 	}
 
-	public LinkedList<AnimatedNodeThread> getThreadShapes() {
+	public LinkedList<AnimatedImageThread> getThreadShapes() {
 		return threadShapes;
 	}
 
@@ -89,7 +88,7 @@ public class AnimationImpl implements Runnable {
 	private void handleMainThread() {
 		/* Generation of shapes */
 		checkNumberOfShapes();
-
+		
 		/* Control on the exit */
 		controlExit();
 	}
@@ -98,9 +97,9 @@ public class AnimationImpl implements Runnable {
 	 * checks shape by shape if there is an exit or not
 	 */
 	private void controlExit() throws ConcurrentModificationException {
-		for(Iterator<AnimatedNodeThread> it = this.threadShapes.iterator(); it.hasNext();) {
+		for(Iterator<AnimatedImageThread> it = this.threadShapes.iterator(); it.hasNext();) {
 
-			AnimatedNodeThread thrcirc1 = it.next();
+			AnimatedImageThread thrcirc1 = it.next();
 			/* The shape is removed if it is out of the scene */
 			if(thrcirc1.isOutOfFrame())
 			{
@@ -116,7 +115,7 @@ public class AnimationImpl implements Runnable {
 	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
 	 */
 	private synchronized void createANewThread() {
-		AnimatedNodeThread circThread = new AnimatedNodeThread();
+		AnimatedImageThread circThread = new AnimatedImageThread();
 		this.threadShapes.add(circThread);
 		this.circles.getChildren().add(circThread.getNode());
 		circThread.run();
@@ -145,7 +144,7 @@ public class AnimationImpl implements Runnable {
 	 * Removes an AnimatedShapeThread from the list
 	 * @param circ1 : the thread to remove
 	 */
-	private synchronized void removeShapeFromScene(AnimatedNodeThread thrcirc1) {
+	private synchronized void removeShapeFromScene(AnimatedImageThread thrcirc1) {
 		this.threadShapes.remove(thrcirc1);
 		this.circles.getChildren().remove(thrcirc1.getNode());
 	}
@@ -186,6 +185,42 @@ public class AnimationImpl implements Runnable {
 
 	}
 
+	/**
+	 * Adds dragListeners on ONE circle
+	 * @param circ1 : the circle listened
+	 */
+	protected void setDragListeners(ImageView circ1) {
+		final Delta dragDelta = new Delta();
+
+		circ1.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override public void handle(MouseEvent mouseEvent) {
+				// record a delta distance for the drag and drop operation.
+				dragDelta.setX((double)(circ1.getLayoutX() - mouseEvent.getSceneX()));
+				dragDelta.setY((double)(circ1.getLayoutY() - mouseEvent.getSceneY()));
+				circ1.setCursor(Cursor.NONE);
+			}
+		});
+
+		circ1.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override public void handle(MouseEvent mouseEvent) {
+				circ1.setCursor(Cursor.HAND);
+				circ1.setX(mouseEvent.getSceneX());
+				circ1.setY(mouseEvent.getSceneY());
+			}
+		});
+
+		circ1.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			@Override public void handle(MouseEvent mouseEvent) {
+				circ1.setLayoutX(mouseEvent.getSceneX() + dragDelta.getX());
+				circ1.setLayoutY(mouseEvent.getSceneY() + dragDelta.getY());
+
+				circ1.setX(mouseEvent.getSceneX());
+				circ1.setY(mouseEvent.getSceneY());
+			}
+		});
+
+	}
+	
 	/**
 	 * Check a collision between shapes
 	 * @param a shape : allow to work for a circle and later for a monade
