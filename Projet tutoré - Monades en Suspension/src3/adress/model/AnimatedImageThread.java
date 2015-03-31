@@ -52,6 +52,8 @@ public class AnimatedImageThread implements Runnable {
 		super();
 		/* Instantiation of the ExtentedCircle */
 		this.circ1 = new ImageView( new Image("res/monade.png") );
+		this.circ1.setPreserveRatio(true);
+		this.circ1.setFitWidth(this.r.nextInt(50)+50);
 		// ((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 		this.circ1.setX(400);
 		this.circ1.setY(300);
