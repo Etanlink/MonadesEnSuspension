@@ -63,9 +63,14 @@ public class WindowImpl {
 
 	
 
-	public WindowImpl(){
-
-
+	public WindowImpl(Stage primaryStage){
+		try {
+			PrimaryStageInitialisation(primaryStage);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	/**
 	 * Initialize the primarystage
@@ -75,7 +80,7 @@ public class WindowImpl {
 		primaryStage.setTitle("Monades en suspension");
 		primaryStage.setResizable(false);
 		
-		this.animation = new AnimationImpl(root);
+		this.animation = new AnimationImpl(this.root);
 
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
@@ -304,8 +309,8 @@ public class WindowImpl {
 		return menubar;
 	}*/
 
-
-	public void LancerAnimationHandler(){
+@FXML
+	private void LancerAnimationHandler(){
 		this.animationRunning = true;
         /* Get the different parameters specified by the controllers */
 		/*
