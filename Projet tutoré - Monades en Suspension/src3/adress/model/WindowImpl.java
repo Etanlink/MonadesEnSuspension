@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import adress.MainTestCatchWindow;
+import adress.MainTestIHM;
 import javafx.animation.Animation;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -55,6 +56,7 @@ public class WindowImpl {
 	
 	public static final int W_SCENE_SIZE = 800;
 	public static final int H_SCENE_SIZE = 600;
+	public MainTestIHM MainClass;
 	
 	private static final int PARAMETERS_PANE_SIZE = 620;
 
@@ -115,6 +117,15 @@ public class WindowImpl {
 	 * @return parametersPane
 	 * @throws IOException 
 	 */
+	
+	private VBox FXMLParametersVBOX() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(WindowImpl.class.getResource("view/FUCK.fxml"));
+		VBox vbox = (VBox)loader.load();
+		WindowImpl controller = loader.getController();
+		//controller.setMainApp(this.MainClass);
+		return null;
+	}
 	private VBox manualParametersVBox() throws IOException {
 		
 		final VBox parametersVBox = new VBox();
