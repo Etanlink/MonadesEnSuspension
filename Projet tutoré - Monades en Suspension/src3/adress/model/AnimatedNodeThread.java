@@ -60,6 +60,7 @@ public class AnimatedNodeThread implements Runnable {
 		return this.circ1;
 	}
 	
+	/** getter */
 	public Animation getAnimation() {
 		return animation;
 	}
