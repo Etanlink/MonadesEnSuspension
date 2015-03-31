@@ -59,10 +59,16 @@ public class CatchWindowImpl {
             	FileChooser chooseSaveDestinationDialog = new FileChooser();
             	chooseSaveDestinationDialog.setTitle("Choisissez un emplacement de sauvegarde");
             	chooseSaveDestinationDialog.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier PNG", ".png"));
-            	chooseSaveDestinationDialog.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier JPG", ".jpg"));            	
+            	//chooseSaveDestinationDialog.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier JPG", ".jpg"));            	
             	File emplacementToSave = chooseSaveDestinationDialog.showSaveDialog(secondaryStage);
             	if(emplacementToSave != null){
-            		        		
+            		BufferedImage imageToSave = SwingFXUtils.fromFXImage(animationCapture, null); 
+            		try {
+						ImageIO.write(imageToSave, "png", emplacementToSave.getAbsoluteFile());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
             	}
             }
         });
