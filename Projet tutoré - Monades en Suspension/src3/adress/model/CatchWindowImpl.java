@@ -2,6 +2,7 @@ package adress.model;
 
 import java.awt.Dialog;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +22,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -51,26 +53,16 @@ public class CatchWindowImpl {
 		Button saveButton = new Button("Enregistrer la capture");
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-            	DirectoryChooser directoryToChoose = new DirectoryChooser();
-            	directoryToChoose.setTitle("Choisissez un répertoire où sauvegarder la capture");
-            	File directoryChosen = directoryToChoose.showDialog(secondaryStage); 
-            	if(directoryChosen != null){
-            		System.out.println("Le répertoire choisit est : "+directoryChosen.toString());
-            		/* Save the capture in a png file in a res folder */
-            	    File captureAnimationFile = new File("src3/res/CaptureAnimation.png");
-            	    try {
-            	    	ImageIO.write(captureAnimationFile, "png", output);
-            	    }
-            	    catch (IOException e) {
-            			// TODO Auto-generated catch block
-            			e.printStackTrace();
-            		}
-            	}
+            	FileChooser chooseSaveDestinationDialog = new FileChooser();
+            	chooseSaveDestinationDialog.setTitle("Choisir un dossier de sauvegarde");
+            	chooseSaveDestinationDialog.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier PNG", ".png"));
+            	chooseSaveDestinationDialog.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier JPG", ".jpg"));            	
+            	chooseSaveDestinationDialog.showSaveDialog(secondaryStage);
+            	//if(){}
             }
         });
-		Button printButton = new Button("Imprimer la capture");
 		hb.setSpacing(20);
-		hb.getChildren().addAll(saveButton, printButton);
+		hb.getChildren().add(saveButton);
 		
 		this.rootCatchWindow.getChildren().addAll(captureAnimationView, hb);
 		
