@@ -35,7 +35,7 @@ public class AnimationImpl implements Runnable {
 
 	private LinkedList<AnimatedImageThread> threadShapes = new LinkedList();
 
-	private ArrayList<Shape> shapes;
+	private ArrayList<ImageView> shapes;
 
 	/* A boolean to detect a collision */
 	boolean checkCollision = false;
