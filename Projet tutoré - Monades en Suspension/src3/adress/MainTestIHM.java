@@ -5,6 +5,8 @@ import java.io.IOException;
 import ch.makery.address.MainApp;
 import adress.model.WindowImpl;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -34,7 +36,6 @@ public class MainTestIHM extends Application {
 		WindowImpl window = new WindowImpl();
 		window.primaryStageInitialisation(primaryStage);
 		window.setMainApp(this);
-
 	}
 
 }

@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -50,9 +51,9 @@ public class WindowImpl {
 
 	private Group root = new Group();
 	
-	private AnimationImpl animation;
+	public AnimationImpl animation;
 	
-	private boolean animationRunning = false;
+	public boolean animationRunning = false;
 
 	public static final int SCENE_SIZE = 600;
 	
@@ -65,6 +66,14 @@ public class WindowImpl {
 	private static final int PARAMETERS_PANE_SIZE = 620;
 
 	
+	@FXML
+	public Button BoutonLancerAnim ;
+	
+	@FXML
+	private TextField textTest ;
+	
+	@FXML
+	private Slider Slider1;
 
 	public WindowImpl() {	}
 	/**
@@ -307,7 +316,7 @@ public class WindowImpl {
 	}*/
 
 	@FXML
-	private void LancerAnimationHandler(){
+	public void LancerAnimationHandler(){
 		this.animationRunning = true;
         /* Get the different parameters specified by the controllers */
 		/*
@@ -323,5 +332,9 @@ public class WindowImpl {
 		this.animation.run();
 	}
 
+	@FXML
+	public void DragHandler(){
+		this.textTest.setText(String.valueOf(this.Slider1.getValue()));
+	}
 
 }
