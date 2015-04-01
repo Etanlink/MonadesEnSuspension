@@ -66,20 +66,11 @@ public class WindowImpl {
 
 	
 
-	public WindowImpl(Stage primaryStage){
-		try {
-			PrimaryStageInitialisation(primaryStage);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+	public WindowImpl() {	}
 	/**
 	 * Initialize the primarystage
 	 */
-	
-	public void PrimaryStageInitialisation(Stage primaryStage) throws IOException {
+	public void primaryStageInitialisation(Stage primaryStage) throws IOException {
 		primaryStage.setTitle("Monades en suspension");
 		primaryStage.setResizable(false);
 		
@@ -131,19 +122,19 @@ public class WindowImpl {
 	}
 	
 	@FXML
-	public void initialize(){
+	public void initialize() {
 		
 	}
 	
 	
 	public void FXMLParametersVBox() {
 		try {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(WindowImpl.class.getResource("VBox.fxml"));
-		VBox vBox = (VBox) loader.load();
-		this.MaVBox = vBox ;
-		WindowImpl controller = loader.getController();
-		controller.setMainApp(this.MainApp);
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(WindowImpl.class.getResource("VBox.fxml"));
+			VBox vBox = (VBox)loader.load();
+			this.MaVBox = vBox ;
+			WindowImpl controller = loader.getController();
+			controller.setMainApp(this.MainApp);
 		}
 		catch (IOException e){
 			e.printStackTrace();
@@ -315,7 +306,7 @@ public class WindowImpl {
 		return menubar;
 	}*/
 
-@FXML
+	@FXML
 	private void LancerAnimationHandler(){
 		this.animationRunning = true;
         /* Get the different parameters specified by the controllers */
@@ -331,5 +322,6 @@ public class WindowImpl {
     	//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
 		this.animation.run();
 	}
+
 
 }

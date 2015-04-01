@@ -31,7 +31,8 @@ public class MainTestIHM extends Application {
 		
 		/* Instantiation of a new window */
 		this.primaryStage = primaryStage ;
-		WindowImpl window = new WindowImpl(this.primaryStage);
+		WindowImpl window = new WindowImpl();
+		window.primaryStageInitialisation(primaryStage);
 		window.setMainApp(this);
 
 	}
