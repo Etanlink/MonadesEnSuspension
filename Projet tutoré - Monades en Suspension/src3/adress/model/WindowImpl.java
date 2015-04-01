@@ -88,8 +88,9 @@ public class WindowImpl {
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
 		
-		FXMLParametersVBox();
-
+		//FXMLParametersVBox();
+		this.MaVBox = manualParametersVBox();
+		
 		this.primaryStage = primaryStage;
 		
 		this.snapshotRectangle.setFill(Color.TRANSPARENT);
@@ -332,7 +333,7 @@ public class WindowImpl {
     	//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
 		this.animation.run();
 	}
-
+	
 	@FXML
 	public void DragHandler(){
 		this.textTest.setText(String.valueOf(this.Slider1.getValue()));
