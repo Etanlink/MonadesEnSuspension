@@ -241,6 +241,7 @@ public class WindowImpl {
 			}
 		});
 		
+		
 		Button snapshotAnimationButton = new Button();
 		snapshotAnimationButton.setText("Capturer l'animation en cours");
 		
