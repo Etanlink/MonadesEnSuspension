@@ -71,6 +71,7 @@ public class WindowImpl2 {
 	
 	@FXML
 	public Button BoutonLancerAnim ;
+
 	
 	@FXML
 	public TextField textField1 ;
