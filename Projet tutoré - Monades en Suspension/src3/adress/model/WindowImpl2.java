@@ -417,6 +417,7 @@ public class WindowImpl2 {
 			.masthead(null)
 			.message("C'est OK")
 			.showInformation();
+			
 		}
 		
 	}

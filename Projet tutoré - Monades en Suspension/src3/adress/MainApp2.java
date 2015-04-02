@@ -23,6 +23,7 @@ public class MainApp2 extends Application{
 			this.Window = window;
 			this.Window.primaryStageInitialisation(primaryStage);
 			this.Window.setMainApp(this);
+			
 		}
 
 
