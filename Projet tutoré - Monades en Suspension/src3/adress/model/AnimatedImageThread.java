@@ -36,14 +36,16 @@ public class AnimatedImageThread implements Runnable {
 	private Animation animation;
 	
 	private TranslateTransition trans;
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	
-	public int getX() { return x; }
-	public int getY() { return y; }
+	private double speedCoeff;
+	
+	public double getX() { return x; }
+	public double getY() { return y; }
 	
 	private Random r = new Random();
-	private int compteur;
+	//private int compteur;
 	
 	/**
 	 * Builder
@@ -55,6 +57,8 @@ public class AnimatedImageThread implements Runnable {
 		this.monade.setPreserveRatio(true);
 		this.monade.setFitWidth(this.r.nextInt(50)+50);
 		// ((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
+		shuffleXY(360);
+		//determinateCoordinatesOfSpawn();
 		this.monade.setX(400);
 		this.monade.setY(300);
 
@@ -62,6 +66,7 @@ public class AnimatedImageThread implements Runnable {
 		setDragListeners((ImageView) this.monade);
 	};
 
+	
 	public Node getNode() {
 		return this.monade;
 	}
@@ -72,10 +77,10 @@ public class AnimatedImageThread implements Runnable {
 	
 	public boolean isOutOfFrame() {
 		return (
-				( ((ImageView) this.monade).getX() > WindowImpl.W_SCENE_SIZE + ((ImageView) this.monade).getFitWidth()/2*3) ||
-				( ((ImageView) this.monade).getX() < 0 - ((ImageView) this.monade).getFitWidth()/2*3) ||
-				( ((ImageView) this.monade).getY() > WindowImpl.H_SCENE_SIZE + ((ImageView) this.monade).getFitHeight()/2*3) ||
-				( ((ImageView) this.monade).getY() < 0 - ((ImageView) this.monade).getFitHeight()/2*3)
+				( ((ImageView) this.monade).getX() > WindowImpl.W_SCENE_SIZE + ((ImageView) this.monade).getFitWidth()*3) ||
+				( ((ImageView) this.monade).getX() < 0 - ((ImageView) this.monade).getFitWidth()*3) ||
+				( ((ImageView) this.monade).getY() > WindowImpl.H_SCENE_SIZE + ((ImageView) this.monade).getFitHeight()*3) ||
+				( ((ImageView) this.monade).getY() < 0 - ((ImageView) this.monade).getFitHeight()*3)
 				);
 	}
 
@@ -85,8 +90,8 @@ public class AnimatedImageThread implements Runnable {
 	@Override
 	public void run() {
 
-		shuffleXY(10);
-		this.compteur = this.r.nextInt(10)+5;
+		//shuffleXY(1);
+		//this.compteur = this.r.nextInt(10)+5;
 		this.animation = buildTimeLine();
 		this.animation.setCycleCount(Animation.INDEFINITE);
 		this.animation.play();
@@ -108,6 +113,13 @@ public class AnimatedImageThread implements Runnable {
 					}			
 
 				}) );
+	}
+	
+	private void determinateCoordinatesOfSpawn() {
+		if(this.x > 0) {
+			this.monade.setX(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE+this.monade.getFitWidth()) )-this.monade.getFitWidth());
+			this.monade.setY(this.r.nextInt( (int) (WindowImpl.W_SCENE_SIZE+this.monade.getFitWidth()) )-this.monade.getFitWidth());
+		}
 	}
 
 	/**
@@ -132,15 +144,21 @@ public class AnimatedImageThread implements Runnable {
 	/**
 	 * generates randomly an X for the Translation
 	 */
-	public void shuffleXY(int range) {
+	public void shuffleXY(double range) {
 
-		this.x = r.nextInt(range);
+		if(range == 1){
+			this.x = (double)r.nextInt((int)range+1);
+			this.y = 1.0;
+		}
+		else {
+			this.x = (r.nextInt((int)range+1))/range;
+			this.y = 1.0 - this.x;
+		}
 		boolean p = r.nextBoolean();
 		if(p==true) x = -x;
-
-		this.y = range - this.x;
 		p = r.nextBoolean();
 		if(p==true) y = -y;
+		System.out.println("coord : "+this.x+", "+this.y);
 	}
 
 	/**
@@ -183,6 +201,7 @@ public class AnimatedImageThread implements Runnable {
 	 * content of the TimeLine
 	 */
 	private void handleTimeLine() {
+		/*
 		if(this.compteur==0) {
 			/*CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
 			
@@ -197,15 +216,22 @@ public class AnimatedImageThread implements Runnable {
 			pathTransition.setNode(circ1);
 			pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
 			pathTransition.setInterpolator(Interpolator.LINEAR);
-			pathTransition.play();*/
-			shuffleXY(10);
+			pathTransition.play();
+			shuffleXY(1);
 			this.compteur = this.r.nextInt(10)+5;
 		}
+		*/
 
 		if(this.monade instanceof ImageView){
-			applyTranslation(100);
+			applyTranslation(500);
 		}
-		this.compteur--;
+		//this.compteur--;
+	}
+	public double getSpeedCoeff() {
+		return speedCoeff;
+	}
+	public void setSpeedCoeff(double speedCoeff) {
+		this.speedCoeff = speedCoeff;
 	}
 
 }

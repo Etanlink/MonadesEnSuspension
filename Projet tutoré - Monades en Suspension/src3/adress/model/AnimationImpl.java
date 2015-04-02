@@ -73,9 +73,6 @@ public class AnimationImpl implements Runnable {
 
 				handleMainThread();
 			}
-
-
-
 		}
 				)
 				);
