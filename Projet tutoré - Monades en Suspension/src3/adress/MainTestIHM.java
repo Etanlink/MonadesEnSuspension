@@ -37,6 +37,4 @@ public class MainTestIHM extends Application {
 		window.primaryStageInitialisation(primaryStage);
 		window.setMainApp(this);
 	}
-
-	
 }

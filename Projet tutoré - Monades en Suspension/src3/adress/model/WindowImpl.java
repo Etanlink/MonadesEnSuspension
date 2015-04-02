@@ -72,7 +72,7 @@ public class WindowImpl {
 	@FXML
 	private TextField textTest ;
 	
-	@FXML
+	//@FXML
 	private Slider Slider1;
 
 	public WindowImpl() {	}
@@ -180,6 +180,7 @@ public class WindowImpl {
 		Label LabelNBMinObjects = new Label("Nombre minimum de Monades");
 		Slider NbMinObjects = new Slider(3, 10, 3);
 		NbMinObjects.setShowTickLabels(true);
+		this.Slider1 = NbMinObjects;
 		
 		Label LabelTinyObjectsPercentage = new Label("Pourcentage de petites Monades");
 		Slider TinyObjectsPercentage = new Slider(0, 100, 0);//respectively : min, max, beginValue
