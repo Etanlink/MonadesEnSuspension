@@ -25,12 +25,12 @@ import javafx.util.Duration;
  *
  */
 public class TestCoordonnees extends Application {
-	
+
 	private static final Random r = new Random();
-	
+
 	public static final double SCENE_SIZE = 800;
-	
-	
+
+
 
 	public static void main(String[] args) {
 		launch(args);
@@ -39,21 +39,21 @@ public class TestCoordonnees extends Application {
 	@Override
 	public void start(final Stage stage) throws Exception {
 		final Group circles = new Group();
-		
+
 		int radius = 10 * r.nextInt(10);
 		final ExtentedCircle circ1 = new ExtentedCircle(400,400, radius);
 		circles.getChildren().add(circ1);
-		
+
 		System.out.println("radius" + circ1.getRadius());
 		System.out.println("Cercle : " + circ1.getX()+", " + circ1.getY());
-		
+
 		setDragListeners(circ1);
-		
+
 		Animation animation = new Timeline(
 				new KeyFrame(Duration.millis(100),
 
 						new EventHandler<ActionEvent>() {
-					
+
 					double x1 = circ1.getX();
 					double y1 = circ1.getX();
 					double x2 = circ1.getX();
@@ -68,30 +68,30 @@ public class TestCoordonnees extends Application {
 						}
 						x2 = circ1.getX();
 						y2 = circ1.getX();
-						
+
 
 						if ( ( ((ExtentedCircle) circ1).getX() > 800 + ((ExtentedCircle) circ1).getRadius()*3) ||
-						( ((ExtentedCircle) circ1).getX() < 0 - ((ExtentedCircle) circ1).getRadius()*3) ||
-						( ((ExtentedCircle) circ1).getY() > 800 + ((ExtentedCircle) circ1).getRadius()*3) ||
-						( ((ExtentedCircle) circ1).getY() < 0 - ((ExtentedCircle) circ1).getRadius()*3) )
+								( ((ExtentedCircle) circ1).getX() < 0 - ((ExtentedCircle) circ1).getRadius()*3) ||
+								( ((ExtentedCircle) circ1).getY() > 800 + ((ExtentedCircle) circ1).getRadius()*3) ||
+								( ((ExtentedCircle) circ1).getY() < 0 - ((ExtentedCircle) circ1).getRadius()*3) )
 						{
 							circles.getChildren().remove(circ1);
 						}
-						
-						}
-						
-						
+
+					}
+
+
 				}) );
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
 
-		
+
 		// display the scene.
 		stage.setScene(new Scene(circles, SCENE_SIZE, SCENE_SIZE, Color.CORNSILK));
 		stage.show();
-		
+
 	}
-	
+
 	/**
 	 * Adds dragListeners on ONE circle
 	 * @param circ1 : the circle listened
