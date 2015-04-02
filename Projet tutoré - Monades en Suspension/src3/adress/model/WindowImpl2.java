@@ -16,6 +16,7 @@ import javafx.animation.Animation;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -92,6 +93,66 @@ public class WindowImpl2 {
 	
 	@FXML
 	public Slider Slider4;
+	
+	public EventHandler<MouseEvent> SliderHandler1 = new EventHandler<MouseEvent>(){
+		 public void handle(MouseEvent actionEvent){
+				int j = (int) Slider1.getValue();
+				textField1.setText(String.valueOf(j));
+				Slider1.setValue(j);
+		 }
+	};
+
+	public EventHandler TextFieldHandler1 = new EventHandler(){
+		
+		public void handle(Event actionEvent){
+			Slider1.setValue(Double.parseDouble(textField1.getText()));
+		}
+	};
+	
+	public EventHandler<MouseEvent> SliderHandler2 = new EventHandler<MouseEvent>(){
+		 public void handle(MouseEvent actionEvent){
+				int j = (int) Slider2.getValue();
+				textField2.setText(String.valueOf(j));
+				Slider2.setValue(j);
+		 }
+	};
+
+	public EventHandler TextFieldHandler2 = new EventHandler(){
+		
+		public void handle(Event actionEvent){
+			Slider2.setValue(Double.parseDouble(textField2.getText()));
+		}
+	};
+	
+	public EventHandler<MouseEvent> SliderHandler3 = new EventHandler<MouseEvent>(){
+		 public void handle(MouseEvent actionEvent){
+				int j = (int) Slider3.getValue();
+				textField3.setText(String.valueOf(j));
+				Slider3.setValue(j);
+		 }
+	};
+
+	public EventHandler TextFieldHandler3 = new EventHandler(){
+		
+		public void handle(Event actionEvent){
+			Slider3.setValue(Double.parseDouble(textField3.getText()));
+		}
+	};
+	
+	public EventHandler<MouseEvent> SliderHandler4 = new EventHandler<MouseEvent>(){
+		 public void handle(MouseEvent actionEvent){
+				int j = (int) Slider4.getValue();
+				textField4.setText(String.valueOf(j));
+				Slider4.setValue(j);
+		 }
+	};
+
+	public EventHandler TextFieldHandler4 = new EventHandler(){
+		
+		public void handle(Event actionEvent){
+			Slider4.setValue(Double.parseDouble(textField4.getText()));
+		}
+	};
 
 	public WindowImpl2() {	}
 	/**
@@ -106,7 +167,8 @@ public class WindowImpl2 {
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
 		
-		FXMLParametersVBox();
+		this.MaVBox = manualParametersVBox();
+		//FXMLParametersVBox();
 
 		this.primaryStage = primaryStage;
 		
@@ -180,8 +242,11 @@ public class WindowImpl2 {
 	private VBox manualParametersVBox() throws IOException {
 		
 		final VBox parametersVBox = new VBox();
-		parametersVBox.setPrefSize(220, PARAMETERS_PANE_SIZE);
-		parametersVBox.setStyle("-fx-background-color: #f5f5f5;");
+		parametersVBox.setPrefSize(224, 609);
+		parametersVBox.setMinSize(parametersVBox.getPrefWidth(), parametersVBox.getPrefHeight());
+		parametersVBox.setMaxSize(parametersVBox.getPrefWidth(), parametersVBox.getPrefHeight());
+		parametersVBox.setStyle("-fx-background-color:  #c9c7c7;");
+		parametersVBox.setFillWidth(true);;
 		
 		/* Add of a VBox title */
 		Text VBoxTitle = new Text("Paramètres");
@@ -191,45 +256,88 @@ public class WindowImpl2 {
 		/* Align all of the VBox components to CENTER_LEFT */
 		parametersVBox.setAlignment(Pos.BASELINE_CENTER);
 		/* Addition of spacing between the VBox Components */
-		parametersVBox.setSpacing(20);
+		parametersVBox.setSpacing(10);
 		//parametersVBox.setMargin((Node) parametersVBox.getChildren(),new Insets(20));
 		
 		/* Add of the different controllers */
-		Label LabelNBMinObjects = new Label("Nombre minimum de Monades");
-		Slider NbMinObjects = new Slider(3, 10, 3);
-		NbMinObjects.setShowTickLabels(true);
+		Label LabelNBMinObjects = new Label("Nombre de Monades");
+		Slider NbObjects = new Slider(3, 10, 3);
+		NbObjects.setShowTickLabels(true);
+		NbObjects.setMajorTickUnit(1);
+		NbObjects.setOnDragDetected(SliderHandler1);
+		NbObjects.setOnMouseClicked(SliderHandler1);
+		this.Slider1=NbObjects;
+		TextField NbObjects2 = new TextField();
+		NbObjects2.setOnAction(TextFieldHandler1);
+		NbObjects2.setOnKeyReleased(TextFieldHandler1);
+		this.textField1 = NbObjects2 ;
 		
-		Label LabelTinyObjectsPercentage = new Label("Pourcentage de petites Monades");
-		Slider TinyObjectsPercentage = new Slider(0, 100, 0);//respectively : min, max, beginValue
-		TinyObjectsPercentage.setShowTickLabels(true);
+		Label LabelTinyObjectsPercentage = new Label("Nombre de petites Monades");
+		Slider TinyObjectsNumber = new Slider(0, 10, 0);//respectively : min, max, beginValue
+		TinyObjectsNumber.setShowTickLabels(true);
+		TinyObjectsNumber.setMajorTickUnit(1);
+		TinyObjectsNumber.setOnDragDetected(SliderHandler2);
+		TinyObjectsNumber.setOnMouseClicked(SliderHandler2);
+		this.Slider2 = TinyObjectsNumber;
+		TextField TinyObjectsNumber2 = new TextField();
+		TinyObjectsNumber2.setOnAction(TextFieldHandler2);
+		TinyObjectsNumber2.setOnKeyReleased(TextFieldHandler2);
+		this.textField2=TinyObjectsNumber2;
 		
-		Label LabelNormalObjectsPercentage = new Label("Pourcentage de moyennes de Monades");
-		Slider NormalObjectsPercentage = new Slider(0, 100, 0);//respectively : min, max, beginValue;
-		NormalObjectsPercentage.setShowTickLabels(true);
+		Label LabelNormalObjectsPercentage = new Label("Nombre de moyennes de Monades");
+		Slider NormalObjectsNumber = new Slider(0, 10, 0);//respectively : min, max, beginValue;
+		NormalObjectsNumber.setShowTickLabels(true);
+		NormalObjectsNumber.setMajorTickUnit(1);
+		NormalObjectsNumber.setOnDragDetected(SliderHandler3);
+		NormalObjectsNumber.setOnMouseClicked(SliderHandler3);
+		this.Slider3 = NormalObjectsNumber;
+		TextField NormalObjectsNumber2 = new TextField();
+		NormalObjectsNumber2.setOnAction(TextFieldHandler3);
+		NormalObjectsNumber2.setOnKeyReleased(TextFieldHandler3);
+		this.textField3=NormalObjectsNumber2;
 		
-		Label LabelBigObjectsPercentage = new Label("Pourcentage de grandes Monades");
-		Slider BigObjectsPercentage = new Slider(0, 100, 0);//respectively : min, max, beginValue;
-		BigObjectsPercentage.setShowTickLabels(true);
+		Label LabelBigObjectsPercentage = new Label("Nombre de grandes Monades");
+		Slider BigObjectsNumber = new Slider(0, 10, 0);//respectively : min, max, beginValue;
+		BigObjectsNumber.setShowTickLabels(true);
+		BigObjectsNumber.setMajorTickUnit(1);
+		BigObjectsNumber.setOnDragDetected(SliderHandler4);
+		BigObjectsNumber.setOnMouseClicked(SliderHandler4);
+		this.Slider4 = BigObjectsNumber;
+		TextField BigObjectsNumber2 = new TextField();
+		BigObjectsNumber2.setOnAction(TextFieldHandler4);
+		BigObjectsNumber2.setOnKeyReleased(TextFieldHandler4);
+		this.textField4=BigObjectsNumber2;
 		
 		Button launchAnimationButton = new Button();
 		launchAnimationButton.setText("Lancer l'animation");
 		launchAnimationButton.setOnAction(new EventHandler<ActionEvent>() {
 			
-			
 		    @Override 
 		    public void handle(ActionEvent actionEvent) {
-		    	animationRunning = true;
-		        /* Get the different parameters specified by the controllers */
-		    	double getNbMinObjectsParameter = NbMinObjects.getValue();
-		    	double getTinyObjectsPercentage = TinyObjectsPercentage.getValue();
-		    	double getNormalObjectsPercentage = NormalObjectsPercentage.getValue();
-		    	double getBigObjectsPercentage = BigObjectsPercentage.getValue();
-		    	
-		    	/* Add of the animation controllers */
-		    	/* Launch the animation */
-		    	
-		    	//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
-				animation.run();
+				double result = Slider3.getValue()+Slider2.getValue()+Slider4.getValue();
+				if (result < Slider1.getValue() || result > Slider1.getValue()){
+					Dialogs.create()
+							.owner(primaryStage)
+							.title("Erreur")
+							.masthead(null)
+							.message("Le nombre de monades demandé est erroné")
+							.showInformation();
+				}
+				if (result == Slider1.getValue()){
+					Dialogs.create()
+					.owner(primaryStage)
+					.title("truc")
+					.masthead(null)
+					.message("C'est OK")
+					.showInformation();
+			    	animationRunning = true;
+			    	/* Launch the animation */
+			    	
+			    	//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
+					animation.run();
+				}
+				
+
 		    } 
 		});
 		
@@ -282,16 +390,20 @@ public class WindowImpl2 {
 		
 		/* Add of the controllers to the VBox */
 		parametersVBox.getChildren().add(LabelNBMinObjects);
-		parametersVBox.getChildren().add(NbMinObjects);
+		parametersVBox.getChildren().add(this.Slider1);
+		parametersVBox.getChildren().add(this.textField1);
 		
 		parametersVBox.getChildren().add(LabelTinyObjectsPercentage);
-		parametersVBox.getChildren().add(TinyObjectsPercentage);
+		parametersVBox.getChildren().add(this.Slider2);
+		parametersVBox.getChildren().add(this.textField2);
 		
 		parametersVBox.getChildren().add(LabelNormalObjectsPercentage);
-		parametersVBox.getChildren().add(NormalObjectsPercentage);
+		parametersVBox.getChildren().add(this.Slider3);
+		parametersVBox.getChildren().add(this.textField3);
 		
 		parametersVBox.getChildren().add(LabelBigObjectsPercentage);
-		parametersVBox.getChildren().add(BigObjectsPercentage);
+		parametersVBox.getChildren().add(this.Slider4);
+		parametersVBox.getChildren().add(this.textField4);
 		
 		parametersVBox.getChildren().add(launchAnimationButton);
 		
@@ -417,8 +529,8 @@ public class WindowImpl2 {
 			.masthead(null)
 			.message("C'est OK")
 			.showInformation();
-			
 		}
 		
+
 	}
 }
