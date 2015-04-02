@@ -6,39 +6,33 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="224.0" style="-fx-background-color: #c9c7c7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adress.model.WindowImpl">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="224.0" style="-fx-background-color: #c9c7c7;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adress.model.WindowImpl2">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="468.0" text="Nombre minimum de monades" />
-      <Slider fx:id="Slider1" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="3.0" onDragDetected="#DragHandler" prefHeight="38.0" prefWidth="447.0" showTickLabels="true" showTickMarks="true" value="3.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="468.0" text="Nombre de monades" />
+      <Slider fx:id="Slider1" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="3.0" onDragDetected="#DragHandler1" onMouseClicked="#DragHandler1" prefHeight="38.0" prefWidth="447.0" showTickLabels="true" showTickMarks="true" value="3.0">
          <VBox.margin>
             <Insets bottom="5.0" top="10.0" />
          </VBox.margin></Slider>
-      <TextField fx:id="textTest" prefHeight="25.0" prefWidth="153.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="468.0" text="Pourcentage de petites monades">
+      <TextField fx:id="textField1" onAction="#TextAreaHandler1" onKeyReleased="#TextAreaHandler1" prefHeight="25.0" prefWidth="153.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="468.0" text="Nombre de petites monades">
          <VBox.margin>
             <Insets bottom="5.0" top="5.0" />
          </VBox.margin></Label>
-      <Slider blockIncrement="25.0" prefHeight="38.0" prefWidth="447.0" showTickLabels="true" showTickMarks="true">
-         <VBox.margin>
-            <Insets bottom="5.0" top="5.0" />
-         </VBox.margin></Slider>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="468.0" text="Pourcentage de monades moyennes">
-         <VBox.margin>
-            <Insets bottom="5.0" top="5.0" />
-         </VBox.margin></Label>
-      <Slider prefHeight="38.0" prefWidth="447.0" showTickLabels="true" showTickMarks="true">
-         <VBox.margin>
-            <Insets bottom="5.0" top="5.0" />
-         </VBox.margin></Slider>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="468.0" text="Pourcentage de grandes monades">
+      <Slider fx:id="Slider2" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" onDragDetected="#DragHandler2" onMouseClicked="#DragHandler2" prefHeight="38.0" prefWidth="447.0" showTickLabels="true" showTickMarks="true" />
+      <TextField fx:id="textField2" onAction="#TextAreaHandler2" onKeyReleased="#TextAreaHandler2" prefHeight="25.0" prefWidth="153.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="468.0" text="Nombre de monades moyennes">
          <VBox.margin>
             <Insets bottom="5.0" top="5.0" />
          </VBox.margin></Label>
-      <Slider prefHeight="38.0" prefWidth="447.0" showTickLabels="true" showTickMarks="true">
+      <Slider fx:id="Slider3" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" onDragDetected="#DragHandler3" onMouseClicked="#DragHandler3" prefHeight="38.0" prefWidth="447.0" showTickLabels="true" showTickMarks="true" />
+      <TextField fx:id="textField3" onAction="#TextAreaHandler3" onKeyReleased="#TextAreaHandler3" prefHeight="25.0" prefWidth="153.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="468.0" text="Nombre de grandes monades">
          <VBox.margin>
             <Insets bottom="5.0" top="5.0" />
-         </VBox.margin></Slider>
-      <Button fx:id="BoutonLancerAnim" alignment="CENTER" mnemonicParsing="false" onAction="#LancerAnimationHandler" prefHeight="25.0" prefWidth="134.0" text="Lancer l'animation">
+         </VBox.margin></Label>
+      <Slider fx:id="Slider4" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" onDragDetected="#DragHandler4" onMouseClicked="#DragHandler4" prefHeight="38.0" prefWidth="447.0" showTickLabels="true" showTickMarks="true" />
+      <TextField fx:id="textField4" onAction="#TextAreaHandler4" onKeyReleased="#TextAreaHandler4" prefHeight="25.0" prefWidth="153.0" />
+      <Button fx:id="BoutonLancerAnim" alignment="CENTER" mnemonicParsing="false" onAction="#CheckPourcentage" prefHeight="25.0" prefWidth="134.0" text="Lancer l'animation">
          <VBox.margin>
             <Insets bottom="10.0" left="40.0" top="20.0" />
          </VBox.margin>

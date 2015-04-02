@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class MainApp2 extends Application{
 
 	  public Stage primaryStage;
-	    public WindowImpl2 Window;
+	  public WindowImpl2 Window;
 	    
 		public static void main(String[] args) {
 			launch(args);

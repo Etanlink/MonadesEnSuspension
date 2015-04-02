@@ -93,7 +93,7 @@ public class WindowImpl2 {
 	@FXML
 	public Slider Slider4;
 
-	public WindowImpl() {	}
+	public WindowImpl2() {	}
 	/**
 	 * Initialize the primarystage
 	 */
@@ -158,7 +158,7 @@ public class WindowImpl2 {
 	public void FXMLParametersVBox() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(WindowImpl.class.getResource("VBox.fxml"));
+			loader.setLocation(WindowImpl2.class.getResource("VBox.fxml"));
 			VBox vBox = (VBox)loader.load();
 			this.MaVBox = vBox ;
 			WindowImpl2 controller = loader.getController();
