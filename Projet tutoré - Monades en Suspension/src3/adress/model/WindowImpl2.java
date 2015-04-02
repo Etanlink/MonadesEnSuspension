@@ -355,6 +355,7 @@ public class WindowImpl2 {
 					}
 					animationRunning = false;
 					pauseAnimationButton.setText("Reprendre l'animation");
+				
 				}
 				else {
 					animation.getAnimation().play();
