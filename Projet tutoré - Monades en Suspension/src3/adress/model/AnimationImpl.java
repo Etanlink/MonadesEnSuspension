@@ -87,7 +87,7 @@ public class AnimationImpl implements Runnable {
 		checkNumberOfShapes();
 		
 		/* Control on the exit */
-		controlExit();
+		//controlExit();
 	}
 
 	/**

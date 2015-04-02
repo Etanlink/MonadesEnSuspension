@@ -31,22 +31,22 @@ import javafx.util.Duration;
 /*
  * caca */
 public class AnimatedImageThread implements Runnable {
-	
+
 	private final ImageView monade;
 	private Animation animation;
-	
+
 	private TranslateTransition trans;
 	private double x;
 	private double y;
-	
+
 	private double speedCoeff;
-	
+
 	public double getX() { return x; }
 	public double getY() { return y; }
-	
+
 	private Random r = new Random();
 	//private int compteur;
-	
+
 	/**
 	 * Builder
 	 */
@@ -58,23 +58,23 @@ public class AnimatedImageThread implements Runnable {
 		this.monade.setFitWidth(this.r.nextInt(50)+50);
 		// ((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 		shuffleXY(360);
-		//determinateCoordinatesOfSpawn();
-		this.monade.setX(400);
-		this.monade.setY(300);
+		spawn();
+		//this.monade.setX(400);
+		//this.monade.setY(300);
 
 		/* DragListeners are added on the circle */
 		setDragListeners((ImageView) this.monade);
 	};
 
-	
+
 	public Node getNode() {
 		return this.monade;
 	}
-	
+
 	public Animation getAnimation() {
 		return animation;
 	}
-	
+
 	public boolean isOutOfFrame() {
 		return (
 				( ((ImageView) this.monade).getX() > WindowImpl.W_SCENE_SIZE + ((ImageView) this.monade).getFitWidth()*3) ||
@@ -96,7 +96,7 @@ public class AnimatedImageThread implements Runnable {
 		this.animation.setCycleCount(Animation.INDEFINITE);
 		this.animation.play();
 	}
-	
+
 	/**
 	 * @return the TimeLine of the thread
 	 */
@@ -108,17 +108,68 @@ public class AnimatedImageThread implements Runnable {
 
 					@Override
 					public void handle(ActionEvent arg0) {
-						
+
 						handleTimeLine();
 					}			
 
 				}) );
 	}
-	
-	private void determinateCoordinatesOfSpawn() {
+
+	private void spawn() {
+
+		/* boolean choosing between the two areas available */
+		boolean p = this.r.nextBoolean();
+
+		/* Monade center's measures*/
+		double centerX = this.monade.getFitWidth()/2;
+		double centerY = this.monade.getFitHeight()/2;
+
+
 		if(this.x > 0) {
-			this.monade.setX(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE+this.monade.getFitWidth()) )-this.monade.getFitWidth());
-			this.monade.setY(this.r.nextInt( (int) (WindowImpl.W_SCENE_SIZE+this.monade.getFitWidth()) )-this.monade.getFitWidth());
+			if(this.y > 0) { // x > 0 , y > 0
+				if(p) { 
+					this.monade.setX(0 - centerX);
+					this.monade.setY(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE) ) + centerY );
+				}
+				else {
+					this.monade.setX(this.r.nextInt( (int) (WindowImpl.W_SCENE_SIZE) ) - centerX );
+					this.monade.setY(WindowImpl.H_SCENE_SIZE + centerY);
+				}
+
+			}
+			else { // x > 0 , y < 0
+				if(p) {
+					this.monade.setX(0 - centerX);
+					this.monade.setY(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE) ) - centerY );
+				}
+				else {
+					this.monade.setX(this.r.nextInt( (int) (WindowImpl.W_SCENE_SIZE) ) - centerX );
+					this.monade.setY(0 - centerY);
+				}
+			}
+		}
+		else { 
+			if(this.y > 0) { // x < 0 , y > 0
+				if(p) { 
+					this.monade.setX(WindowImpl.W_SCENE_SIZE + centerX);
+					this.monade.setY(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE) ) + centerY );
+				}
+				else {
+					this.monade.setX(this.r.nextInt( (int) (WindowImpl.W_SCENE_SIZE) ) + centerX );
+					this.monade.setY(WindowImpl.H_SCENE_SIZE + centerY);
+				}
+
+			}
+			else { // x < 0 , y < 0
+				if(p) {
+					this.monade.setX(WindowImpl.W_SCENE_SIZE + centerX);
+					this.monade.setY(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE) ) - centerY );
+				}
+				else {
+					this.monade.setX(this.r.nextInt( (int) (WindowImpl.W_SCENE_SIZE) ) + centerX );
+					this.monade.setY(0 - centerY);
+				}
+			}
 		}
 	}
 
@@ -126,9 +177,9 @@ public class AnimatedImageThread implements Runnable {
 	 * apply a Transition to the shape
 	 */
 	private void applyTranslation(double ms) {
-		
+
 		this.trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.monade );
-		
+
 		this.trans.setByX(this.x);
 		this.trans.setByY(this.y);
 
@@ -138,9 +189,9 @@ public class AnimatedImageThread implements Runnable {
 		/* Coordinates updated */
 		((ImageView) this.monade).setX(((ImageView) this.monade).getX()+x);
 		((ImageView) this.monade).setY(((ImageView) this.monade).getY()+y);
-	
+
 	}
-	
+
 	/**
 	 * generates randomly an X for the Translation
 	 */
@@ -196,7 +247,7 @@ public class AnimatedImageThread implements Runnable {
 		});
 
 	}
-	
+
 	/**
 	 * content of the TimeLine
 	 */
@@ -204,7 +255,7 @@ public class AnimatedImageThread implements Runnable {
 		/*
 		if(this.compteur==0) {
 			/*CubicCurveTo curve = new CubicCurveTo(380, 120, 10, 240, 380, 240);
-			
+
 			Path path = new Path();
 			path.getElements().add(new MoveTo(x,y));
 			//path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
@@ -220,10 +271,10 @@ public class AnimatedImageThread implements Runnable {
 			shuffleXY(1);
 			this.compteur = this.r.nextInt(10)+5;
 		}
-		*/
+		 */
 
 		if(this.monade instanceof ImageView){
-			applyTranslation(500);
+			applyTranslation(100);
 		}
 		//this.compteur--;
 	}
