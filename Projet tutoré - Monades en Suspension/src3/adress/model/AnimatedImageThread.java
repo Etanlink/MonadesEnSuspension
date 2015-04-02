@@ -36,13 +36,13 @@ public class AnimatedImageThread implements Runnable {
 	private Animation animation;
 
 	private TranslateTransition trans;
-	private double x;
-	private double y;
+	private double moveX;
+	private double moveY;
 
 	private double speedCoeff;
 
-	public double getX() { return x; }
-	public double getY() { return y; }
+	public double getMoveX() { return moveX; }
+	public double getMoveY() { return moveY; }
 
 	private Random r = new Random();
 	//private int compteur;
@@ -125,49 +125,49 @@ public class AnimatedImageThread implements Runnable {
 		double centerY = this.monade.getFitHeight()/2;
 
 
-		if(this.x > 0) {
-			if(this.y > 0) { // x > 0 , y > 0
-				if(p) { 
+		if(this.moveX > 0) {
+			if(this.moveY > 0) { // x > 0 , y > 0
+				if(p) { // left + bottom left corner
 					this.monade.setX(0 - centerX);
 					this.monade.setY(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE) ) + centerY );
 				}
-				else {
+				else { // bottom + bottom left corner
 					this.monade.setX(this.r.nextInt( (int) (WindowImpl.W_SCENE_SIZE) ) - centerX );
-					this.monade.setY(WindowImpl.H_SCENE_SIZE + centerY);
+					this.monade.setY(0 - centerY);
 				}
 
 			}
 			else { // x > 0 , y < 0
-				if(p) {
+				if(p) { // top + top left corner
 					this.monade.setX(0 - centerX);
 					this.monade.setY(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE) ) - centerY );
 				}
-				else {
+				else { // left + top left corner
 					this.monade.setX(this.r.nextInt( (int) (WindowImpl.W_SCENE_SIZE) ) - centerX );
-					this.monade.setY(0 - centerY);
+					this.monade.setY(WindowImpl.H_SCENE_SIZE + centerY);
 				}
 			}
 		}
 		else { 
-			if(this.y > 0) { // x < 0 , y > 0
-				if(p) { 
+			if(this.moveY > 0) { // x < 0 , y > 0
+				if(p) { // right + bottom right corner
 					this.monade.setX(WindowImpl.W_SCENE_SIZE + centerX);
 					this.monade.setY(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE) ) + centerY );
 				}
-				else {
+				else { // bottom + bottom right corner
 					this.monade.setX(this.r.nextInt( (int) (WindowImpl.W_SCENE_SIZE) ) + centerX );
-					this.monade.setY(WindowImpl.H_SCENE_SIZE + centerY);
+					this.monade.setY(0 - centerY);
 				}
 
 			}
 			else { // x < 0 , y < 0
-				if(p) {
+				if(p) { // right + top right corner
 					this.monade.setX(WindowImpl.W_SCENE_SIZE + centerX);
 					this.monade.setY(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE) ) - centerY );
 				}
-				else {
+				else { // top + top right corner
 					this.monade.setX(this.r.nextInt( (int) (WindowImpl.W_SCENE_SIZE) ) + centerX );
-					this.monade.setY(0 - centerY);
+					this.monade.setY(WindowImpl.H_SCENE_SIZE + centerY);
 				}
 			}
 		}
@@ -180,15 +180,15 @@ public class AnimatedImageThread implements Runnable {
 
 		this.trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.monade );
 
-		this.trans.setByX(this.x);
-		this.trans.setByY(this.y);
+		this.trans.setByX(this.moveX);
+		this.trans.setByY(this.moveY);
 
 		this.trans.setInterpolator(Interpolator.LINEAR);
 		this.trans.play();
 
 		/* Coordinates updated */
-		((ImageView) this.monade).setX(((ImageView) this.monade).getX()+x);
-		((ImageView) this.monade).setY(((ImageView) this.monade).getY()+y);
+		((ImageView) this.monade).setX(((ImageView) this.monade).getX()+moveX);
+		((ImageView) this.monade).setY(((ImageView) this.monade).getY()+moveY);
 
 	}
 
@@ -198,18 +198,18 @@ public class AnimatedImageThread implements Runnable {
 	public void shuffleXY(double range) {
 
 		if(range == 1){
-			this.x = (double)r.nextInt((int)range+1);
-			this.y = 1.0;
+			this.moveX = (double)r.nextInt((int)range+1);
+			this.moveY = 1.0;
 		}
 		else {
-			this.x = (r.nextInt((int)range+1))/range;
-			this.y = 1.0 - this.x;
+			this.moveX = (r.nextInt((int)range+1))/range;
+			this.moveY = 1.0 - this.moveX;
 		}
 		boolean p = r.nextBoolean();
-		if(p==true) x = -x;
+		if(p==true) moveX = -moveX;
 		p = r.nextBoolean();
-		if(p==true) y = -y;
-		System.out.println("coord : "+this.x+", "+this.y);
+		if(p==true) moveY = -moveY;
+		System.out.println("coord : "+this.moveX+", "+this.moveY);
 	}
 
 	/**
