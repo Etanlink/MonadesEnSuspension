@@ -56,6 +56,7 @@ public class WindowImpl2 {
 	public AnimationImpl animation;
 	
 	public boolean animationRunning = false;
+	public boolean animationStarted = false;
 
 	public static final int SCENE_SIZE = 600;
 	
@@ -270,6 +271,7 @@ public class WindowImpl2 {
 		TextField NbObjects2 = new TextField();
 		NbObjects2.setOnAction(TextFieldHandler1);
 		NbObjects2.setOnKeyReleased(TextFieldHandler1);
+		NbObjects2.setText("3");
 		this.textField1 = NbObjects2 ;
 		
 		Label LabelTinyObjectsPercentage = new Label("Nombre de petites Monades");
@@ -282,6 +284,7 @@ public class WindowImpl2 {
 		TextField TinyObjectsNumber2 = new TextField();
 		TinyObjectsNumber2.setOnAction(TextFieldHandler2);
 		TinyObjectsNumber2.setOnKeyReleased(TextFieldHandler2);
+		TinyObjectsNumber2.setText("0");
 		this.textField2=TinyObjectsNumber2;
 		
 		Label LabelNormalObjectsPercentage = new Label("Nombre de moyennes de Monades");
@@ -294,6 +297,7 @@ public class WindowImpl2 {
 		TextField NormalObjectsNumber2 = new TextField();
 		NormalObjectsNumber2.setOnAction(TextFieldHandler3);
 		NormalObjectsNumber2.setOnKeyReleased(TextFieldHandler3);
+		NormalObjectsNumber2.setText("0");
 		this.textField3=NormalObjectsNumber2;
 		
 		Label LabelBigObjectsPercentage = new Label("Nombre de grandes Monades");
@@ -306,6 +310,7 @@ public class WindowImpl2 {
 		TextField BigObjectsNumber2 = new TextField();
 		BigObjectsNumber2.setOnAction(TextFieldHandler4);
 		BigObjectsNumber2.setOnKeyReleased(TextFieldHandler4);
+		BigObjectsNumber2.setText("0");
 		this.textField4=BigObjectsNumber2;
 		
 		Button launchAnimationButton = new Button();
@@ -323,18 +328,27 @@ public class WindowImpl2 {
 							.message("Le nombre de monades demandé est erroné")
 							.showInformation();
 				}
-				if (result == Slider1.getValue()){
+				if(animationStarted){
 					Dialogs.create()
 					.owner(primaryStage)
-					.title("truc")
+					.title("Erreur")
 					.masthead(null)
-					.message("C'est OK")
+					.message("Une animation est déjà lancée, veuillez relancer l'application pour générer une nouvelle animation")
+					.showInformation();
+				}
+				if (result == Slider1.getValue() && !animationStarted){
+					Dialogs.create()
+					.owner(primaryStage)
+					.title("Animation")
+					.masthead(null)
+					.message("Animation lancée")
 					.showInformation();
 			    	animationRunning = true;
 			    	/* Launch the animation */
 			    	
 			    	//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
 					animation.run();
+					animationStarted = true ;
 				}
 				
 
