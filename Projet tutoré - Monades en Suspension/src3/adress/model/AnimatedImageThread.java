@@ -39,6 +39,8 @@ public class AnimatedImageThread implements Runnable {
 	private double x;
 	private double y;
 	
+	private double speedCoeff;
+	
 	public double getX() { return x; }
 	public double getY() { return y; }
 	
@@ -224,6 +226,12 @@ public class AnimatedImageThread implements Runnable {
 			applyTranslation(500);
 		}
 		//this.compteur--;
+	}
+	public double getSpeedCoeff() {
+		return speedCoeff;
+	}
+	public void setSpeedCoeff(double speedCoeff) {
+		this.speedCoeff = speedCoeff;
 	}
 
 }
