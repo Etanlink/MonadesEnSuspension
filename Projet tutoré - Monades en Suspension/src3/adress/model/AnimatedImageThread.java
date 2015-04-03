@@ -57,7 +57,7 @@ public class AnimatedImageThread implements Runnable {
 		this.monade.setPreserveRatio(true);
 		this.monade.setFitWidth(this.r.nextInt(50)+50);
 		// ((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
-		this.speedCoeff = 3;
+		this.speedCoeff = 1;
 		shuffleXY(360);
 		spawn();
 		//this.monade.setX(400);
@@ -95,7 +95,6 @@ public class AnimatedImageThread implements Runnable {
 		//this.compteur = this.r.nextInt(10)+5;
 		this.animation = buildTimeLine();
 		this.animation.setCycleCount(Animation.INDEFINITE);
-		this.speedCoeff = sc;
 		this.animation.play();
 	}
 

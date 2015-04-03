@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 
 import org.controlsfx.dialog.Dialogs;
 
-import com.sun.javafx.scene.accessibility.Action;
 
 import adress.MainApp2;
 import adress.MainTestCatchWindow;
@@ -162,6 +161,7 @@ public class WindowImpl2 {
 	public EventHandler<MouseEvent> VitesseHandler = new EventHandler<MouseEvent>(){
 		public void handle(MouseEvent actionEvent){
 			animation.changeSpeedCoeff(SliderVitesse.getValue());
+			animation.setGlobalSpeedCoeff(SliderVitesse.getValue());
 		}
 	};
 	public WindowImpl2() {	}
@@ -172,7 +172,7 @@ public class WindowImpl2 {
 		primaryStage.setTitle("Monades en suspension");
 		primaryStage.setResizable(false);
 		
-		this.animation = new AnimationImpl(this.root);
+		
 
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
@@ -180,6 +180,8 @@ public class WindowImpl2 {
 		this.MaVBox = manualParametersVBox();
 		//FXMLParametersVBox();
 
+		this.animation = new AnimationImpl(this.root, this.SliderVitesse.getValue());
+		
 		this.primaryStage = primaryStage;
 		
 		this.snapshotRectangle.setFill(Color.TRANSPARENT);
@@ -323,7 +325,7 @@ public class WindowImpl2 {
 		this.textField4=BigObjectsNumber2;
 		
 		Label LabelSpeed = new Label("Vitesse de l'animation");
-		Slider SpeedSlider = new Slider (0, 42, 30);
+		Slider SpeedSlider = new Slider (1, 42, 7);
 		SpeedSlider.setShowTickLabels(true);
 		SpeedSlider.setMajorTickUnit(7);
 		SpeedSlider.setOnDragDetected(VitesseHandler);

@@ -123,6 +123,14 @@ public class AnimationImpl implements Runnable {
 		circThread.run();
 	}
 
+	public double getGlobalSpeedCoeff() {
+		return globalSpeedCoeff;
+	}
+
+	public void setGlobalSpeedCoeff(double globalSpeedCoeff) {
+		this.globalSpeedCoeff = globalSpeedCoeff;
+	}
+
 	/**
 	 * generates shapes or not considering their number
 	 */
@@ -225,7 +233,7 @@ public class AnimationImpl implements Runnable {
 	
 	public void changeSpeedCoeff(double sc) {
 		for(AnimatedImageThread thr1 : this.threadShapes) {
-			thr1.setSpeedCoeff(thr1.getSpeedCoeff()*sc);
+			thr1.setSpeedCoeff(sc);
 		}
 	}
 
