@@ -95,6 +95,7 @@ public class AnimatedImageThread implements Runnable {
 		//this.compteur = this.r.nextInt(10)+5;
 		this.animation = buildTimeLine();
 		this.animation.setCycleCount(Animation.INDEFINITE);
+		this.speedCoeff = sc;
 		this.animation.play();
 	}
 

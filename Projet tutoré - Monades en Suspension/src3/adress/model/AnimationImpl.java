@@ -32,6 +32,8 @@ public class AnimationImpl implements Runnable {
 	private final Group circles;
 
 	private final Timeline animation;
+	
+	private double globalSpeedCoeff;
 
 	private ArrayList<AnimatedImageThread> threadShapes = new ArrayList();
 
@@ -42,9 +44,10 @@ public class AnimationImpl implements Runnable {
 
 	private static final Random r = new Random();
 
-	public AnimationImpl(Group root) {
+	public AnimationImpl(Group root, double globalSC) {
 		super();
 		this.root = root;
+		this.globalSpeedCoeff = globalSC;
 		this.circles = new Group();
 		this.root.getChildren().add(circles);
 		this.animation = buildTimeline();
@@ -112,10 +115,11 @@ public class AnimationImpl implements Runnable {
 	/**
 	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
 	 */
-	private synchronized void createANewThread() {
+	private synchronized void createANewThread(double sc) {
 		AnimatedImageThread circThread = new AnimatedImageThread();
 		this.threadShapes.add(circThread);
 		this.circles.getChildren().add(circThread.getNode());
+		circThread.setSpeedCoeff(sc);
 		circThread.run();
 	}
 
@@ -124,7 +128,7 @@ public class AnimationImpl implements Runnable {
 	 */
 	private void checkNumberOfShapes() {
 		while (this.circles.getChildren().size() <= 3){
-			createANewThread();
+			createANewThread(this.globalSpeedCoeff);
 		}
 
 		/* Control of the maximal parameter */
@@ -133,7 +137,7 @@ public class AnimationImpl implements Runnable {
 			int q = this.r.nextInt(100);
 			if(q>=p)
 			{
-				createANewThread();
+				createANewThread(this.globalSpeedCoeff);
 			}
 		}
 	}
