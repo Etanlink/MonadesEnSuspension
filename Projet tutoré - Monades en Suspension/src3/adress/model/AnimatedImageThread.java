@@ -57,6 +57,7 @@ public class AnimatedImageThread implements Runnable {
 		this.monade.setPreserveRatio(true);
 		this.monade.setFitWidth(this.r.nextInt(50)+50);
 		// ((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
+		this.speedCoeff = 3;
 		shuffleXY(360);
 		spawn();
 		//this.monade.setX(400);
@@ -114,7 +115,10 @@ public class AnimatedImageThread implements Runnable {
 
 				}) );
 	}
-
+	
+	/**
+	 * the monade spawns randomly around the borders of the scene
+	 */
 	private void spawn() {
 
 		/* boolean choosing between the two areas available */
@@ -180,15 +184,15 @@ public class AnimatedImageThread implements Runnable {
 
 		this.trans = new TranslateTransition(Duration.millis(/*r.nextInt(*/ms), this.monade );
 
-		this.trans.setByX(this.moveX);
-		this.trans.setByY(this.moveY);
+		this.trans.setByX(this.moveX * this.speedCoeff);
+		this.trans.setByY(this.moveY * this.speedCoeff);
 
 		this.trans.setInterpolator(Interpolator.LINEAR);
 		this.trans.play();
 
 		/* Coordinates updated */
-		((ImageView) this.monade).setX(((ImageView) this.monade).getX()+moveX);
-		((ImageView) this.monade).setY(((ImageView) this.monade).getY()+moveY);
+		((ImageView) this.monade).setX(((ImageView) this.monade).getX()+moveX * this.speedCoeff);
+		((ImageView) this.monade).setY(((ImageView) this.monade).getY()+moveY * this.speedCoeff);
 
 	}
 

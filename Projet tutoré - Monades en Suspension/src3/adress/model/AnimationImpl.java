@@ -79,6 +79,7 @@ public class AnimationImpl implements Runnable {
 		return animation;
 	}
 	
+	
 	/**
 	 * content of the main TimeLine
 	 */
@@ -216,6 +217,12 @@ public class AnimationImpl implements Runnable {
 			}
 		});
 
+	}
+	
+	public void changeSpeedCoeff(double sc) {
+		for(AnimatedImageThread thr1 : this.threadShapes) {
+			thr1.setSpeedCoeff(thr1.getSpeedCoeff()*sc);
+		}
 	}
 
 	@Override
