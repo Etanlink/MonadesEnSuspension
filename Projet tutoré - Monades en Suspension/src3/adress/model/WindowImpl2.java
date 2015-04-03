@@ -66,10 +66,12 @@ public class WindowImpl2 {
 	public VBox MaVBox ;
 	private Rectangle snapshotRectangle = new Rectangle(225, 25, 585, 600);
 	
-	private static final int PARAMETERS_PANE_SIZE = 620;
+	public final int PARAMETERS_PANE_WIDTH = 224;
+	private static final int PARAMETERS_PANE_SIZE = 609;
 	
 	@FXML
 	public Button BoutonLancerAnim ;
+
 	
 	@FXML
 	public TextField textField1 ;
