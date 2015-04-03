@@ -75,7 +75,7 @@ public class CatchWindowImpl {
 		hb.setSpacing(20);
 		hb.getChildren().add(saveButton);
 		
-		this.rootCatchWindow.getChildren().addAll(captureAnimationView, hb);
+		this.rootCatchWindow.getChildren().add(hb);
 		
 		Scene catchWindowScene = new Scene(this.rootCatchWindow, W_SCENE_SIZE, H_SCENE_SIZE);
 		secondaryStage.setScene(catchWindowScene);

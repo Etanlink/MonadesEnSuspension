@@ -184,7 +184,7 @@ public class WindowImpl2 {
 		
 		this.primaryStage = primaryStage;
 		
-		this.snapshotRectangle.setFill(Color.TRANSPARENT);
+		//this.snapshotRectangle.setFill(Color.TRANSPARENT);
 		
 		Scene scene = new Scene(this.root, W_SCENE_SIZE, H_SCENE_SIZE);
 		primaryStage.setScene(scene);
@@ -192,7 +192,7 @@ public class WindowImpl2 {
 		/*									   ^^^^^			   */
 		this.root.getChildren().add(this.MaVBox);
 		this.root.getChildren().add(menuBar);
-		this.root.getChildren().add(this.snapshotRectangle);
+		//this.root.getChildren().add(this.snapshotRectangle);
 		this.primaryStage.show();
 
 	}
@@ -466,7 +466,7 @@ public class WindowImpl2 {
 	 * it will be necessary to think to fix this.
 	 */
 	public void saveAsPngInResFolder() {
-	    WritableImage image = this.snapshotRectangle.snapshot(new SnapshotParameters(), null);
+	    WritableImage image = this.root.snapshot(new SnapshotParameters(), null);
 
 	    /* Save the capture in a png file in a res folder */
 	    File file = new File("src3/res/CaptureAnimation.png");
