@@ -121,6 +121,7 @@ public class AnimationImpl implements Runnable {
 		this.circles.getChildren().add(circThread.getNode());
 		circThread.setSpeedCoeff(sc);
 		circThread.run();
+		setDragListeners(circThread.getMonade());
 	}
 
 	public double getGlobalSpeedCoeff() {

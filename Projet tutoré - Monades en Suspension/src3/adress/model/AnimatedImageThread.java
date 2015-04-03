@@ -33,6 +33,10 @@ import javafx.util.Duration;
 public class AnimatedImageThread implements Runnable {
 
 	private final ImageView monade;
+	public ImageView getMonade() {
+		return monade;
+	}
+
 	private Animation animation;
 
 	private TranslateTransition trans;
