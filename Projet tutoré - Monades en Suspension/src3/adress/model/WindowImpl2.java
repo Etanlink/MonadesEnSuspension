@@ -97,6 +97,8 @@ public class WindowImpl2 {
 	@FXML
 	public Slider Slider4;
 	
+	public Slider SliderVitesse;
+	
 	public EventHandler<MouseEvent> SliderHandler1 = new EventHandler<MouseEvent>(){
 		 public void handle(MouseEvent actionEvent){
 				int j = (int) Slider1.getValue();
@@ -157,6 +159,11 @@ public class WindowImpl2 {
 		}
 	};
 
+	public EventHandler<MouseEvent> VitesseHandler = new EventHandler<MouseEvent>(){
+		public void handle(MouseEvent actionEvent){
+			animation.changeSpeedCoeff(SliderVitesse.getValue());
+		}
+	};
 	public WindowImpl2() {	}
 	/**
 	 * Initialize the primarystage
@@ -259,7 +266,7 @@ public class WindowImpl2 {
 		/* Align all of the VBox components to CENTER_LEFT */
 		parametersVBox.setAlignment(Pos.BASELINE_CENTER);
 		/* Addition of spacing between the VBox Components */
-		parametersVBox.setSpacing(10);
+		parametersVBox.setSpacing(7);
 		//parametersVBox.setMargin((Node) parametersVBox.getChildren(),new Insets(20));
 		
 		/* Add of the different controllers */
@@ -315,6 +322,14 @@ public class WindowImpl2 {
 		BigObjectsNumber2.setText("0");
 		this.textField4=BigObjectsNumber2;
 		
+		Label LabelSpeed = new Label("Vitesse de l'animation");
+		Slider SpeedSlider = new Slider (0, 42, 30);
+		SpeedSlider.setShowTickLabels(true);
+		SpeedSlider.setMajorTickUnit(7);
+		SpeedSlider.setOnDragDetected(VitesseHandler);
+		SpeedSlider.setOnMouseClicked(VitesseHandler);
+		SliderVitesse = SpeedSlider ;
+				
 		Button launchAnimationButton = new Button();
 		launchAnimationButton.setText("Lancer l'animation");
 		launchAnimationButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -421,6 +436,9 @@ public class WindowImpl2 {
 		parametersVBox.getChildren().add(LabelBigObjectsPercentage);
 		parametersVBox.getChildren().add(this.Slider4);
 		parametersVBox.getChildren().add(this.textField4);
+		
+		parametersVBox.getChildren().add(LabelSpeed);
+		parametersVBox.getChildren().add(this.SliderVitesse);
 		
 		parametersVBox.getChildren().add(launchAnimationButton);
 		
