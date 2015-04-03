@@ -158,8 +158,8 @@ public class WindowImpl2 {
 		}
 	};
 
-	public EventHandler<MouseEvent> VitesseHandler = new EventHandler<MouseEvent>(){
-		public void handle(MouseEvent actionEvent){
+	public EventHandler VitesseHandler = new EventHandler(){
+		public void handle(Event actionEvent){
 			animation.changeSpeedCoeff(SliderVitesse.getValue());
 			animation.setGlobalSpeedCoeff(SliderVitesse.getValue());
 		}
@@ -278,6 +278,7 @@ public class WindowImpl2 {
 		NbObjects.setMajorTickUnit(1);
 		NbObjects.setOnDragDetected(SliderHandler1);
 		NbObjects.setOnMouseClicked(SliderHandler1);
+		NbObjects.setPadding(new Insets(0,10,0,10));
 		this.Slider1=NbObjects;
 		TextField NbObjects2 = new TextField();
 		NbObjects2.setOnAction(TextFieldHandler1);
@@ -291,6 +292,7 @@ public class WindowImpl2 {
 		TinyObjectsNumber.setMajorTickUnit(1);
 		TinyObjectsNumber.setOnDragDetected(SliderHandler2);
 		TinyObjectsNumber.setOnMouseClicked(SliderHandler2);
+		TinyObjectsNumber.setPadding(new Insets(0,10,0,10));
 		this.Slider2 = TinyObjectsNumber;
 		TextField TinyObjectsNumber2 = new TextField();
 		TinyObjectsNumber2.setOnAction(TextFieldHandler2);
@@ -304,6 +306,7 @@ public class WindowImpl2 {
 		NormalObjectsNumber.setMajorTickUnit(1);
 		NormalObjectsNumber.setOnDragDetected(SliderHandler3);
 		NormalObjectsNumber.setOnMouseClicked(SliderHandler3);
+		NormalObjectsNumber.setPadding(new Insets(0,10,0,10));
 		this.Slider3 = NormalObjectsNumber;
 		TextField NormalObjectsNumber2 = new TextField();
 		NormalObjectsNumber2.setOnAction(TextFieldHandler3);
@@ -317,6 +320,7 @@ public class WindowImpl2 {
 		BigObjectsNumber.setMajorTickUnit(1);
 		BigObjectsNumber.setOnDragDetected(SliderHandler4);
 		BigObjectsNumber.setOnMouseClicked(SliderHandler4);
+		BigObjectsNumber.setPadding(new Insets(0,10,0,10));
 		this.Slider4 = BigObjectsNumber;
 		TextField BigObjectsNumber2 = new TextField();
 		BigObjectsNumber2.setOnAction(TextFieldHandler4);
@@ -330,6 +334,10 @@ public class WindowImpl2 {
 		SpeedSlider.setMajorTickUnit(7);
 		SpeedSlider.setOnDragDetected(VitesseHandler);
 		SpeedSlider.setOnMouseClicked(VitesseHandler);
+		SpeedSlider.setOnSwipeLeft(VitesseHandler);
+		SpeedSlider.setOnSwipeRight(VitesseHandler);
+		SpeedSlider.setOnMouseDragged(VitesseHandler);
+		SpeedSlider.setPadding(new Insets(0,10,0,10));
 		SliderVitesse = SpeedSlider ;
 				
 		Button launchAnimationButton = new Button();

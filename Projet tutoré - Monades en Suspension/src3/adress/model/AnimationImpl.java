@@ -135,7 +135,7 @@ public class AnimationImpl implements Runnable {
 	 * generates shapes or not considering their number
 	 */
 	private void checkNumberOfShapes() {
-		while (this.circles.getChildren().size() <= 3){
+		while (this.circles.getChildren().size() <= 10){
 			createANewThread(this.globalSpeedCoeff);
 		}
 
