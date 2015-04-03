@@ -82,10 +82,10 @@ public class AnimatedImageThread implements Runnable {
 
 	public boolean isOutOfFrame() {
 		return (
-				( ((ImageView) this.monade).getX() > WindowImpl.W_SCENE_SIZE + ((ImageView) this.monade).getFitWidth()*3) ||
-				( ((ImageView) this.monade).getX() < 0 - ((ImageView) this.monade).getFitWidth()*3) ||
-				( ((ImageView) this.monade).getY() > WindowImpl.H_SCENE_SIZE + ((ImageView) this.monade).getFitHeight()*3) ||
-				( ((ImageView) this.monade).getY() < 0 - ((ImageView) this.monade).getFitHeight()*3)
+				( ((ImageView) this.monade).getX() > WindowImpl.W_SCENE_SIZE + ((ImageView) this.monade).getFitWidth()) ||
+				( ((ImageView) this.monade).getX() < 0 - ((ImageView) this.monade).getFitWidth()) ||
+				( ((ImageView) this.monade).getY() > WindowImpl.H_SCENE_SIZE + ((ImageView) this.monade).getFitHeight()) ||
+				( ((ImageView) this.monade).getY() < 0 - ((ImageView) this.monade).getFitHeight())
 				);
 	}
 
