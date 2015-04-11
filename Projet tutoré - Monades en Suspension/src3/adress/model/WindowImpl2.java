@@ -46,113 +46,112 @@ import javafx.stage.StageStyle;
 
 public class WindowImpl2 {
 
+	public static final int H_VBOX_SIZE = 609;
+
+	public static final int W_VBOX_SIZE = 224;
+
 	private Stage primaryStage;
 
 	//private BorderPane rootLayout;
 
 	private Group root = new Group();
-	
+
 	public AnimationImpl animation;
-	
+
 	public boolean animationRunning = false;
 	public boolean animationStarted = false;
 
-	public static final int SCENE_SIZE = 600;
-	
 	public static final int W_SCENE_SIZE = 800;
 	public static final int H_SCENE_SIZE = 600;
 	private MainApp2 MainApp;
 	public VBox MaVBox ;
-	private Rectangle snapshotRectangle = new Rectangle(225, 25, 585, 600);
-	
-	public final int PARAMETERS_PANE_WIDTH = 224;
-	private static final int PARAMETERS_PANE_SIZE = 609;
-	
+	private Rectangle snapshotRectangle = new Rectangle(WindowImpl2.W_SCENE_SIZE - WindowImpl2.W_VBOX_SIZE, 25, 585, WindowImpl2.H_SCENE_SIZE);
+
 	@FXML
 	public Button BoutonLancerAnim ;
 
-	
+
 	@FXML
 	public TextField textField1 ;
-	
+
 	@FXML
 	public TextField textField2 ;
-	
+
 	@FXML
 	public TextField textField3 ;
-	
+
 	@FXML
 	public TextField textField4 ;
-	
+
 	@FXML
 	public Slider Slider1;
-	
+
 	@FXML
 	public Slider Slider2;
-	
+
 	@FXML
 	public Slider Slider3;
-	
+
 	@FXML
 	public Slider Slider4;
-	
+
 	public Slider SliderVitesse;
-	
+
 	public EventHandler<MouseEvent> SliderHandler1 = new EventHandler<MouseEvent>(){
-		 public void handle(MouseEvent actionEvent){
-				int j = (int) Slider1.getValue();
-				textField1.setText(String.valueOf(j));
-				Slider1.setValue(j);
-		 }
+		public void handle(MouseEvent actionEvent){
+			int j = (int) Slider1.getValue();
+			textField1.setText(String.valueOf(j));
+			Slider1.setValue(j);
+		}
 	};
 
 	public EventHandler TextFieldHandler1 = new EventHandler(){
-		
+
 		public void handle(Event actionEvent){
 			Slider1.setValue(Double.parseDouble(textField1.getText()));
 		}
 	};
-	
+
 	public EventHandler<MouseEvent> SliderHandler2 = new EventHandler<MouseEvent>(){
-		 public void handle(MouseEvent actionEvent){
-				int j = (int) Slider2.getValue();
-				textField2.setText(String.valueOf(j));
-				Slider2.setValue(j);
-		 }
+		public void handle(MouseEvent actionEvent){
+			int j = (int) Slider2.getValue();
+			textField2.setText(String.valueOf(j));
+			Slider2.setValue(j);
+		}
 	};
 
 	public EventHandler TextFieldHandler2 = new EventHandler(){
-		
+
 		public void handle(Event actionEvent){
 			Slider2.setValue(Double.parseDouble(textField2.getText()));
 		}
 	};
-	
+
 	public EventHandler<MouseEvent> SliderHandler3 = new EventHandler<MouseEvent>(){
-		 public void handle(MouseEvent actionEvent){
-				int j = (int) Slider3.getValue();
-				textField3.setText(String.valueOf(j));
-				Slider3.setValue(j);
-		 }
+		public void handle(MouseEvent actionEvent){
+			int j = (int) Slider3.getValue();
+			textField3.setText(String.valueOf(j));
+			Slider3.setValue(j);
+		}
 	};
 
 	public EventHandler TextFieldHandler3 = new EventHandler(){
-		
+
 		public void handle(Event actionEvent){
 			Slider3.setValue(Double.parseDouble(textField3.getText()));
 		}
 	};
-	
+
 	public EventHandler<MouseEvent> SliderHandler4 = new EventHandler<MouseEvent>(){
-		 public void handle(MouseEvent actionEvent){
-				int j = (int) Slider4.getValue();
-				textField4.setText(String.valueOf(j));
-				Slider4.setValue(j);
-		 }
+		public void handle(MouseEvent actionEvent){
+			int j = (int) Slider4.getValue();
+			textField4.setText(String.valueOf(j));
+			Slider4.setValue(j);
+		}
 	};
 
 	public EventHandler TextFieldHandler4 = new EventHandler(){
-		
+
 		public void handle(Event actionEvent){
 			Slider4.setValue(Double.parseDouble(textField4.getText()));
 		}
@@ -171,21 +170,21 @@ public class WindowImpl2 {
 	public void primaryStageInitialisation(Stage primaryStage) throws IOException {
 		primaryStage.setTitle("Monades en suspension");
 		primaryStage.setResizable(false);
-		
-		
+
+
 
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
-		
+
 		this.MaVBox = manualParametersVBox();
 		//FXMLParametersVBox();
 
 		this.animation = new AnimationImpl(this.root, this.SliderVitesse.getValue());
-		
+
 		this.primaryStage = primaryStage;
-		
+
 		//this.snapshotRectangle.setFill(Color.TRANSPARENT);
-		
+
 		Scene scene = new Scene(this.root, W_SCENE_SIZE, H_SCENE_SIZE);
 		primaryStage.setScene(scene);
 		/* the different parts of UI are bound AFTER the animation */
@@ -204,31 +203,31 @@ public class WindowImpl2 {
 	public MenuBar manualMenuBar() {
 		final Menu helpMenuItem = new Menu("Aide");
 		helpMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-            	
-            }
-        });
+			@Override
+			public void handle(ActionEvent event) {
+
+			}
+		});
 		final Menu aboutMenuItem = new Menu("À propos");
 		aboutMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-            	
-            }
-        });
+			@Override
+			public void handle(ActionEvent event) {
+
+			}
+		});
 
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().addAll(helpMenuItem, aboutMenuItem);
 		menuBar.setMinWidth(W_SCENE_SIZE+10);
 		return menuBar;
 	}
-	
+
 	@FXML
 	public void initialize() {
-		
+
 	}
-	
-	
+
+
 	public void FXMLParametersVBox() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -242,7 +241,7 @@ public class WindowImpl2 {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void setMainApp(MainApp2 mainapp){
 		this.MainApp = mainapp;
 	}
@@ -252,25 +251,25 @@ public class WindowImpl2 {
 	 * @throws IOException 
 	 */
 	private VBox manualParametersVBox() throws IOException {
-		
+
 		final VBox parametersVBox = new VBox();
-		parametersVBox.setPrefSize(224, 609);
+		parametersVBox.setPrefSize(W_VBOX_SIZE, H_VBOX_SIZE);
 		parametersVBox.setMinSize(parametersVBox.getPrefWidth(), parametersVBox.getPrefHeight());
 		parametersVBox.setMaxSize(parametersVBox.getPrefWidth(), parametersVBox.getPrefHeight());
 		parametersVBox.setStyle("-fx-background-color:  #c9c7c7;");
 		parametersVBox.setFillWidth(true);;
-		
+
 		/* Add of a VBox title */
 		Text VBoxTitle = new Text("Paramètres");
 		VBoxTitle.setFont(Font.font("System", FontWeight.SEMI_BOLD, 16));
 		parametersVBox.getChildren().add(VBoxTitle);
-		
+
 		/* Align all of the VBox components to CENTER_LEFT */
 		parametersVBox.setAlignment(Pos.BASELINE_CENTER);
 		/* Addition of spacing between the VBox Components */
 		parametersVBox.setSpacing(7);
 		//parametersVBox.setMargin((Node) parametersVBox.getChildren(),new Insets(20));
-		
+
 		/* Add of the different controllers */
 		Label LabelNBMinObjects = new Label("Nombre de Monades");
 		Slider NbObjects = new Slider(3, 10, 3);
@@ -285,7 +284,7 @@ public class WindowImpl2 {
 		NbObjects2.setOnKeyReleased(TextFieldHandler1);
 		NbObjects2.setText("3");
 		this.textField1 = NbObjects2 ;
-		
+
 		Label LabelTinyObjectsPercentage = new Label("Nombre de petites Monades");
 		Slider TinyObjectsNumber = new Slider(0, 10, 0);//respectively : min, max, beginValue
 		TinyObjectsNumber.setShowTickLabels(true);
@@ -299,7 +298,7 @@ public class WindowImpl2 {
 		TinyObjectsNumber2.setOnKeyReleased(TextFieldHandler2);
 		TinyObjectsNumber2.setText("0");
 		this.textField2=TinyObjectsNumber2;
-		
+
 		Label LabelNormalObjectsPercentage = new Label("Nombre de moyennes de Monades");
 		Slider NormalObjectsNumber = new Slider(0, 10, 0);//respectively : min, max, beginValue;
 		NormalObjectsNumber.setShowTickLabels(true);
@@ -313,7 +312,7 @@ public class WindowImpl2 {
 		NormalObjectsNumber2.setOnKeyReleased(TextFieldHandler3);
 		NormalObjectsNumber2.setText("0");
 		this.textField3=NormalObjectsNumber2;
-		
+
 		Label LabelBigObjectsPercentage = new Label("Nombre de grandes Monades");
 		Slider BigObjectsNumber = new Slider(0, 10, 0);//respectively : min, max, beginValue;
 		BigObjectsNumber.setShowTickLabels(true);
@@ -327,7 +326,7 @@ public class WindowImpl2 {
 		BigObjectsNumber2.setOnKeyReleased(TextFieldHandler4);
 		BigObjectsNumber2.setText("0");
 		this.textField4=BigObjectsNumber2;
-		
+
 		Label LabelSpeed = new Label("Vitesse de l'animation");
 		Slider SpeedSlider = new Slider (1, 42, 7);
 		SpeedSlider.setShowTickLabels(true);
@@ -339,21 +338,21 @@ public class WindowImpl2 {
 		SpeedSlider.setOnMouseDragged(VitesseHandler);
 		SpeedSlider.setPadding(new Insets(0,10,0,10));
 		SliderVitesse = SpeedSlider ;
-				
+
 		Button launchAnimationButton = new Button();
 		launchAnimationButton.setText("Lancer l'animation");
 		launchAnimationButton.setOnAction(new EventHandler<ActionEvent>() {
-			
-		    @Override 
-		    public void handle(ActionEvent actionEvent) {
+
+			@Override 
+			public void handle(ActionEvent actionEvent) {
 				double result = Slider3.getValue()+Slider2.getValue()+Slider4.getValue();
 				if (result < Slider1.getValue() || result > Slider1.getValue()){
 					Dialogs.create()
-							.owner(primaryStage)
-							.title("Erreur")
-							.masthead(null)
-							.message("Le nombre de monades demandé est erroné")
-							.showInformation();
+					.owner(primaryStage)
+					.title("Erreur")
+					.masthead(null)
+					.message("Le nombre de monades demandé est erroné")
+					.showInformation();
 				}
 				if(animationStarted){
 					Dialogs.create()
@@ -370,22 +369,22 @@ public class WindowImpl2 {
 					.masthead(null)
 					.message("Animation lancée")
 					.showInformation();
-			    	animationRunning = true;
-			    	/* Launch the animation */
-			    	
-			    	//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
+					animationRunning = true;
+					/* Launch the animation */
+
+					//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
 					animation.run();
 					animationStarted = true ;
 				}
-				
 
-		    } 
+
+			} 
 		});
-		
+
 		Button pauseAnimationButton = new Button();
 		pauseAnimationButton.setText("Mettre en pause l'animation");
 		pauseAnimationButton.setOnAction(new EventHandler<ActionEvent>() { 
-			
+
 			@Override
 			public void handle(ActionEvent actionEvent) {
 				if(animationRunning){
@@ -396,7 +395,7 @@ public class WindowImpl2 {
 					}
 					animationRunning = false;
 					pauseAnimationButton.setText("Reprendre l'animation");
-				
+
 				}
 				else {
 					animation.getAnimation().play();
@@ -409,56 +408,56 @@ public class WindowImpl2 {
 				}
 			}
 		});
-		
-		
+
+
 		Button snapshotAnimationButton = new Button();
 		snapshotAnimationButton.setText("Capturer l'animation en cours");
-		
+
 		snapshotAnimationButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-            	/* Save the capture in a png file */
-            	saveAsPngInResFolder();
-            	try {
-            		/* Open a new window with the capture in background */
-            		Stage secondaryStage = new Stage();
+			@Override
+			public void handle(ActionEvent event) {
+				/* Save the capture in a png file */
+				saveAsPngInResFolder();
+				try {
+					/* Open a new window with the capture in background */
+					Stage secondaryStage = new Stage();
 					CatchWindowImpl catchAnimationWindow = new CatchWindowImpl(secondaryStage);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-            }
-        });
-		
+			}
+		});
+
 		/* Add of the controllers to the VBox */
 		parametersVBox.getChildren().add(LabelNBMinObjects);
 		parametersVBox.getChildren().add(this.Slider1);
 		parametersVBox.getChildren().add(this.textField1);
-		
+
 		parametersVBox.getChildren().add(LabelTinyObjectsPercentage);
 		parametersVBox.getChildren().add(this.Slider2);
 		parametersVBox.getChildren().add(this.textField2);
-		
+
 		parametersVBox.getChildren().add(LabelNormalObjectsPercentage);
 		parametersVBox.getChildren().add(this.Slider3);
 		parametersVBox.getChildren().add(this.textField3);
-		
+
 		parametersVBox.getChildren().add(LabelBigObjectsPercentage);
 		parametersVBox.getChildren().add(this.Slider4);
 		parametersVBox.getChildren().add(this.textField4);
-		
+
 		parametersVBox.getChildren().add(LabelSpeed);
 		parametersVBox.getChildren().add(this.SliderVitesse);
-		
+
 		parametersVBox.getChildren().add(launchAnimationButton);
-		
+
 		parametersVBox.getChildren().add(pauseAnimationButton);
-		
+
 		parametersVBox.getChildren().add(snapshotAnimationButton);
-		
+
 		return parametersVBox;
 	}
-	
+
 	/**
 	 * Put the capture of the animation in a res folder
 	 * @author Florian, Etanlink
@@ -466,14 +465,14 @@ public class WindowImpl2 {
 	 * it will be necessary to think to fix this.
 	 */
 	public void saveAsPngInResFolder() {
-	    WritableImage image = this.root.snapshot(new SnapshotParameters(), null);
+		WritableImage image = this.root.snapshot(new SnapshotParameters(), null);
 
-	    /* Save the capture in a png file in a res folder */
-	    File file = new File("src3/res/CaptureAnimation.png");
-	    try {
-	        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-	    }
-	    catch (IOException e) {
+		/* Save the capture in a png file in a res folder */
+		File file = new File("src3/res/CaptureAnimation.png");
+		try {
+			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+		}
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -495,17 +494,17 @@ public class WindowImpl2 {
 	@FXML
 	public void LancerAnimationHandler(){
 		this.animationRunning = true;
-        /* Get the different parameters specified by the controllers */
+		/* Get the different parameters specified by the controllers */
 		/*
     	double getNbMinObjectsParameter = NbMinObjects.getValue();
     	double getTinyObjectsPercentage = TinyObjectsPercentage.getValue();
     	double getNormalObjectsPercentage = NormalObjectsPercentage.getValue();
     	double getBigObjectsPercentage = BigObjectsPercentage.getValue();
-    	*/
-    	/* Add of the animation controllers */
-    	/* Launch the animation */
-    	
-    	//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
+		 */
+		/* Add of the animation controllers */
+		/* Launch the animation */
+
+		//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
 		this.animation.run();
 	}
 
@@ -515,7 +514,7 @@ public class WindowImpl2 {
 		this.textField1.setText(String.valueOf(j));
 		this.Slider1.setValue(j);
 	}
-	
+
 	@FXML
 	public void TextAreaHandler1(){
 		this.Slider1.setValue(Double.parseDouble(this.textField1.getText()));
@@ -527,7 +526,7 @@ public class WindowImpl2 {
 		this.textField2.setText(String.valueOf(j));
 		this.Slider2.setValue(j);
 	}
-	
+
 	@FXML
 	public void TextAreaHandler2(){
 		this.Slider2.setValue(Double.parseDouble(this.textField2.getText()));
@@ -538,7 +537,7 @@ public class WindowImpl2 {
 		this.textField3.setText(String.valueOf(j));
 		this.Slider3.setValue(j);
 	}
-	
+
 	@FXML
 	public void TextAreaHandler3(){
 		this.Slider3.setValue(Double.parseDouble(this.textField3.getText()));
@@ -549,23 +548,23 @@ public class WindowImpl2 {
 		this.textField4.setText(String.valueOf(j));
 		this.Slider4.setValue(j);
 	}
-	
+
 	@FXML
 	public void TextAreaHandler4(){
 		this.Slider4.setValue(Double.parseDouble(this.textField4.getText()));
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@FXML
 	public void CheckPourcentage(){
 		double result = this.Slider3.getValue()+this.Slider2.getValue()+this.Slider4.getValue();
 		if (result < this.Slider1.getValue() || result > this.Slider1.getValue()){
 			Dialogs.create()
-					.owner(this.primaryStage)
-					.title("Erreur")
-					.masthead(null)
-					.message("Le nombre de monades demandé est erroné")
-					.showInformation();
+			.owner(this.primaryStage)
+			.title("Erreur")
+			.masthead(null)
+			.message("Le nombre de monades demandé est erroné")
+			.showInformation();
 		}
 		if (result == this.Slider1.getValue()){
 			Dialogs.create()
@@ -575,7 +574,7 @@ public class WindowImpl2 {
 			.message("C'est OK")
 			.showInformation();
 		}
-		
+
 
 	}
 }
