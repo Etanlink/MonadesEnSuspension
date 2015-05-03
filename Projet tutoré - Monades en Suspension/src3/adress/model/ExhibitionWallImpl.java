@@ -8,7 +8,10 @@ import javafx.stage.Stage;
 
 public class ExhibitionWallImpl {
 	
+	/* Test group to be sure the class is functional */
+	/* TODO : Change this root by the animationRoot */
 	public Group testRoot = new Group();
+	
 	/**
 	 * 
 	 * @param stage

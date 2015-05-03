@@ -1,8 +1,6 @@
 package adress;
 
-import adress.model.ExhibitionWallImpl;
 import adress.model.HBoxWindowImpl;
-import adress.model.WindowImpl;
 import adress.model.WindowImpl2;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -26,10 +24,5 @@ public class MainApp2 extends Application{
 			this.Window = window;
 			this.Window.primaryStageInitialisation(primaryStage);
 			this.Window.setMainApp(this);
-			
 		}
-
-
-
-
 }

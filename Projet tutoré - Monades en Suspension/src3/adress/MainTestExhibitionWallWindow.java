@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 import adress.model.ExhibitionWallImpl;
 
 /**
- * Main creating a new exhibition wall window
+ * Main test creating a new exhibition wall window
  * @author Etanlink
  *
  */
@@ -17,8 +17,6 @@ public class MainTestExhibitionWallWindow extends Application {
 
 	@Override
 	public void start(Stage thirdStage) throws Exception {
-		
-		/* For test : instantiation of a catch animation window */
 		ExhibitionWallImpl exhibitionWallWindow = new ExhibitionWallImpl(thirdStage, 1280, 720);
 	}
 

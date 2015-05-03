@@ -2,20 +2,14 @@ package adress.model;
 
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 import org.controlsfx.dialog.Dialogs;
-
-
-
 import adress.MainApp2;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -30,7 +24,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -39,54 +32,34 @@ import javafx.stage.Stage;
 public class HBoxWindowImpl {
 
 	public static final int H_VBOX_SIZE = 609;
-
 	public static final int W_VBOX_SIZE = 224;
-
 	private Stage primaryStage;
-
-	//private BorderPane rootLayout;
-
 	private Group root = new Group();
-
 	public AnimationImpl animation;
-
 	public boolean animationRunning = false;
 	public boolean animationStarted = false;
-
-	public static final int W_SCENE_SIZE = 800;
 	public static final int H_SCENE_SIZE = 600;
+	public static final int W_SCENE_SIZE = 215;
 	private MainApp2 MainApp;
 	public VBox MaVBox ;
-	private Rectangle snapshotRectangle = new Rectangle(HBoxWindowImpl.W_SCENE_SIZE - HBoxWindowImpl.W_VBOX_SIZE, 25, 585, HBoxWindowImpl.H_SCENE_SIZE);
-
 	@FXML
 	public Button BoutonLancerAnim ;
-
-
 	@FXML
 	public TextField textField1 ;
-
 	@FXML
 	public TextField textField2 ;
-
 	@FXML
 	public TextField textField3 ;
-
 	@FXML
 	public TextField textField4 ;
-
 	@FXML
 	public Slider Slider1;
-
 	@FXML
 	public Slider Slider2;
-
 	@FXML
 	public Slider Slider3;
-
 	@FXML
 	public Slider Slider4;
-
 	public Slider SliderVitesse;
 
 	public EventHandler<MouseEvent> SliderHandler1 = new EventHandler<MouseEvent>(){
@@ -156,12 +129,10 @@ public class HBoxWindowImpl {
 		}
 	};
 	
-	public HBoxWindowImpl() {	}
-	/**
-	 * Initialize the primarystage
-	 */
+	public HBoxWindowImpl(){}
+	
 	public void primaryStageInitialisation(Stage primaryStage) throws IOException {
-		primaryStage.setTitle("Monades en suspension");
+		primaryStage.setTitle("Paramètres");
 		primaryStage.setResizable(false);
 		//MenuBar menuBar = loadMenuBar();
 		MenuBar menuBar = manualMenuBar();
@@ -178,7 +149,6 @@ public class HBoxWindowImpl {
 		this.root.getChildren().add(menuBar);
 		//this.root.getChildren().add(this.snapshotRectangle);
 		this.primaryStage.show();
-
 	}
 
 	/**
@@ -200,7 +170,6 @@ public class HBoxWindowImpl {
 
 			}
 		});
-
 		MenuBar menuBar = new MenuBar();
 		menuBar.getMenus().addAll(helpMenuItem, aboutMenuItem);
 		menuBar.setMinWidth(W_SCENE_SIZE+10);
@@ -208,28 +177,12 @@ public class HBoxWindowImpl {
 	}
 
 	@FXML
-	public void initialize() {
-
-	}
-
-
-	public void FXMLParametersVBox() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(HBoxWindowImpl.class.getResource("VBox.fxml"));
-			VBox vBox = (VBox)loader.load();
-			this.MaVBox = vBox ;
-			HBoxWindowImpl controller = loader.getController();
-			controller.setMainApp(this.MainApp);
-		}
-		catch (IOException e){
-			e.printStackTrace();
-		}
-	}
+	public void initialize() {}
 
 	public void setMainApp(MainApp2 mainapp){
 		this.MainApp = mainapp;
 	}
+	
 	/**
 	 * Creates a basic parametersPane
 	 * @return parametersPane
@@ -358,10 +311,10 @@ public class HBoxWindowImpl {
 					/* Launch the animation */
 
 					//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
+					Stage thirdStage = new Stage();
+					//ExhibitionWallImpl exhibitionWallWindow = new ExhibitionWallImpl(thirdStage, );
 					animation.run();
 					animationStarted = true ;
-					/* Test of the ExhibitionWalImpl class*/
-					ExhibitionWallImpl exhibitionWallWindow = new ExhibitionWallImpl(800, 600);
 				}
 
 
