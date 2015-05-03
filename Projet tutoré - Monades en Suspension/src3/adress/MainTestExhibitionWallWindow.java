@@ -1,6 +1,7 @@
 package adress;
 
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.stage.Stage;
 import adress.model.ExhibitionWallImpl;
 
@@ -17,7 +18,8 @@ public class MainTestExhibitionWallWindow extends Application {
 
 	@Override
 	public void start(Stage thirdStage) throws Exception {
-		ExhibitionWallImpl exhibitionWallWindow = new ExhibitionWallImpl(thirdStage, 1280, 720);
+		Group testRoot = new Group();
+		ExhibitionWallImpl exhibitionWallWindow = new ExhibitionWallImpl(thirdStage, testRoot, 1280, 720);
 	}
 
 }

@@ -287,32 +287,42 @@ public class HBoxWindowImpl {
 				if (result < Slider1.getValue() || result > Slider1.getValue()){
 					Dialogs.create()
 					.owner(primaryStage)
-					.title("Erreur")
+					.title("Erreur sur le nombre de Monades")
 					.masthead(null)
-					.message("Le nombre de monades demandé est erroné")
-					.showInformation();
+					.message("Le nombre de Monades voulu ne correspond pas au nombre de Monades déclaré... :/\n"
+							+ "Veuillez vérifier les paramètres rentrés et essayer à nouveau.")
+					.showWarning();
 				}
 				if(animationStarted){
 					Dialogs.create()
 					.owner(primaryStage)
-					.title("Erreur")
-					.masthead(null)
-					.message("Une animation est déjà lancée, veuillez relancer l'application pour générer une nouvelle animation")
-					.showInformation();
+					.title("Une animation est déjà lancée")
+					.masthead("Oh oh, il semblerait qu'une animation soit déjà lancée")
+					.message("Veuillez quitter l'animation précedemment lancée avant de pouvoir en générer une nouvelle.")
+					.showWarning();
 				}
 				if (result == Slider1.getValue() && !animationStarted){
 					Dialogs.create()
 					.owner(primaryStage)
-					.title("Animation")
-					.masthead(null)
-					.message("Animation lancée")
+					.title("Lancement de l'animation")
+					.masthead("Lancement de l'animation !")
+					.message("Tout les paramètres rentrés sont corrects !")
 					.showInformation();
 					animationRunning = true;
 					/* Launch the animation */
 
 					//animation.animationWithParameters(getNbMinObjectsParameter, getTinyObjectsPercentage, getNormalObjectsPercentage, getBigObjectsPercentage);
+					Dialogs.create().owner(primaryStage).title("Choix de la taille du mur d'exposition").masthead("Quelle est la taille du mur d'exposition ?")
+					.showTextInput("Largeur * Hauteur");
+					
 					Stage thirdStage = new Stage();
-					//ExhibitionWallImpl exhibitionWallWindow = new ExhibitionWallImpl(thirdStage, );
+					Group exhibitionWallGroup = new Group();
+					try {
+						ExhibitionWallImpl exhibitionWallWindow = new ExhibitionWallImpl(thirdStage, exhibitionWallGroup, 800, 600);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					animation.run();
 					animationStarted = true ;
 				}
