@@ -13,7 +13,7 @@ public class MainExhibitionWallWindow extends Application {
 	@Override
 	public void start(Stage thirdStage) throws Exception {
 		Group testRoot = new Group();
-		ExhibitionWallWindowImpl exhibitionWallWindow = new ExhibitionWallWindowImpl(thirdStage, 1280, 720);
+		ExhibitionWallWindowImpl exhibitionWallWindow = new ExhibitionWallWindowImpl(thirdStage, 430, 270);
 	}
 
 }
