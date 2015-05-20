@@ -38,8 +38,8 @@ public class HBoxWindowImpl {
 	public AnimationImpl animation;
 	public boolean animationRunning = false;
 	public boolean animationStarted = false;
-	public static final int H_SCENE_SIZE = 600;
-	public static final int W_SCENE_SIZE = 215;
+	public static final int H_SCENE_SIZE = 595;
+	public static final int W_SCENE_SIZE = 210;
 	private MainApp2 MainApp;
 	public VBox MaVBox ;
 	@FXML
@@ -138,7 +138,7 @@ public class HBoxWindowImpl {
 		MenuBar menuBar = manualMenuBar();
 		this.MaVBox = manualParametersVBox();
 		//FXMLParametersVBox();
-		this.animation = new AnimationImpl(this.root, this.SliderVitesse.getValue());
+		//this.animation = new AnimationImpl(this.root, this.SliderVitesse.getValue());
 		this.primaryStage = primaryStage;
 		//this.snapshotRectangle.setFill(Color.TRANSPARENT);
 		Scene scene = new Scene(this.root, W_SCENE_SIZE, H_SCENE_SIZE);
@@ -318,7 +318,7 @@ public class HBoxWindowImpl {
 					Stage thirdStage = new Stage();
 					Group exhibitionWallGroup = new Group();
 					try {
-						ExhibitionWallImpl exhibitionWallWindow = new ExhibitionWallImpl(thirdStage, exhibitionWallGroup, 800, 600);
+						ExhibitionWallImpl exhibitionWallWindow = new ExhibitionWallImpl(thirdStage, exhibitionWallGroup, getAnimation(), getSliderVitesse().getValue(), 800, 600);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -527,4 +527,13 @@ public class HBoxWindowImpl {
 
 
 	}
+
+	public AnimationImpl getAnimation() {
+		return animation;
+	}
+	
+	public Slider getSliderVitesse() {
+		return SliderVitesse;
+	}
+	
 }
