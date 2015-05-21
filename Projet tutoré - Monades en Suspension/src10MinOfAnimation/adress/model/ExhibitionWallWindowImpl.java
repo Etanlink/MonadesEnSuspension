@@ -39,7 +39,7 @@ public class ExhibitionWallWindowImpl {
 		stageWidth = exhibitionWallStage.getHeight();
 		stageHeight = exhibitionWallStage.getWidth();
 		
-		this.animation = new ExhibitionAnimationImpl(this.root, 2);
+		this.animation = new ExhibitionAnimationImpl(this.root, 1.5);
 		this.animation.run();
 		
 		exhibitionWallStage.show();

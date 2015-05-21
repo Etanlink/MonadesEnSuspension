@@ -154,7 +154,7 @@ public class ExhibitionAnimatedImageThread implements Runnable {
 		if(this.moveX > 0) {
 			if(this.moveY > 0) { // x > 0 , y > 0
 				if(p) { // left + bottom left corner
-					this.monade.setX(WindowImpl2.W_VBOX_SIZE - centerX);
+					//this.monade.setX(WindowImpl2.W_VBOX_SIZE - centerX);
 					this.monade.setY(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE) ) + centerY );
 				}
 				else { // bottom + bottom left corner
@@ -165,7 +165,7 @@ public class ExhibitionAnimatedImageThread implements Runnable {
 			}
 			else { // x > 0 , y < 0
 				if(p) { // top + top left corner
-					this.monade.setX(WindowImpl2.W_VBOX_SIZE - centerX);
+					//this.monade.setX(WindowImpl2.W_VBOX_SIZE - centerX);
 					this.monade.setY(this.r.nextInt( (int) (WindowImpl.H_SCENE_SIZE) ) - centerY );
 				}
 				else { // left + top left corner
