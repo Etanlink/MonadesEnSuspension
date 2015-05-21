@@ -61,8 +61,8 @@ public class WindowImpl2 {
 	public boolean animationRunning = false;
 	public boolean animationStarted = false;
 
-	public static final int W_SCENE_SIZE = 800;
-	public static final int H_SCENE_SIZE = 600;
+	public static final int W_SCENE_SIZE = 860;
+	public static final int H_SCENE_SIZE = 540;
 	private MainApp2 MainApp;
 	public VBox MaVBox ;
 	private Rectangle snapshotRectangle = new Rectangle(WindowImpl2.W_SCENE_SIZE - WindowImpl2.W_VBOX_SIZE, 25, 585, WindowImpl2.H_SCENE_SIZE);

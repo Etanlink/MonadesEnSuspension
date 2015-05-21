@@ -74,6 +74,7 @@ public class ExhibitionAnimatedImageThread implements Runnable {
 		super();
 		/* Instantiation of the ExtentedCircle */
 		this.monade = new ImageView( new Image(CATEGORIES.get(category)) );
+		this.monade.setFitWidth(25);
 		this.monade.setPreserveRatio(true);
 		
 			

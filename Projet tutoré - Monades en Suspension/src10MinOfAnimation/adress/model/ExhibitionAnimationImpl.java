@@ -138,12 +138,12 @@ public class ExhibitionAnimationImpl implements Runnable {
 	 * generates shapes or not considering their number
 	 */
 	private void checkNumberOfShapes() {
-		while (this.circles.getChildren().size() <= 10){
+		while (this.circles.getChildren().size() <= 9){
 			createANewThread(this.globalSpeedCoeff);
 		}
 
 		/* Control of the maximal parameter */
-		if(this.circles.getChildren().size() <= 10){
+		if(this.circles.getChildren().size() <= 9){
 			int p = this.r.nextInt(100);
 			int q = this.r.nextInt(100);
 			if(q>=p)
