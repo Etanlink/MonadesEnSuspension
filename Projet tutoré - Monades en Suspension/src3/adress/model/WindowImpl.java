@@ -224,7 +224,7 @@ public class WindowImpl {
 			public void handle(ActionEvent actionEvent) {
 				if(animationRunning){
 					animation.getAnimation().stop();
-					for(AnimatedImageThread thr1 : animation.getThreadShapes())
+					for(ExhibitionAnimatedImageThread thr1 : animation.getThreadShapes())
 					{
 						thr1.getAnimation().stop();
 					}
@@ -233,7 +233,7 @@ public class WindowImpl {
 				}
 				else {
 					animation.getAnimation().play();
-					for(AnimatedImageThread thr1 : animation.getThreadShapes())
+					for(ExhibitionAnimatedImageThread thr1 : animation.getThreadShapes())
 					{
 						thr1.getAnimation().play();
 					}

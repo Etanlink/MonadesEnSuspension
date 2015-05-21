@@ -37,7 +37,7 @@ public class ExhibitionAnimationImpl implements Runnable {
 	
 	private double globalSpeedCoeff;
 
-	private ArrayList<AnimatedImageThread> threadShapes = new ArrayList();
+	private ArrayList<ExhibitionAnimatedImageThread> threadShapes = new ArrayList();
 
 	private ArrayList<ImageView> shapes;
 
@@ -55,7 +55,7 @@ public class ExhibitionAnimationImpl implements Runnable {
 		this.animation = buildTimeline();
 	}
 
-	public ArrayList<AnimatedImageThread> getThreadShapes() {
+	public ArrayList<ExhibitionAnimatedImageThread> getThreadShapes() {
 		return threadShapes;
 	}
 
@@ -100,9 +100,9 @@ public class ExhibitionAnimationImpl implements Runnable {
 	 * checks shape by shape if there is an exit or not
 	 */
 	private void controlExit() throws ConcurrentModificationException {
-		for(Iterator<AnimatedImageThread> it = this.threadShapes.iterator(); it.hasNext();) {
+		for(Iterator<ExhibitionAnimatedImageThread> it = this.threadShapes.iterator(); it.hasNext();) {
 
-			AnimatedImageThread thrcirc1 = it.next();
+			ExhibitionAnimatedImageThread thrcirc1 = it.next();
 			/* The shape is removed if it is out of the scene */
 			if(thrcirc1.isOutOfFrame())
 			{
@@ -118,7 +118,7 @@ public class ExhibitionAnimationImpl implements Runnable {
 	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
 	 */
 	private synchronized void createANewThread(double sc) {
-		AnimatedImageThread circThread = new AnimatedImageThread(4);
+		ExhibitionAnimatedImageThread circThread = new ExhibitionAnimatedImageThread(4);
 		this.threadShapes.add(circThread);
 		this.circles.getChildren().add(circThread.getNode());
 		circThread.setSpeedCoeff(sc);
@@ -157,7 +157,7 @@ public class ExhibitionAnimationImpl implements Runnable {
 	 * Removes an AnimatedShapeThread from the list
 	 * @param circ1 : the thread to remove
 	 */
-	private synchronized void removeShapeFromScene(AnimatedImageThread thrcirc1) {
+	private synchronized void removeShapeFromScene(ExhibitionAnimatedImageThread thrcirc1) {
 		this.threadShapes.remove(thrcirc1);
 		this.circles.getChildren().remove(thrcirc1.getNode());
 	}
@@ -235,7 +235,7 @@ public class ExhibitionAnimationImpl implements Runnable {
 	}
 	
 	public void changeSpeedCoeff(double sc) {
-		for(AnimatedImageThread thr1 : this.threadShapes) {
+		for(ExhibitionAnimatedImageThread thr1 : this.threadShapes) {
 			thr1.setSpeedCoeff(sc);
 		}
 	}
