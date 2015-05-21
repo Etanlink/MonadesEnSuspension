@@ -22,7 +22,7 @@ import javafx.util.Duration;
 	Legend :	- Very big = black dot
 				- Big = red dot
 				- Normal = bleu dot
-				- Tiny = yellow dot
+						- Tiny = yellow dot
  * @author Etanlink
  *
  */
@@ -118,7 +118,7 @@ public class ExhibitionAnimationImpl implements Runnable {
 	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
 	 */
 	private synchronized void createANewThread(double sc) {
-		AnimatedImageThread circThread = new AnimatedImageThread();
+		AnimatedImageThread circThread = new AnimatedImageThread(4);
 		this.threadShapes.add(circThread);
 		this.circles.getChildren().add(circThread.getNode());
 		circThread.setSpeedCoeff(sc);

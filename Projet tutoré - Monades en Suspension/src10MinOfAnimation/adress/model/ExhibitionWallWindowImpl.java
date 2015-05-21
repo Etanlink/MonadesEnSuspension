@@ -14,7 +14,7 @@ public class ExhibitionWallWindowImpl {
 	public ExhibitionAnimationImpl animation;
 	
 	/**
-	 * 
+	 * @param exhibitionWallStage
 	 * @param width
 	 * @param height
 	 * Create a virtual exhibition wall window with a configurable width and height
