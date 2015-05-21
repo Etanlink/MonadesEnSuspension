@@ -36,6 +36,8 @@ public class ExhibitionAnimationImpl implements Runnable {
 	private final Timeline animation;
 	
 	private double globalSpeedCoeff;
+	
+	private int lastOut;
 
 	private ArrayList<ExhibitionAnimatedImageThread> threadShapes = new ArrayList();
 
@@ -71,6 +73,68 @@ public class ExhibitionAnimationImpl implements Runnable {
 	 * @return animation : the overall timeline
 	 */
 	private Timeline buildTimeline() {
+		
+		// 1 black one
+		ExhibitionAnimatedImageThread circThread = new ExhibitionAnimatedImageThread(1);
+		this.threadShapes.add(circThread);
+		this.circles.getChildren().add(circThread.getNode());
+		circThread.setSpeedCoeff(1.5);
+		circThread.run();
+		
+		
+		// 2 red ones
+		ExhibitionAnimatedImageThread circThread1 = new ExhibitionAnimatedImageThread(2);
+		this.threadShapes.add(circThread1);
+		this.circles.getChildren().add(circThread1.getNode());
+		circThread1.setSpeedCoeff(1.5);
+		circThread1.run();
+		ExhibitionAnimatedImageThread circThread2 = new ExhibitionAnimatedImageThread(2);
+		this.threadShapes.add(circThread2);
+		this.circles.getChildren().add(circThread2.getNode());
+		circThread2.setSpeedCoeff(1.5);
+		circThread2.run();
+		
+		
+		// 3 blue ones
+		ExhibitionAnimatedImageThread circThread4 = new ExhibitionAnimatedImageThread(3);
+		this.threadShapes.add(circThread4);
+		this.circles.getChildren().add(circThread4.getNode());
+		circThread4.setSpeedCoeff(1.5);
+		circThread4.run();
+		ExhibitionAnimatedImageThread circThread5 = new ExhibitionAnimatedImageThread(3);
+		this.threadShapes.add(circThread5);
+		this.circles.getChildren().add(circThread5.getNode());
+		circThread5.setSpeedCoeff(1.5);
+		circThread5.run();
+		ExhibitionAnimatedImageThread circThread6 = new ExhibitionAnimatedImageThread(3);
+		this.threadShapes.add(circThread6);
+		this.circles.getChildren().add(circThread6.getNode());
+		circThread6.setSpeedCoeff(1.5);
+		circThread6.run();
+		
+		this.lastOut = 4;
+		/*
+		// 3 yellow ones
+		ExhibitionAnimatedImageThread circThread7 = new ExhibitionAnimatedImageThread(4);
+		this.threadShapes.add(circThread7);
+		this.circles.getChildren().add(circThread7.getNode());
+		circThread7.setSpeedCoeff(1.5);
+		circThread7.run();
+		setDragListeners(circThread7.getMonade());
+		ExhibitionAnimatedImageThread circThread8 = new ExhibitionAnimatedImageThread(4);
+		this.threadShapes.add(circThread8);
+		this.circles.getChildren().add(circThread8.getNode());
+		circThread8.setSpeedCoeff(1.5);
+		circThread8.run();
+		setDragListeners(circThread8.getMonade());
+		ExhibitionAnimatedImageThread circThread9 = new ExhibitionAnimatedImageThread(4);
+		this.threadShapes.add(circThread9);
+		this.circles.getChildren().add(circThread9.getNode());
+		circThread9.setSpeedCoeff(1.5);
+		circThread9.run();
+		setDragListeners(circThread9.getMonade());
+		*/
+		
 		final Timeline animation = new Timeline( new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>() {
 
 			@Override
@@ -108,6 +172,8 @@ public class ExhibitionAnimationImpl implements Runnable {
 			{
 				//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
 				removeShapeFromScene(thrcirc1);
+				this.lastOut = thrcirc1.getCategory();
+				
 			}
 			//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
 			//checkShapeCollision((Shape) circ1);
@@ -118,7 +184,7 @@ public class ExhibitionAnimationImpl implements Runnable {
 	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
 	 */
 	private synchronized void createANewThread(double sc) {
-		ExhibitionAnimatedImageThread circThread = new ExhibitionAnimatedImageThread(4);
+		ExhibitionAnimatedImageThread circThread = new ExhibitionAnimatedImageThread(this.lastOut);
 		this.threadShapes.add(circThread);
 		this.circles.getChildren().add(circThread.getNode());
 		circThread.setSpeedCoeff(sc);

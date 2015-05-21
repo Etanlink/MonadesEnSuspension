@@ -46,9 +46,13 @@ public class ExhibitionAnimatedImageThread implements Runnable {
 	private double moveY;
 
 	private double speedCoeff;
+	
+	private int category;
+	
+	public int getCategory() { return this.category; }
 
-	public double getMoveX() { return moveX; }
-	public double getMoveY() { return moveY; }
+	public double getMoveX() { return this.moveX; }
+	public double getMoveY() { return this.moveY; }
 	
 	public static final Map<Integer, String> CATEGORIES;
 	static {
@@ -74,6 +78,7 @@ public class ExhibitionAnimatedImageThread implements Runnable {
 		super();
 		/* Instantiation of the ExtentedCircle */
 		this.monade = new ImageView( new Image(CATEGORIES.get(category)) );
+		this.category = category;
 		this.monade.setFitWidth(25);
 		this.monade.setPreserveRatio(true);
 		
