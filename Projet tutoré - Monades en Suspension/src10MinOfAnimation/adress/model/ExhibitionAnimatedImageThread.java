@@ -1,5 +1,7 @@
 package adress.model;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javafx.animation.Animation;
@@ -32,8 +34,6 @@ import javafx.util.Duration;
  * caca */
 public class ExhibitionAnimatedImageThread implements Runnable {
 
-	public ExhibitionWallImpl exhibitionWindow;
-	
 	private final ImageView monade;
 	public ImageView getMonade() {
 		return monade;
@@ -49,6 +49,16 @@ public class ExhibitionAnimatedImageThread implements Runnable {
 
 	public double getMoveX() { return moveX; }
 	public double getMoveY() { return moveY; }
+	
+	public static final Map<Integer, String> CATEGORIES;
+	static {
+		CATEGORIES = new HashMap<Integer, String>();
+		CATEGORIES.put(1,"res/pointNoir.png");
+		CATEGORIES.put(2,"res/pointRouge.png");
+		CATEGORIES.put(3,"res/pointBleu.png");
+		CATEGORIES.put(4,"res/pointJaune.png");
+	}
+	
 
 	private Random r = new Random();
 	//private int compteur;
@@ -63,19 +73,9 @@ public class ExhibitionAnimatedImageThread implements Runnable {
 	public ExhibitionAnimatedImageThread(int category) {
 		super();
 		/* Instantiation of the ExtentedCircle */
-		this.monade = new ImageView( new Image("res/monade.png") );
+		this.monade = new ImageView( new Image(CATEGORIES.get(category)) );
 		this.monade.setPreserveRatio(true);
-		switch(category){
-		case 1 :
-			this.monade.setFitWidth(200);
-		case 2 :
-			this.monade.setFitWidth(100);
-		case 3 :
-			this.monade.setFitWidth(50);
-		case 4 :
-			this.monade.setFitWidth(20);
-		default:		
-		}
+		
 			
 		//this.monade.setFitWidth(this.r.nextInt(50)+50);
 		// ((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
