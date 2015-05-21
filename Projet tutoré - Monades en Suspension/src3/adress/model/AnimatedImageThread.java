@@ -50,16 +50,32 @@ public class AnimatedImageThread implements Runnable {
 
 	private Random r = new Random();
 	//private int compteur;
+	
+	/* exhibition needs */
+	private ExtentedCircle circle;
+	
 
 	/**
 	 * Builder
 	 */
-	public AnimatedImageThread() {
+	public AnimatedImageThread(int category) {
 		super();
 		/* Instantiation of the ExtentedCircle */
 		this.monade = new ImageView( new Image("res/monade.png") );
 		this.monade.setPreserveRatio(true);
-		this.monade.setFitWidth(this.r.nextInt(50)+50);
+		switch(category){
+		case 1 :
+			this.monade.setFitWidth(200);
+		case 2 :
+			this.monade.setFitWidth(100);
+		case 3 :
+			this.monade.setFitWidth(50);
+		case 4 :
+			this.monade.setFitWidth(20);
+		default:		
+		}
+			
+		//this.monade.setFitWidth(this.r.nextInt(50)+50);
 		// ((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 		this.speedCoeff = 1;
 		shuffleXY(360);
@@ -68,7 +84,7 @@ public class AnimatedImageThread implements Runnable {
 		//this.monade.setY(300);
 
 		/* DragListeners are added on the circle */
-		setDragListeners((ImageView) this.monade);
+		//setDragListeners((ImageView) this.monade);
 	};
 
 
@@ -82,9 +98,9 @@ public class AnimatedImageThread implements Runnable {
 
 	public boolean isOutOfFrame() {
 		return (
-				( ((ImageView) this.monade).getX() > WindowImpl.W_SCENE_SIZE + ((ImageView) this.monade).getFitWidth()) ||
+				( ((ImageView) this.monade).getX() > WindowImpl2.W_SCENE_SIZE + ((ImageView) this.monade).getFitWidth()) ||
 				( ((ImageView) this.monade).getX() < WindowImpl2.W_VBOX_SIZE - ((ImageView) this.monade).getFitWidth()) ||
-				( ((ImageView) this.monade).getY() > WindowImpl.H_SCENE_SIZE + ((ImageView) this.monade).getFitHeight()) ||
+				( ((ImageView) this.monade).getY() > WindowImpl2.H_SCENE_SIZE + ((ImageView) this.monade).getFitHeight()) ||
 				( ((ImageView) this.monade).getY() < 0 - ((ImageView) this.monade).getFitHeight())
 				);
 	}
@@ -119,7 +135,7 @@ public class AnimatedImageThread implements Runnable {
 
 				}) );
 	}
-	
+
 	/**
 	 * the monade spawns randomly around the borders of the scene
 	 */

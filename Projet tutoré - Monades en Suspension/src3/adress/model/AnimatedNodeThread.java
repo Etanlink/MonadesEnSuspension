@@ -45,10 +45,22 @@ public class AnimatedNodeThread implements Runnable {
 	/**
 	 * Builder
 	 */
-	public AnimatedNodeThread() {
+	public AnimatedNodeThread(int category) {
 		super();
+		int radius = 0;
 		/* Instantiation of the ExtentedCircle */
-		int radius = 10 * r.nextInt(10);
+		switch(category){
+		case 1 :
+			radius = 200;
+		case 2 :
+			radius = 100;
+		case 3 :
+			radius = 50;
+		case 4 :
+			radius = 10;
+		default:		
+		}
+		//int radius = 10 * r.nextInt(10);
 		this.circ1 = new ExtentedCircle(400,400, radius);
 		((Shape)circ1).setFill(new Color(r.nextDouble(), r.nextDouble(), r.nextDouble(), 1 ) );
 

@@ -32,12 +32,19 @@ public class AnimationImpl implements Runnable {
 	private final Group circles;
 
 	private final Timeline animation;
-	
+
 	private double globalSpeedCoeff;
 
 	private ArrayList<AnimatedImageThread> threadShapes = new ArrayList();
 
 	private ArrayList<ImageView> shapes;
+
+	/* lists used for the exhibition animation */
+	private ArrayList<AnimatedImageThread> veryBigCircles;
+	private ArrayList<AnimatedImageThread> bigCircles;
+	private ArrayList<AnimatedImageThread> mediumCircles;
+	private ArrayList<AnimatedImageThread> smallCircles;
+
 
 	/* A boolean to detect a collision */
 	boolean checkCollision = false;
@@ -81,15 +88,15 @@ public class AnimationImpl implements Runnable {
 				);
 		return animation;
 	}
-	
-	
+
+
 	/**
 	 * content of the main TimeLine
 	 */
 	private void handleMainThread() {
 		/* Generation of shapes */
 		checkNumberOfShapes();
-		
+
 		/* Control on the exit */
 		controlExit();
 	}
@@ -98,10 +105,10 @@ public class AnimationImpl implements Runnable {
 	 * checks shape by shape if there is an exit or not
 	 */
 	private void controlExit() throws ConcurrentModificationException {
-		for(Iterator<AnimatedImageThread> it = this.threadShapes.iterator(); it.hasNext();) {
+		/*for(Iterator<AnimatedImageThread> it = this.threadShapes.iterator(); it.hasNext();) {
 
 			AnimatedImageThread thrcirc1 = it.next();
-			/* The shape is removed if it is out of the scene */
+			 The shape is removed if it is out of the scene 
 			if(thrcirc1.isOutOfFrame())
 			{
 				//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
@@ -110,15 +117,76 @@ public class AnimationImpl implements Runnable {
 			//System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
 			//checkShapeCollision((Shape) circ1);
 		}
+		 */		for(Iterator<AnimatedImageThread> it = this.veryBigCircles.iterator(); it.hasNext();) {
+
+			 AnimatedImageThread thrcirc1 = it.next();
+			 /* The shape is removed if it is out of the scene */
+			 if(thrcirc1.isOutOfFrame())
+			 {
+				 //System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
+				 removeShapeFromScene(thrcirc1);
+			 }
+			 //System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+			 //checkShapeCollision((Shape) circ1);
+		 }
+		 for(Iterator<AnimatedImageThread> it = this.bigCircles.iterator(); it.hasNext();) {
+
+			 AnimatedImageThread thrcirc1 = it.next();
+			 /* The shape is removed if it is out of the scene */
+			 if(thrcirc1.isOutOfFrame())
+			 {
+				 //System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
+				 removeShapeFromScene(thrcirc1);
+			 }
+			 //System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+			 //checkShapeCollision((Shape) circ1);
+		 }
+		 for(Iterator<AnimatedImageThread> it = this.mediumCircles.iterator(); it.hasNext();) {
+
+			 AnimatedImageThread thrcirc1 = it.next();
+			 /* The shape is removed if it is out of the scene */
+			 if(thrcirc1.isOutOfFrame())
+			 {
+				 //System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
+				 removeShapeFromScene(thrcirc1);
+			 }
+			 //System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+			 //checkShapeCollision((Shape) circ1);
+		 }
+		 for(Iterator<AnimatedImageThread> it = this.smallCircles.iterator(); it.hasNext();) {
+
+			 AnimatedImageThread thrcirc1 = it.next();
+			 /* The shape is removed if it is out of the scene */
+			 if(thrcirc1.isOutOfFrame())
+			 {
+				 //System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + "se casse" );
+				 removeShapeFromScene(thrcirc1);
+			 }
+			 //System.out.println("Cercle " + circles.getChildren().indexOf(circ1) + " x:" + ((ExtentedCircle) circ1).getX() + " y:" + ((ExtentedCircle) circ1).getY() );
+			 //checkShapeCollision((Shape) circ1);
+		 }
+
+
 	}
 
 	/**
 	 * creates a new AnimatedShapeThread and binds it with AnimationImpl
 	 */
-	private synchronized void createANewThread(double sc) {
-		AnimatedImageThread circThread = new AnimatedImageThread();
-		this.threadShapes.add(circThread);
+	private synchronized void createANewThread(double sc, int category) {
+		AnimatedImageThread circThread = new AnimatedImageThread(category);
+		//this.threadShapes.add(circThread);
 		this.circles.getChildren().add(circThread.getNode());
+		switch(category){
+		case 1 :
+			this.veryBigCircles.add(circThread);
+		case 2 :
+			this.bigCircles.add(circThread);
+		case 3 :
+			this.mediumCircles.add(circThread);
+		case 4 :
+			this.smallCircles.add(circThread);
+		default:		
+		}
 		circThread.setSpeedCoeff(sc);
 		circThread.run();
 		setDragListeners(circThread.getMonade());
@@ -136,19 +204,29 @@ public class AnimationImpl implements Runnable {
 	 * generates shapes or not considering their number
 	 */
 	private void checkNumberOfShapes() {
+		/*
 		while (this.circles.getChildren().size() <= 10){
 			createANewThread(this.globalSpeedCoeff);
-		}
+		}*/
+		while (this.veryBigCircles.size() <= 1)
+			createANewThread(this.globalSpeedCoeff, 1);
+		while (this.bigCircles.size() <= 1)
+			createANewThread(this.globalSpeedCoeff, 2);
+		while (this.mediumCircles.size() <= 4)
+			createANewThread(this.globalSpeedCoeff, 3);
+		while (this.smallCircles.size() <= 4)
+			createANewThread(this.globalSpeedCoeff, 4);
+
 
 		/* Control of the maximal parameter */
-		if(this.circles.getChildren().size() <= 10){
+		/*if(this.circles.getChildren().size() <= 10){
 			int p = this.r.nextInt(100);
 			int q = this.r.nextInt(100);
 			if(q>=p)
 			{
 				createANewThread(this.globalSpeedCoeff);
 			}
-		}
+		}*/
 	}
 
 	/**
@@ -231,7 +309,7 @@ public class AnimationImpl implements Runnable {
 		});
 
 	}
-	
+
 	public void changeSpeedCoeff(double sc) {
 		for(AnimatedImageThread thr1 : this.threadShapes) {
 			thr1.setSpeedCoeff(sc);
@@ -243,5 +321,5 @@ public class AnimationImpl implements Runnable {
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
 	}
-	
+
 }
