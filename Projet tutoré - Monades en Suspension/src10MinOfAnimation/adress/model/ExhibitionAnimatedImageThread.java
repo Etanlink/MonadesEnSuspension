@@ -32,6 +32,8 @@ import javafx.util.Duration;
  * caca */
 public class ExhibitionAnimatedImageThread implements Runnable {
 
+	public ExhibitionWallImpl exhibitionWindow;
+	
 	private final ImageView monade;
 	public ImageView getMonade() {
 		return monade;

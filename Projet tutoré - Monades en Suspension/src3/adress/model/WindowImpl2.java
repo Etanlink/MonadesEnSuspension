@@ -46,9 +46,9 @@ import javafx.stage.StageStyle;
 
 public class WindowImpl2 {
 
-	public static final int H_VBOX_SIZE = 609;
+	public static final int H_VBOX_SIZE = 0;
 
-	public static final int W_VBOX_SIZE = 224;
+	public static final int W_VBOX_SIZE = 0;
 
 	private Stage primaryStage;
 

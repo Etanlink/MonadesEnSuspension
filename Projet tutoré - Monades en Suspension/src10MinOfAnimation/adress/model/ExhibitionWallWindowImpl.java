@@ -13,6 +13,9 @@ public class ExhibitionWallWindowImpl {
 	
 	public ExhibitionAnimationImpl animation;
 	
+	public double stageWidth;
+	public double stageHeight;
+	
 	/**
 	 * @param exhibitionWallStage
 	 * @param width
@@ -33,10 +36,31 @@ public class ExhibitionWallWindowImpl {
 		exhibitionWallStage.setHeight(height);
 		exhibitionWallStage.setWidth(width);
 		
+		stageWidth = exhibitionWallStage.getHeight();
+		stageHeight = exhibitionWallStage.getWidth();
+		
 		this.animation = new ExhibitionAnimationImpl(this.root, 2);
 		this.animation.run();
 		
 		exhibitionWallStage.show();
 	}
+
+	public double getStageWidth() {
+		return stageWidth;
+	}
+
+	public void setStageWidth(double stageWidth) {
+		this.stageWidth = stageWidth;
+	}
+
+	public double getStageHeight() {
+		return stageHeight;
+	}
+
+	public void setStageHeight(double stageHeight) {
+		this.stageHeight = stageHeight;
+	}	
+	
+	
 
 }

@@ -57,8 +57,8 @@ public class WindowImpl {
 
 	public static final int SCENE_SIZE = 600;
 	
-	public static final int W_SCENE_SIZE = 800;
-	public static final int H_SCENE_SIZE = 600;
+	public static final int W_SCENE_SIZE = 860;
+	public static final int H_SCENE_SIZE = 540;
 	private MainTestIHM MainApp;
 	public VBox MaVBox ;
 	private Rectangle snapshotRectangle = new Rectangle(225, 25, 585, 600);
